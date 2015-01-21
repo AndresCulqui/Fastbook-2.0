@@ -1,0 +1,40 @@
+<polymer-element name="main-app">
+	<template>
+		<style>
+			core-scaffold /deep/ core-icon-button{
+				visibility: hidden;
+			}
+			#name_title {
+				text-decoration:none; color:white; font-size: 50px;
+			}
+
+
+			/*----------- media query mobile ----------*/
+			@media (max-width: 610px) {
+				core-scaffold /deep/ core-icon-button {
+				visibility: visible;
+				}
+			}
+
+		</style>
+
+
+	<core-scaffold id="main" responsiveWidth="2000px" drawerWidth="50%" >
+
+		
+		<div tool horizontal layout center flex id="tool">
+	  		<div id="fastbook" style="width:50%; margin-top:0%"> <div id="title"> <a id="name_title" href="index.html"> Fastbook </a> </div></div>
+
+	  		
+
+	  	</div>
+
+	</core-scaffold>
+	</template>
+	<script>
+	Polymer({
+
+
+	});
+	</script>
+</polymer-element>
