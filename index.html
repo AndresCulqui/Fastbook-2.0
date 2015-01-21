@@ -13,15 +13,112 @@
 	<link rel="import" href="./bower_components/core-icon/core-icon.html">
 	<link rel="import" href="./bower_components/core-input/core-input.html">
 	<link rel="import" href="./bower_components/paper-button/paper-button.html">
+	<link rel="import" href="./bower_components/core-scaffold/core-scaffold.html">
 
 	<link rel="import" href="./Elements/main-app.html">
 	<link rel="import" href="./Elements/book-animation/book-animation.html">
 	<link rel="import" href="./Elements/my-scaffold/my-scaffold.html">
+	
+	<link rel="import" href="./Elements/ninja-slider/1/ninja-slider.html">
+	<link rel="stylesheet" type="text/css" href="./Elements/ninja-slider/1/ninja-slider.css">
+	<script src="./Elements/ninja-slider/1/ninja-slider.js" type="text/javascript"></script>
+
+<style>
+			core-scaffold /deep/ core-icon-button{
+				visibility: hidden;
+
+			}
+
+			core-scaffold /deep/ core-toolbar {
+		    background: rgb(255,123,13); /* Old browsers */
+		    background: -moz-linear-gradient(top,  rgba(255,123,13,1) 0%, rgba(255,168,76,1) 60%); /* FF3.6+ */
+		    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,1)), color-stop(60%,rgba(255,168,76,1))); /* Chrome,Safari4+ */
+		    background: -webkit-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Chrome10+,Safari5.1+ */
+		    background: -o-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Opera 11.10+ */
+		    background: -ms-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* IE10+ */
+		    background: linear-gradient(to bottom,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* W3C */
+		    color: #fff;
+		    }
+			#name_title {
+				text-decoration:none; color:white; font-size: 50px;
+				font-weight: bold;
+			}
+			
+			footer{
+
+				height: 50px;
+				background: rgb(255,168,76); /* Old browsers */
+				background: -moz-linear-gradient(top,  rgba(255,168,76,1) 60%, rgba(255,123,13,1) 100%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(255,168,76,1)), color-stop(100%,rgba(255,123,13,1))); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* IE10+ */
+				background: linear-gradient(to bottom,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
+
+			}
+
+			ul {
+				
+				height: 400px;
+			}
+
+			book-animation /deep/ section{
+				/*width: 50%;*/
+				
+
+			}
+
+			span {
+				
+			}
+
+			/*----------- media query mobile ----------*/
+			@media (max-width: 610px) {
+				core-scaffold /deep/ core-icon-button {
+				visibility: visible;
+				}
+			}
+
+
+		</style>
 </head>
 <body>
-<main-app>
+<core-scaffold  id="main" responsiveWidth="2000px" drawerWidth="50%" >
+		<div tool horizontal layout center flex id="tool">
+	  		<div id="fastbook" style="width:50%; margin-top:0%"> <div id="title"> <a id="name_title" href="index.html"> FASTBOOK </a> </div></div>
+	  	</div>
+	  	<div vertical layout>
 
-</main-app>
+		  	<div flex>
+				<div id="ninja-slider">
+			    <span></span>
+				        <ul>
+				        	
+				            <li><div data-image="./Elements/ninja-slider/1/img/2-b.jpg"></div></li>
+				            <li><div data-image="./Elements/ninja-slider/1/img/1-s.jpg"></div></li>
+				            <li><div data-image="./Elements/ninja-slider/1/img/4-b.jpg"></div></li>
+				            <li><div data-image="./Elements/ninja-slider/1/img/6-b.jpg"></div></li>
+
+						</ul>
+						<h2><book-animation></book-animation></h2>
+
+	    		</div>
+	<book-animation></book-animation>
+	   <input id="input" placeholder="type something..." is="core-input">
+			  		
+		  	</div>
+	 		 
+		  	<footer>
+		  	Contacto directo 
+		  	</footer>
+	  	</div>
+
+
+
+		  			
+</core-scaffold>
+
 
 </body>
 </html>

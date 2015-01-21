@@ -41,6 +41,7 @@ Build the scene and rotate on hover
 **************************************/
 
   section {
+    margin-top: -50px;
     border-radius: 10px;
     border: 3px solid red;
     background-size: 100% 100%;
@@ -68,9 +69,16 @@ core-input {
 }
 
 #butt {
-    padding-top: 15px;
+    
     vertical-align: middle;
-    background-color: skyblue;
+    background: rgb(255,168,76); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(255,168,76,1) 60%, rgba(255,123,13,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(255,168,76,1)), color-stop(100%,rgba(255,123,13,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
     border-radius: 0px 5px 5px 0px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -84,10 +92,10 @@ core-input {
 #icon_search {
     border-radius: 5px 0px 0px 5px;
     background: #F1F1F1;
-    margin: 10px;
+    margin: 5px;
     width: 51px;
     height: auto;
-    padding: 15px 0px 15px 15px;
+   
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 0px;
@@ -102,6 +110,7 @@ core-input {
     <section horizontal layout flex>
         <core-icon id="icon_search" icon="search"></core-icon>
         <core-input placeholder="Find a book..."></core-input>
+         <input  placeholder="type something..." is="core-input">
         <paper-button id="butt">Search</paper-button>
     </section >
    

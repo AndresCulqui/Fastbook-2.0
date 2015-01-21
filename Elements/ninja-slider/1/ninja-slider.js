@@ -15,7 +15,7 @@ var nsOptions = {
     after: null,
     multipleImages: {
         screenWidth: [0, 600],
-        path: ["-s.jpg", "-b.jpg"]
+        path: ["1-b.jpg", "2-b.jpg", "4-b.jpg"]
     },
     license: "mylicense"
 };

@@ -69,7 +69,7 @@ To have the content fit to the main area, use `fit` attribute.
 <link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
 <link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 
-<polymer-element name="my-scaffold">
+<polymer-element name="core-scaffold">
 <template>
 
   <style>
@@ -89,14 +89,8 @@ To have the content fit to the main area, use `fit` attribute.
     }
     
     core-toolbar {
-    background: rgb(255,123,13); /* Old browsers */
-    background: -moz-linear-gradient(top,  rgba(255,123,13,1) 0%, rgba(255,168,76,1) 60%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,1)), color-stop(60%,rgba(255,168,76,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* W3C */
-    color: #fff;
+      background-color: #526E9C;
+      color: #fff;
     }
     
     #drawerPanel:not([narrow]) #menuButton {
@@ -134,7 +128,7 @@ To have the content fit to the main area, use `fit` attribute.
 </template>
 <script>
 
-  Polymer('my-scaffold', {
+  Polymer('core-scaffold', {
     
     /**
      * Fired when the main content has been scrolled.  `event.detail.target` returns

@@ -104,7 +104,7 @@
 /* Other settings
 -------------------------------------------- */   
 #ninja-slider h2 {
-    position:absolute;font-size:100px;width:100%;font-family:"Helvetica Neue", Helvetica, Arial;font-weight:bold;top:20%;text-align:center;color:#FFF;
+    position:absolute;font-size:15px;width:100%;font-family:"Helvetica Neue", Helvetica, Arial;font-weight:bold;top:20%;text-align:center;color:black;
 }
 
 #ninja-slider h3 {
