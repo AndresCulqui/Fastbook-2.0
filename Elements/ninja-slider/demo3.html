@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="3/ninja-slider.css" rel="stylesheet" type="text/css" />
+    <!--ninjaVideoPlugin.js is required only when the slider contains videos, and its link should be placed before the ninja-slider.js link.-->
+    <script src="3/ninjaVideoPlugin.js" type="text/javascript"></script>
+    <script src="3/ninja-slider.js" type="text/javascript"></script>
+    <style>
+        body {font: normal 0.9em Arial;margin:60px 0;background-color:#222;color:#ddd;}
+        a {color:#1155CC;}
+
+        ul li {padding:10px 0;}
+    </style>
+</head>
+<body>
+    <div>
+        <!--start-->
+        <div id="ninja-slider">
+            <ul>
+                <li>
+                    <div data-image="2/md/1.jpg">
+                        <h3 style="position:absolute;margin:0;width:100%;top:16px;bottom:auto;text-align:center;color:#aaa;">
+                            Ut Enim Ad Minim Veniam
+                        </h3>
+                    </div>
+                </li>
+                <li>
+                    <div data-image="2/md/3.jpg">
+                        <a class="video" href="http://vimeo.com/93292237"></a>
+                    </div>
+                </li>
+                <li>
+                    <div data-image="2/md/2.jpg">
+                        <h3 style="position:absolute;margin:0;width:100%;height:36px;line-height:36px;top:auto;bottom:0px;text-align:center;color:#aaa;background:rgba(0,0,0,0.25);">
+                            Caption of this slide
+                        </h3>
+                    </div>
+                </li>
+                <li>
+                    <div data-image="2/md/5.jpg">
+                        <a class="video" href="https://www.youtube.com/watch?v=GsufPM5TVZk"></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div style="padding-top:44.44%;height:0;overflow:hidden;">
+                            <div style="color:#999;padding:36px;position:absolute;top:0;">
+                                <h2>HTML content only</h2>
+                                This slide shows you how the slider can include any HTML content.
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--end-->
+    </div>
+    <div style="width:700px;margin:30px auto;">
+        <h2><br /><br /><br /><a href="demo1.html">demo 1</a> &nbsp; &nbsp; <a href="demo2.html">demo 2</a> &nbsp; &nbsp; demo 3</h2><br /><br />
+        <h3>Check out the source code of this page:</h3>
+        <ul>
+            <li>The CSS of this demo has been configured to show the pause/play button, and to hide the nav pagination.</li>
+            <li>The second and third slide shows how captions or HTML content can be added into a slide. 
+            There are certain rules you should follow when adding the HTML content. 
+            Please read FAQ#1 on page <a href="http://menucool.com/responsive-slider">Ninja Slider</a> for details.</li>
+            <li>The 4th slide shows how responsive image can be customized to a specific position and scale;<br />
+                Note: The responsive image's default style: background-size:contain; background-position: center center;<br />
+                Learn more about <a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank">CSS3 background-size</a>
+            </li>
+            <li>The last slide shows how video is embedded into a slide.<br />
+                Note: ninjaVideoPlugin.js should be linked before the ninja-slider.js link.</li>
+        </ul>
+    </div>
+</body>
+</html>
