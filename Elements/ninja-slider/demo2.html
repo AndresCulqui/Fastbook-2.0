@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="2/ninja-slider.css" rel="stylesheet" type="text/css" />
+    <!--ninjaVideoPlugin.js is required only when the slider contains videos, and its link should be placed before the ninja-slider.js link.-->
+    <script src="2/ninjaVideoPlugin.js" type="text/javascript"></script>
+    <script src="2/ninja-slider.js" type="text/javascript"></script>
+    <style>
+        body {font: normal 0.9em Arial;margin:60px 0;background-color:#222;color:#ddd;}
+        a {color:#1155CC;}
+        ul li {padding: 10px 0;}
+    </style>
+</head>
+<body>
+    <div>
+        <!--start-->
+        <div id='ninja-slider'>
+            <ul>
+                <li><div data-image="2/md/1.jpg"></div></li>
+                <li><div data-image="2/md/2.jpg"></div></li>
+                <li>
+                    <div data-image="2/md/3.jpg">
+                        <a class="video" href="https://www.youtube.com/watch?v=j6PbonHsqW0"></a>
+                    </div>
+                </li>
+                <li><div data-image="2/md/4.jpg"></div></li>
+                <li><a data-image="2/md/5.jpg" href="http://www.menucool.com"></a></li>
+            </ul>
+        </div>
+        <!--end-->
+    </div>
+    <div style="width:700px;margin:30px auto;">
+        <h2><br /><br /><br /><a href="demo1.html">demo 1</a> &nbsp; &nbsp; demo 2 &nbsp; &nbsp; <a href="demo3.html">demo 3</a></h2>
+        <p>&nbsp;</p>
+        <div style="border:1px solid #444;background:#111;padding:10px 20px;">
+            <p>The CSS of this demo has configured:</p>
+            <p><code>#ninja-slider li > div, #ninja-slider li > a {max-width:960px;}</code></p>
+            <p>So the responsive slider's width won't exceed 960px. You can remove this setting if you alwasy want the 100% resonsive layout.</p>
+        </div>
+        <p>&nbsp;</p>
+        <p>Ninja Slider is a touch-enabled image and content slideshow plugin. It is the most truly responsive slider in that:</p>
+        <ul>
+            <li>The slider will adapt to the size of its container</li>
+            <li>If set, it will choose the pixels from multiple versions of image that the user's device can actually use for faster page loading.</li>
+            <li>If max-width is set via CSS, the slider or its image will not exceed the max-width.</li>
+            <li>Image scaling: fully configurable</li>
+        </ul>
+    </div>
+</body>
+</html>
