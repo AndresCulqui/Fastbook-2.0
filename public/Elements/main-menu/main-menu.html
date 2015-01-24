@@ -1,3 +1,4 @@
+<link rel="import" href="../lib/flatiron-director/flatiron-director.html">
 <polymer-element name="main-menu" attributes="pages">
 	<template>
 		<style>
@@ -16,7 +17,7 @@ color: white;
 		</style>
 
     <div horizontal layout center >
-        <paper-tabs style="width:800px" selected="{{ route }}" selectedindex="home" valueattr="hash" >
+        <paper-tabs style="width:800px" selected="{{ route }}" selectedindex="home" valueattr="hash" selected="{{route}}">
         <template repeat="{{page in pages}}">
           <paper-tab flex hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
           <a href="#{{page.hash}}">{{page.name}}</a>
@@ -32,7 +33,7 @@ color: white;
 
     Polymer({
         ready: function () {
-
+          this.route = this.route || 'home'; // Select initial route.
       },
 
       tapMenu: function(e,detail,sender){

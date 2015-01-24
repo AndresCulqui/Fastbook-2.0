@@ -101,7 +101,7 @@
 				<core-menu horizontal center layout flex id="coremenu" valueattr="hash" selected="{{route}}">
 					<template repeat="{{page in pages}}">
 						<paper-item  class="paper" on-tap="{{favoriteTapped }}{{progress}}"center horizontal layout center-justified flex label="{{page.name}}" hash="{{page.hash}}" id="{{hash}}" icon="{{page.icon}}"title="{{page.name}}">
-						<a href="index2.html#{{page.hash}}"></a>
+						<a href="#{{page.hash}}"></a>
 						</paper-item>
 					</template>
 				</core-menu> 
