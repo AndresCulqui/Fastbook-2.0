@@ -1,0 +1,34 @@
+{
+  "name": "fast-book",
+  "version": "0.0.0",
+  "description": "web application designed to facilitate the exchange of textbooks",
+  "scripts": {
+    "test": "",
+    "start": ""
+  },
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:santiagomoreta/FastBook.git"
+  },
+  "author": "Andrés Culqui, Carlos Maldonado and Santiago Moreta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiagomoreta/FastBook/issues"
+  },
+  "homepage": "https://github.com/santiagomoreta/FastBook",
+  "devDependencies": {
+    "bower": "^1.3.9",
+    "chai": "~1.9.1",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-jshint": "^0.10.0"
+  },
+  "dependencies": {
+    "express": "~4.0.0",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1",
+    "socket.io": "~1.2.1"
+  }
+}

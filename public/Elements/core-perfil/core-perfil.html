@@ -1,0 +1,200 @@
+<polymer-element name="core-perfil">
+	<template>
+		<style>
+        :host {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        section {
+			margin: 20px;
+			background: rgba(8,46,64, 0.6);
+			padding-top: 10px;
+			border: 3px solid dimgray;
+			border-radius: 10px;
+        }
+		paper-button {
+			width: 100%;
+			height: 30px;
+	        background-image: url('../../../images/log.jpg');
+	        background-size: 100% 100%;
+	        background-repeat: no-repeat;
+	        color: white;
+	        font-weight: bold;
+	        margin: 10px 0px 0px 10px;
+		}
+		.icon {
+			height: 60px;
+			width: 60px;
+			border-radius: 5px;
+			background: #F1F1F1;
+			margin-top: 20px;
+			margin-left: 20px;
+			margin-right: 0px;
+			margin-bottom: 20px;
+			color: rgba(8,46,64, 0.6);
+		}
+		.icon:hover {
+			background: rgba(8,46,64, 0.6);
+		}
+		paper-input {
+			color: white;
+		}
+		paper-input-decorator {
+			color: white;
+		}
+		h3 {
+			padding: 10px;
+			font-size: 26px;
+			text-align: center;
+			color: rgba(8,46,64, 0.6);
+		}
+		#avatar {
+		}
+		#photo {
+			width: 100px;
+			height: 100px;
+			border-radius: 75px;
+		}
+		.icon-edit {
+			padding: 10px;
+			border-radius: 25px;
+			display: inline;
+			height: 20px;
+			width: 20px;
+			color: rgba(8,46,64, 0.6);
+			background: #F1F1F1;
+		}
+		#photo:hover {
+			opacity: 0.8;
+		}
+		.icon-edit:hover {
+			background: rgba(8,46,64, 0.6);
+		}
+		.content { /*se hara por cada fila de recomendados (solo haremos 3 filas o 4 como mucho)*/
+			padding-top: 1%;
+			height: 550px;
+			background-image: url('../images/bookshe.png');
+			background-size: 100% 32.59%;
+		}
+        .rows {
+        	display: block;
+        	margin-top: 0px;
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+        }
+        #campos {
+        	margin: 0px;
+        	width: 100%;
+        }
+        #actu {
+        	visibility: hidden;;
+        }
+        #botones {
+        	font-size: 14px;
+        	margin: 0px;
+        }
+        @media (max-width: 800px) {
+        	#photo {
+        		width: 50px;
+        		height: 50px;
+        	}
+        	paper-button {
+        		width: 100px;
+        	}
+        	.icon-edit {
+        		width: 10px;
+        		height: 10px;
+        	}
+        }
+		</style>
+
+		<section vertical layout center flex>
+			<div horizontal layout center>
+				<div id="avatar" horizontal layout>
+					<img id="photo" src="{{perfil.photo}}">
+					<core-icon class="icon-edit" icon="delete"></core-icon>
+					<core-icon class="icon-edit" icon="create"></core-icon>
+				</div>
+				<div id="botones" vertical layout>
+					<paper-button label="MODIFY" on-tap="{{edit}}"></paper-button>
+					<paper-button label="UPDATE" id="actu" on-tap="{{actualizar}}"></paper-button>
+				</div>
+			</div>
+			<div id="campos" horizontal layout>
+				<div class="rows" vertical layout flex>
+
+					<paper-input-decorator id="d_name" label="{{perfil.name}}" floatingLabel error="Name is invalid!">
+						<input is="core-input" id="name" disabled="true"/>
+					</paper-input-decorator>
+
+					<paper-input-decorator id="d_number" label="{{perfil.number}}" floatingLabel error="Number is invalid!">
+						<input is="core-input" id="number" disabled="true"/>
+					</paper-input-decorator>
+
+				</div>
+				<div class="rows" vertical layout flex>
+
+					<paper-input-decorator id="d_email" label="{{perfil.email}}" floatingLabel error="Email is invalid!">
+						<input is="core-input" id="email" disabled="true"/>
+					</paper-input-decorator>
+
+					<paper-input-decorator id="d_password" label="{{perfil.password}}" floatingLabel error="Password is invalid!">
+						<input is="core-input" id="password" disabled="true"/>
+					</paper-input-decorator>
+				</div>
+			</div>
+			<biblio-user></biblio-user>	
+		</section>
+
+	</template>
+	<script>
+		Polymer({
+			ready: function () {
+				this.perfil = {name: 'Carlos', email: 'carlos@gmail.com', userName: 'charlie', password: '12345', photo: "https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG", number: 655072180};
+	
+			},
+			edit: function() {
+				this.$.actu.style.visibility="visible";
+				this.$.name.disabled=false;
+				this.$.email.disabled=false;
+				this.$.number.disabled=false;
+				this.$.password.disabled=false;
+			},
+			actualizar: function() {
+				var name = this.$.name.value;
+				if(!name == '') {
+					var decorator_name = this.$.d_name;
+					if(name.match(/^[A-Za-záéíóúñ]{2,20}/g)) {
+						decorator_name.isInvalid = false;
+					} else {
+						decorator_name.isInvalid = true;
+					}
+				}
+
+				var number = this.$.number.value;
+				if(!number == '') {
+					var decorator_number = this.$.d_number;
+					if(number.match(/\b\d{9}/g)) {
+						decorator_number.isInvalid = false;
+					} else {
+						decorator_number.isInvalid = true;
+					}
+				}
+
+				var email = this.$.email.value;
+				if(!email == '') {
+					var decorator_email = this.$.d_email;
+					if(email.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/g)) {
+						decorator_email.isInvalid = false;
+					} else {
+						decorator_email.isInvalid = true;
+					}
+				}
+			}
+		});
+
+	</script>
+</polymer-element>

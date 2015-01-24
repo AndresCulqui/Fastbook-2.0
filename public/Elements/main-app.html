@@ -1,0 +1,157 @@
+<polymer-element name="main-app">
+	<template>
+		<style>
+		core-drawer-panel{
+	
+			}
+		
+			my-head /deep/ #title{
+				font-size: 60px;
+			}
+
+			#drawer{
+				position: absolute;
+				background-color: whitesmoke;
+				border-radius: 7px;
+				height: 100%;
+				z-index: 10;
+			}
+			#main{
+				border:2px solid red;
+				
+			}
+			#container{
+					border:2px solid green;
+					
+			}
+			#mn{
+				position: fixed;
+			}
+			core-toolbar {
+     		 // float: left;
+      			width: 100%;
+      			height: 60px;
+		        background: rgb(255,123,13); /* Old browsers */
+		        background: -moz-linear-gradient(top,  rgba(255,123,13,1) 0%, rgba(255,168,76,1) 60%); /* FF3.6+ */
+		        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,1)), color-stop(60%,rgba(255,168,76,1))); /* Chrome,Safari4+ */
+		        background: -webkit-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Chrome10+,Safari5.1+ */
+		        background: -o-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Opera 11.10+ */
+		        background: -ms-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* IE10+ */
+		        background: linear-gradient(to bottom,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* W3C */
+		        color: #fff;
+		      
+		     }
+
+		</style>
+
+
+	<core-drawer-panel id="cdp"responsiveWidth="2000px" >
+	
+	<div drawer id="drawer" >
+	<mobile-menu id="momenu"pages="{{pages}}"></mobile-menu>
+
+	</div>
+	   
+
+	
+
+<core-header-panel main mode="waterfall">
+<core-toolbar>
+  <my-head id="mh" mtitle="FastBook"></my-head>
+ </core-toolbar> 
+  <my-banner></my-banner>
+
+	<div id="container">
+
+
+		<core-animated-pages id="cap" valueattr="hash" selected="{{route}}"
+					transitions="slide-from-right">
+			
+			<section  hash="home">
+					<core-animation id="ca"></core-animation>
+			</section >
+			<section  hash="search">
+					<core-search></core-search>
+			</section >
+
+			<section  hash="buy">
+					
+					<mi-biblioteca></mi-biblioteca>
+			</section>
+			<section  hash="sell">
+					
+					<sell-element></sell-element>
+			</section>
+			<section  hash="account">
+					<core-perfil></core-perfil>
+				
+			</section>
+
+	
+
+
+		</core-animated-pages>
+		
+		
+
+
+	</div>
+
+
+
+	    		
+
+  </core-header-panel>
+
+</core-drawer-panel>
+</template>
+	<script>
+	    
+
+
+//--------------------------escuchando eventos------------------------
+
+	Polymer({
+		ready:function() {
+			this.pages=this.$.mh.pages;
+
+			var that=this;
+			
+
+			//console.log(this.route);
+
+			//-------------------escuchando evento boton menu left-----------------------
+			this.$.mh.addEventListener('actionMenu', function() {
+		    	that.$.cdp.togglePanel();
+		  	});
+		  	//-------------------escuchando evento menu principal-----------------------
+			this.$.mh.addEventListener('mainMenu', function(e) {
+		    	
+		    	that.route=e.detail;
+
+		    	
+		  	});
+		  	//-------------------escuchando evento menu left-----------------------
+			this.$.momenu.addEventListener('leftMenu', function(e) {
+		    	
+		    	that.route=e.detail;
+		    	that.$.cdp.closeDrawer();
+		    	
+		  	});
+		  	//-------------------escuchando evento slected-book-----------------------
+			this.$.ca.addEventListener('selectedBook', function(e) {
+		    	
+		    	console.log(e.detail.alt+"           soy evento ");
+		    	
+		    	
+		  	});		  	
+		},
+		menuTap: function  (a,b,c) {
+
+		}
+
+
+
+	});
+	</script>
+</polymer-element>

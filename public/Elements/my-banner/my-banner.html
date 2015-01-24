@@ -1,0 +1,47 @@
+<polymer-element name="my-banner" >
+<template>
+	<style>
+	:host{
+		height:  277px;
+		
+	}
+
+	#banner{
+		position: relative;
+	background-image: url(../../images/banner2.jpg) ;
+	height:  277px;
+
+	}
+	find-text{
+		position: relative;
+		height: 100%;
+	}
+
+    @media (max-width: 610px) {
+
+   		#banner{
+		
+			height:  80px;
+		}
+		find-text{
+			height: 0%;
+			width: 0%;
+		}
+
+    }
+
+	</style>
+
+	<div id="banner" vertical layout >
+		<book-animation></book-animation>
+		<find-text></find-text>
+	</div>
+
+</template>
+<script>
+    Polymer({
+  
+    });
+  </script>
+
+</polymer-element>

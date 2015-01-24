@@ -1,0 +1,95 @@
+
+	
+	
+	<polymer-element name="find-text">
+	<template>
+		<style>
+      
+     
+
+:host{
+
+	font-family: 'Lato', Arial, sans-serif;
+	color: #fff;
+
+}
+
+
+
+  section {
+    
+margin-top: -2%;
+
+  }
+ 
+
+#text{
+
+background: rgb(255,123,13); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,123,13,0.8) 0%, rgba(255,168,76,0.8) 60%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,0.8)), color-stop(60%,rgba(255,168,76,0.8))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,123,13,0.8) 0%,rgba(255,168,76,0.8) 60%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,123,13,0.8) 0%,rgba(255,168,76,0.8) 60%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,123,13,0.8) 0%,rgba(255,168,76,0.8) 60%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,123,13,0.8) 0%,rgba(255,168,76,0.8) 60%); /* W3C */
+
+border-radius: 7px;
+width: 100%;
+
+
+
+}
+#parrafo{
+  margin-left: 35%;
+}
+paper-ripple {
+ // height: 100%;
+}
+/*************************************
+Media Queries
+**************************************/
+  @media (max-width: 1280px){
+    #parrafo{
+      margin-left: 0%;
+    }
+
+  }  
+    @media (max-width: 790px){
+    #parrafo{
+      margin: 0%;
+      font-size: 80%;
+
+    }
+
+  }
+ 
+      
+		</style>
+   
+    <section horizontal layout flex>
+      <div  id="text">
+        <div id="parrafo">
+          <strong>
+          <div class="title"><h1>It's so easy!</h1></div>
+              <ol>
+                <li>Enter each book's ISBN in the text box below and click "Sell these books."</li>
+                <li>If you like what we offer, you'll just need to pack and ship the books to our warehouse in Portland, Oregon.</li>
+                <li>Once they arrive, we'll look them over and issue payment in your choice of online credit or cash. Read more.</li>
+             </ol> 
+          </strong>    
+          </div>   
+      </div>
+
+    </section >
+
+   
+     
+	</template>
+<script>
+
+
+    Polymer({
+  
+    });
+  </script>
+</polymer-element>

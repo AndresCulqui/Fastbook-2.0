@@ -1,0 +1,198 @@
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="import" href="../lib/flatiron-director/flatiron-director.html">
+<polymer-element name="menu-index">
+	<template>
+	<flatiron-director route="{{route}}" autoHash></flatiron-director>
+	<style>
+    :hover{
+          cursor: url('http://www.rw-designer.com/cursor-extern.php?id=16881');
+    }
+		paper-progress {
+			display: block;
+			width: 100%;
+			padding: 0px 0;
+		}
+		paper-progress::shadow #activeProgress {
+			background-color:#3b5998;
+		}
+		paper-progress::shadow #secondaryProgress {
+			background-color: #6D84B4;
+		}
+		div#main{
+			position:relative;
+			/*margin-top:5%;*/
+		}
+		core-animated-pages {
+			//background-color: yellow; 
+		}
+		core-toolbar#menu-bar{
+			background: linear-gradient(black,#085461);
+		}
+		paper-item{
+			text-align: center;
+			margin-right: 2%;
+			// border: solid 1px;
+			// border-radius: 7px;
+			// border-bottom-width: 3px;
+			/* -webkit-box-shadow: 6px 8px 28px 0px rgba(0,0,0,0.88);
+			-moz-box-shadow: 6px 8px 28px 0px rgba(0,0,0,0.88);
+			box-shadow: 6px 8px 28px 0px rgba(0,0,0,0.88);*/
+			//font-family: 'Fredericka the Great';
+			color:white;
+			background-image: url('../images/butt.png');
+			background-size: 100% 150%;
+			background-position: center;
+		}
+		@media (max-width: 600px) {
+			div#main{
+				position:relative;
+				margin-top:7%;
+				margin-bottom: 100px;
+			}
+      paper-item{
+          background-image: none;
+    
+      }
+			:host{
+				background-color: grey;
+			}
+			core-toolbar#menu-bar{
+				border-bottom:solid 1px  grey;
+				height: 39px;
+			}
+			paper-item::shadow #icon {
+				color: white;
+       
+				//margin-left: 10px;
+			}
+			.paper{
+				font-size: 0px;
+				border-right:none;
+				border-left: none;
+				border-top:none;
+				border-bottom: none;
+				margin-right: 0%;
+				box-shadow: none;
+				border-radius: 0px;
+				height: 36px;
+				margin-top: -5%;
+				//background-image: url('../images/icon.png');
+				background-size:100% 110%;
+				background-repeat: no-repeat;
+			}
+		
+		.footer {
+			height: 80px;
+			background-color: white;
+		}
+		#main {
+			//border: 5px solid red;
+		}
+		section {
+	
+			height: auto;
+      
+		}
+	</style>
+
+	<div>
+		<div id="menu">
+			<core-toolbar id="menu-bar">
+				<core-menu horizontal center layout flex id="coremenu" valueattr="hash" selected="{{route}}">
+					<template repeat="{{page in pages}}">
+						<paper-item  class="paper" on-tap="{{favoriteTapped }}{{progress}}"center horizontal layout center-justified flex label="{{page.name}}" hash="{{page.hash}}" id="{{hash}}" icon="{{page.icon}}"title="{{page.name}}">
+						<a href="index2.html#{{page.hash}}"></a>
+						</paper-item>
+					</template>
+				</core-menu> 
+			</core-toolbar>
+		</div>
+		<paper-progress ></paper-progress>
+		<div id="main">       
+			<core-animated-pages valueattr="hash" selected="{{route}}"
+			transitions="slide-from-right" id="animated">
+				<section hash="home" layout vertical center-center>
+					<book-animation id="bookAnimation"></book-animation>
+				</section>
+
+				<section hash="search" layout vertical center-center>
+					<core-search></core-search>
+				</section>
+
+				<section " hash="buy" layout vertical center-center>
+					<!--<buy-element></buy-element>-->
+					<mi-biblioteca id="buy"></mi-biblioteca>
+				</section>
+
+				<section hash="sell" layout vertical center-center>
+					<sell-element></sell-element>
+				</section>
+
+				<section hash="account" layout vertical center-center>
+					<core-perfil></core-perfil>
+				</section>
+        <section hash="login" layout vertical center-center>
+          <fast-account></fast-account>
+				</section>
+			</core-animated-pages>
+			<core-pages>
+		</div>
+	</div>
+	</template>
+	<script>
+	Polymer({
+		ready: function () {
+			this.pages = [
+				{name: 'Home', hash: 'home', icon: 'home'},
+				{name: 'Search', hash: 'search', icon: 'search'},
+				{name: 'Buy', hash: 'buy', icon: 'shopping-cart'},
+				{name: 'Sell', hash: 'sell', icon: 'loyalty'},
+				{name: 'Account', hash: 'account', icon: 'account-box'}
+			];
+
+			this.route = this.route || 'home'; // Select initial route.
+		},
+		favoriteTapped: function (a, b, c) {
+      
+        this.$.bookAnimation.ready();
+         this.$.buy.ready();
+			var t = document.querySelector('menu-index').shadowRoot.querySelectorAll('paper-item');
+			// console.log(c.style);
+			for (var i = 0; i < t.length; i++) {
+				t[i].$.icon.style.color = "white";
+				// t[i].style.color="black";
+			}
+			c.$.icon.style.color = "#3b5998";
+
+		},
+		progress: function (a, b, c) {
+			var progress = document.querySelector('menu-index').shadowRoot.querySelector('paper-progress');
+			var val = 10;
+			var sec = 20;
+			var myVar = setInterval(function () {
+				myTimer()
+			}, 100);
+			setTimeout("clearInterval(" + myVar + ")", 5000);
+			progress.value = 0;
+			progress.secondaryProgress = 0;
+			function myTimer() {
+				if (sec >= 100) {
+					clean();
+				} else {
+					progress.value = val;
+					progress.secondaryProgress = sec;
+					//console.log(sec);
+					val = val + 10;
+					sec = sec + 10;
+				}
+			};
+			function clean() {
+				progress.value = 0;
+				progress.secondaryProgress = 0;
+				clearInterval(myVar);
+			}
+      
+		}
+	});
+	</script>
+</polymer-element>

@@ -1,0 +1,213 @@
+
+
+<polymer-element name="core-search">
+    <template>
+        <style>
+        :host {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        section {
+            margin: 20px;
+            
+             background: rgba(8,46,64, 0.6);
+            padding: 20px;
+                    border: 3px solid dimgray;
+         border-radius: 10px;
+        }
+        paper-input {
+            width: 300px;
+            background-color: white;
+            border: 2px solid dimgray;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: blue 20px;
+        }
+        #butt {
+            padding-top: 15px;
+            background-image: url('../images/log.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        paper-dropdown-menu {
+            width: 300px;
+            background-color: white;
+            border: 2px solid dimgray;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: blue 20px;
+            margin: 10px;
+        }
+        paper-item {
+            width: 300px;
+        }
+        #advanced {
+            background-image: url('../images/log.jpg');
+            background-size: 100% 100%;
+            margin: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        #check {
+            width: 100%;
+            border-radius: 6px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+        paper-radio-button::shadow #onRadio {
+            background-color: #4285f4;
+        }
+        paper-radio-button::shadow #offRadio {
+            border-color: white;
+        }
+        #options {
+            width: 300px;
+        }
+        paper-radio-group {
+            width: 300px;
+        }
+        paper-radio-button {
+            float: left;
+        }
+        @media (max-width: 600px) {
+            paper-input{
+                width: 90%;
+            }
+            paper-dropdown-menu {
+                width: 100%;
+            }
+            paper-item {
+                width: 100%;
+            }
+            #options {
+                width: 90%;
+            }
+            paper-radio-group {
+                width: 100%;
+            }
+            #check {
+                padding: 0px;
+            }
+        }
+ @media (max-width: 800px) {
+   
+ 
+     
+    
+          section{
+              margin:0px;
+              padding: 0px;
+          }
+        
+      }
+        </style>
+        <section vertical layout center flex>
+            <paper-input placeholder="Find a book..." id="buscar"></paper-input>
+            <paper-button id="butt" on-tap="{{restful}}">Search</paper-button>
+            <paper-button id="advanced" on-tap="{{show}}">Advanced search</paper-button>
+            <div id="options" hidden vertical layout center>
+            <paper-dropdown-menu label="Categories">
+                <paper-item label="Primaria"></paper-item>
+                <paper-item label="Segundaria"></paper-item>
+                <paper-item label="Bachillerato"></paper-item>
+                <paper-item label="Universidad"></paper-item>
+                <paper-item label="Oposiciones"></paper-item>
+                <paper-item label="Idiomas"></paper-item>
+                <paper-item label="Formación profesional"></paper-item>
+                <paper-item label="Libros de lectura"></paper-item>
+            </paper-dropdown-menu>
+            
+            <paper-dropdown-menu label="Conditions">
+                <paper-item label="Muy bueno"></paper-item>
+                <paper-item label="Bueno"></paper-item>
+                <paper-item label="Normal"></paper-item>
+                <paper-item label="Malo"></paper-item>
+                <paper-item label="Muy malo"></paper-item>
+            </paper-dropdown-menu>
+            
+            <div id="check">
+                <paper-radio-group>
+                    <paper-radio-button name="isbn" label="ISBN" toggles="true"></paper-radio-button>
+                    <paper-radio-button name="author" label="Author" toggles="true"></paper-radio-button>
+                    <paper-radio-button  name="titulo" label="Title" toggles="true"></paper-radio-button>
+                </paper-radio-group>  
+            </div>
+            </div>
+        </section>
+    </template>
+    <script>
+      
+        Polymer({
+            show: function() {
+                var options = this.$.options;
+                options.hidden =!options.hidden;
+            },
+            restful: function(){
+              var t = document.querySelector('menu-index').shadowRoot.querySelector('core-search').shadowRoot.querySelector('paper-input').value;
+       
+            
+
+            
+             var books="http://localhost:8080/api/books/"+t;
+              alert(books);
+             $.getJSON(books,function(result){
+               
+               console.log(result);
+              var isbn=result.isbn;
+              var title=result.title;
+              var author=result.author;
+               var year=result.year;
+                var publisher=result.publisher;
+                 var description=result.description;
+                 var id=result._id;
+                 var genre=result.genre;
+              
+              console.log(isbn);
+              console.log(title);
+              console.log(author);
+              console.log(year);
+              console.log(publisher);
+              console.log(description);
+               console.log(id);
+                console.log(genre);
+        
+               
+                     // Set the table td text
+                $('#titulo1').text("Titulo  :"+title);
+                $('#autor').text("Autor  :"+author);
+                 $('#editorial').text("Editorial  :"+publisher);
+                $('#anio').text("Anio :"+year);
+                $('#descripcion').text("Descripcion  :"+description);
+                //$("#imagen").attr("src",imagen);
+                $('#otro').text("ISBN  :"+isbn);
+
+   
+     
+       
+  
+    
+               
+               
+               
+               
+               
+               
+               
+               
+             });
+             
+   
+             
+            
+            }
+            
+        });
+    </script>
+</polymer-element>

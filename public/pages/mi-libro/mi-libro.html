@@ -1,0 +1,56 @@
+
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:200italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+
+
+<polymer-element name="mi-libro" attributes="titulo imagen book">
+  <template>
+    <style>
+
+      img {
+          width: 100px;
+          height: 120px;
+          border: 5px solid;
+          
+          
+      }     
+      libros {
+         width: 500px;
+         
+                
+      }
+      img:hover {
+         opacity: 0.9;
+         box-shadow: #fff 0 0 8px, #fcffbb 0 0 40px;
+      }
+     
+        
+
+    </style>
+    
+      
+    
+      <div class="libros">
+        <a onclick=""><img class="portada" src="{{imagen}}" title="{{titulo}}" ></img></a>
+        <div class="titulo"></div>
+      
+      </div>     
+        
+
+  </template>
+  <script>
+
+
+    Polymer({
+   
+      ready: function() {
+
+        this.book;
+      }
+      
+      
+    });
+  </script>
+
+</polymer-element>

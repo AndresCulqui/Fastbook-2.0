@@ -1,0 +1,48 @@
+<polymer-element name="main-menu" attributes="pages">
+	<template>
+		<style>
+     
+a:link, a:visited, a:hover, a:active{
+text-decoration: none;
+font-style: normal;
+color: white;
+  text-align: center;
+  margin-top: 70%;
+
+}
+
+
+
+		</style>
+
+    <div horizontal layout center >
+        <paper-tabs style="width:800px" selected="{{ route }}" selectedindex="home" valueattr="hash" >
+        <template repeat="{{page in pages}}">
+          <paper-tab flex hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
+          <a href="#{{page.hash}}">{{page.name}}</a>
+          </paper-tab>
+        </template>  
+        </paper-tabs>
+    </div>    
+
+
+	</template>
+<script>
+
+
+    Polymer({
+        ready: function () {
+
+      },
+
+      tapMenu: function(e,detail,sender){
+        
+        var x=$(sender).attr('hash');
+       
+        this.fire('mainMenu',x);
+
+      }
+
+    });
+  </script>
+</polymer-element>

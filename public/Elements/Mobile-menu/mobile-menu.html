@@ -1,0 +1,86 @@
+<polymer-element name="mobile-menu" attributes="pages">
+<template>
+	<style>
+		#menu {
+			font-family: Arial;
+			font-weight: bold;
+			text-shadow: grey 0.1em 0.1em 0.2em;
+			background: rgb(255,123,13); /* Old browsers */
+	        background: -moz-linear-gradient(top,  rgba(255,123,13,1) 0%, rgba(255,168,76,1) 60%); /* FF3.6+ */
+	        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,1)), color-stop(60%,rgba(255,168,76,1))); /* Chrome,Safari4+ */
+	        background: -webkit-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Chrome10+,Safari5.1+ */
+	        background: -o-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Opera 11.10+ */
+	        background: -ms-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* IE10+ */
+	        background: linear-gradient(to bottom,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* W3C */
+        	color: #fff;
+        	height: 120px;
+		}
+		paper-progress{
+			width: 100%;
+			height: 1px;
+			background: slategray;
+		}
+		.submenu:hover {
+			opacity: 0.6;
+			background-color: darkorange;
+		}
+		core-menu {
+			background-color: whitesmoke;
+		}
+			#photo {
+			margin-top: 40px;
+			width: 50px;
+			height: 50px;
+			border-radius: 100px;
+			border: 4px solid white;
+		}
+		#name {
+			font-size: 15px;
+			padding: 0px;
+			text-shadow: none;
+		}
+		#fdata {
+			padding-top: 20px;
+		}
+	</style>
+
+	
+		<core-toolbar id="menu">
+		<div id="fdata" vertical layout>
+			<img id="photo" src="{{perfil.photo}}">
+			<core-item id="name" label="{{perfil.name}}"></core-item>
+		</div>
+		</core-toolbar>
+		<core-menu vertical layout selected="{{ route }}" selectedindex="home" valueattr="hash">
+
+			 <template repeat="{{page in pages}}">
+				<core-item class="submenu" icon="{{page.icon}}" hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
+				<a href="#{{page.hash}}"></a>
+				</core-item>
+
+	        </template>
+
+          	<paper-progress></paper-progress>
+          	<core-item class="submenu" label="Help and Feedback" icon=""></core-item>
+          	<core-item class="submenu" label="About FastBook" icon=""></core-item>
+		</core-menu>
+	
+
+</template>
+<script>
+    Polymer({
+    	ready:function(){
+    	this.perfil = {name: 'Carlos Garcia', photo: 'https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG'};
+    },
+    tapMenu: function(e,detail,sender){
+        
+        var x=$(sender).attr('hash');
+       
+        this.fire('leftMenu',x);
+
+      }
+  
+    });
+  </script>
+
+</polymer-element>
