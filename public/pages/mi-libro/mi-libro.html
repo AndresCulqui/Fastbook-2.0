@@ -4,52 +4,155 @@
 
 
 
-<polymer-element name="mi-libro" attributes="titulo imagen book">
+<polymer-element name="mi-libro" attributes="book">
   <template>
     <style>
-
-      img {
-          width: 100px;
-          height: 120px;
-          border: 5px solid;
-          
-          
-      }     
-      libros {
-         width: 500px;
-         
-                
-      }
-      img:hover {
-         opacity: 0.9;
-         box-shadow: #fff 0 0 8px, #fcffbb 0 0 40px;
-      }
+    section{
+      margin: 20px;
+      border:2px white solid;
+      border-radius: 7px;
+      background: rgba(95,31,7, 0.2);
+      //background-color: beige;
+    }
+    .book1 {
+      //float: left;
+      display: inline-block;
+      width: 200px;
+      margin: 8px;
+      padding: 20px;
+      background-color: whitesmoke;
+     border-radius: 7px;
+     border:0.5px solid grey;
+    }
+    #book {
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    border-radius: 7px;
+    }
+    #books {
      
-        
+  
+    }
+    .detail {
+      width: 100%;
+      margin: 0 auto;
+      padding: 8px;
+      color: #4b4b4b;
+      text-transform: uppercase;
+      }
+      .item {
+float: left;
+text-align: left;
+font-size: 13px;
+line-height: 1.7em;
+color: #4b4b4b;
+}
+.value {
+float: right;
+text-align: right;
+font-size: 15px;
+font-weight: 700;
+}
+.prices {
+margin-top: -7px;
+float: left;
+width: 100%;
+text-align: center;
+font-size: 11px;
+color: red;
+font-weight: 700;
+}
+h5{
+  color:#ee4f30;
+}
+a{
+  text-decoration: none;
+  color:#4b4b4b;
+}
 
+h2{
+margin-left: 10%;
+color:whitesmoke;
+font-size: 250%;
+font-family: verdana;
+text-shadow:grey 0.1em 0.1em 0.2em;
+//text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media (max-width: 479px) and (min-width: 321px){
+.book1 {
+width: 129px;
+height: 250px;
+margin-right: 3px;
+}
+.book1 {
+width: 200px;
+height: 330px;
+display: inline-block;
+margin-right: 1%;
+background: rgba(225,225,225,.8);
+border: 1px solid rgba(200,200,200,.8);
+}
+}
+@media (max-width: 479px) and (min-width: 321px){
+.book1 {
+width: 129px;
+height: 250px;
+margin-right: 3px;
+}
+.book1 {
+width: 200px;
+height: 330px;
+display: inline-block;
+margin-right: 1%;
+background: rgba(225,225,225,.8);
+border: 1px solid rgba(200,200,200,.8);
+}
+
+}
+
+
+ 
     </style>
-    
-      
-    
-      <div class="libros">
-        <a onclick=""><img class="portada" src="{{imagen}}" title="{{titulo}}" ></img></a>
-        <div class="titulo"></div>
-      
-      </div>     
-        
+
+  <core-ajax id="ajax" auto url="/lastBooks" 
+      handleAs="json"></core-ajax>
+
+      <div class="book1">
+
+        <img id="book" src="{{book.imagen}}}" title="{{book.title}}" width="240">
+        <div class="detail">
+            <div class="item">
+                <p>ISBN: <br>
+                Price: </p>
+            </div>
+            <div class="value">
+                <p>{{book.isbn}}<br>
+                <span class="price"><h5>${{book.price}}</h5></span></p>
+            </div>
+            <div class="prices">
+                <div class="current-historic"><a rel="nofollow" href="/used-book/0763778907.html">Sell this</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="/buy/0763778907">Buy this</a></div>
+            </div>
+        </div>
+    </div>
+
 
   </template>
-  <script>
+<script>
 
+Polymer({
+        
+        ready:function(){
+          var that=this;
 
-    Polymer({
-   
-      ready: function() {
+          this.$.ajax.addEventListener("core-response", function(e) {
+           that.response=e.detail.response;
+            console.log(e.detail.response.length);
+          })
 
-        this.book;
-      }
-      
-      
+        } 
+
     });
   </script>
 
