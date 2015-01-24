@@ -4,42 +4,68 @@
 		#menu {
 			font-family: Arial;
 			font-weight: bold;
-			text-shadow: black 0.1em 0.1em 0.2em
+			text-shadow: black 0.1em 0.1em 0.2em;
+			height:120px;
+			color: white;
 		}
 		paper-progress{
 			width: 100%;
 			height: 1px;
 			background: slategray;
 		}
-		core-item:hover {
+		.submenu:hover {
 			opacity: 0.6;
 			background-color: darkorange;
 		}
 		core-menu {
-			background-color: whitesmoke;
+			background-color: white;
 		}
+		#photo {
+			margin-top: 40px;
+			width: 50px;
+			height: 50px;
+			border-radius: 100px;
+			border: 4px solid white;
+		}
+		#name {
+			font-size: 15px;
+			padding: 0px;
+			text-shadow: none;
+		}
+		#fdata {
+			padding-top: 20px;
+		}
+		
+		
 	</style>
 
-		<span>{{menuTitle}}</span>
 		<core-toolbar id="menu">
-		Menu
+		<div id="fdata" vertical layout>
+			<img id="photo" src="{{perfil.photo}}">
+			<!--<paper-input-decorator id="dname" label="{{perfil.name}}">
+			<input is="core-input" id="name" disabled="true"/>
+			</paper-input-decorator>-->
+			<core-item id="name" label="{{perfil.name}}"></core-item>
+		</div>
 		</core-toolbar>
 		<core-menu vertical layout>
-			<core-item label="Home" icon="home"></core-item>
-          	<core-item label="Search" icon="search"></core-item>
-          	<core-item label="Buy" icon="shop"></core-item>
-          	<core-item label="Sell" icon="store"></core-item>
-          	<core-item label="Profile" icon="account-box"></core-item>
+			<core-item class="submenu" label="Home" icon="home"></core-item>
+          	<core-item class="submenu" label="Search" icon="search"></core-item>
+          	<core-item class="submenu" label="Buy" icon="shop"></core-item>
+          	<core-item class="submenu" label="Sell" icon="store"></core-item>
+          	<core-item class="submenu" label="Profile" icon="account-box"></core-item>
           	<paper-progress></paper-progress>
-          	<core-item label="Help and Feedback" icon=""></core-item>
-          	<core-item label="About FastBook" icon=""></core-item>
+          	<core-item class="submenu" label="Help and Feedback" icon=""></core-item>
+          	<core-item class="submenu" label="About FastBook" icon=""></core-item>
 		</core-menu>
 	
 
 </template>
 <script>
     Polymer({
-  
+    	ready: function(){
+  		this.perfil = {name: 'Carlos Garcia', photo: 'https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG'};
+  	}
     });
   </script>
 
