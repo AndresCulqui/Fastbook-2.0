@@ -10,9 +10,36 @@
 
 	<script src="./bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/validator-js/validator.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+
+  <script type="text/javascript">
+    (function () {
+      var po = document.createElement('script');
+      po.type = 'text/javascript';
+      po.async = true;
+      po.src = 'https://plus.google.com/js/client:plusone.js?onload=start';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- /////////////////////////////////-FONTS ////////////////////////////-->
-	 <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+	<!-- <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>-->
 
 	<!-- /////////////////////// BOWER COMPONENTS /////////////////////////////////// -->
 
@@ -91,7 +118,19 @@ lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endCo
 <body fullbleed layout vertical >
 
 
-<main-app></main-app>
+<!--<main-app></main-app>-->
+<!-- Añádelo donde quieras que se muestre el botón de inicio de sesión -->
+<div id="signinButton">
+  <span id="sp" class="g-signin"
+    data-scope="https://www.googleapis.com/auth/plus.login"
+    data-clientid="214223288758-24jri2jhnne38l3kups1om6s2r3l162v.apps.googleusercontent.com"
+    data-redirecturi="postmessage"
+    data-accesstype="offline"
+    data-cookiepolicy="single_host_origin"
+    data-callback="/auth/callback">
+  </span>
+</div>
+<div id="result"></div>
 
 
 
@@ -99,3 +138,8 @@ lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endCo
 
 </body>
 </html>
+<script>
+
+var x=document.getElementById('sp');
+console.log(x+"    x");
+</script>

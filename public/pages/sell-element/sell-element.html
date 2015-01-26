@@ -5,151 +5,106 @@
     <template>
         <style>
         :host {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
+ 
         }
-        section#main {
+        section{
           
-            background: rgba(8,46,64, 0.6);
-            border-radius: 10px;
-           // background-image: url('../images/oscuro.jpg');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            border: 3px solid dimgray;
-            margin: 20px;
-            height: 909px;
-            color:white;
-        }
-        paper-input /deep/ input{
-              
-             color:white; 
-        }
-        input{
-            color:white;
-        }
-        boton-continuar{
-             border-radius: 7px;
-            border:1px solid black;
-        }
+      margin: 20px;
+      border:2px white solid;
+      border-radius: 7px;
+      background: rgba(95,31,7, 0.2);
 
-        h1 {
-            font-size: 20px;
+      //background-color: beige;
         }
-
-        h1, label {
-        color: white;
-        font-family: Courier;
-        font-weight: bold;
-       
-        }
-
-        label{
-
-            display: inline-block;
-            width:100px;
-        
-
-        }
-             #butt {
-            background-image: url('../images/log.jpg');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+        h2{
+      margin-left: 10%;
+      color:whitesmoke;
+      font-size: 250%;
+      font-family: Oswald;
+      text-shadow:grey 0.1em 0.1em 0.2em;
+      //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      }
+      #main {
+ 
+      border-radius: 7px;
+      padding: 20px;
+      }
+      .pi{
+      border:2px dotted green;
+      width: 30%;
+      margin: 0px;
+      padding: 0px;
+    
+      }
+      #cate, #provi{
+        float: left;
+      }
+      #cat{
+        width: 100%;
+      }
+      .paper-input{
+        width: 40%;
+      }
+      #left, #right {
    
-        paper-dropdown-menu{
-      background-color: transparent;
-        }
-        textarea{
-            border-radius: 7px;
-            border:1px solid black;
-            margin-bottom: 1%;
-            width: 400px;
-            resize: none;
-        }
-        #contenido-izq{
-            position:relative;
-            width:40%;
-            margin-left: 20px;
-            float:left;
-            
-        }
-        #right{
-            position:relative;
-            float:right;
-            width:50%;
-            margin-right: 20px;
-            margin-top: 8.5%;
-        }
-        #foo{
-            position:relative;
-            float:right;
-            width: 100%;
-            text-align: center;
-            
-        }
-        select{
-          height: 50px;
-          width: 180px;
-          margin-bottom: 10px;
-        }
-        
-        #divisbn{
-          width: 100%;
-          height: 260px;
-         padding: 1%;
-          margin-top: 1%;
-          margin-left: 1%;
-              background-image: url('../images/log.jpg');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-               border-radius: 7px;
+      }
+
+      #left {
+          width: 40%;
+         
+          margin-right: 2%;
+          padding-left: 4%;
+          padding-right: 4%;
+          float: left;
+      }
+      #right {
+          
+          margin-left: 50%;
+         // padding-left: 4%;
+          padding-right: 4%;
+          border:2px solid;
+      }
+      #butt{
+        margin-left: 40%;
+        margin-top: 2%;
+      }
+
+       @media (max-width: 600px) {
+
+          #section { margin: 0px;}
+          h1 { margin-bottom: -10px; font-size: 20px;}
+
+          #left, #right {
+         
+              width: 88%;
            
+              height: auto;
+          }
+
+          #left {
+              float: none;
+              margin-right: 40%;
+          }
+          #right{
+              margin-top: 1%;
+              margin-left: 0px;
+          }
+          paper-input-decorator {
+              width: 100%;
+              padding: 0px 0px 0px 0px;
+              margin-bottom: 0px;
+          }
         }
-        p{
-          color:white;
-        }
-    
-         @media (max-width: 600px) {
-         
-             textarea{
-              width: 315px;
-             }
-             
-           #contenido-izq{
-            position:relative;
-            width:100%;
-            margin-left: 0px;
-        
-            
-        }
-        #right{
-            position:relative;
-    
-            width:1000%;
-            margin-right: 0%;
-            margin-top: 0%;
-        } 
-           select{
-          height: 50px;
-          width: 90px;
-          margin-left: 80%;
-        }
-         }
-         
+
         </style>
         <section id="main" >
+          <div><h2>Put a book for sale or close this page.. ¬¬</h2></div>
           
-          <div  id="contenido-izq">
+          <div  id="left">
             
             
 
-              <h1>Put a book for sale</h1>
+            
             
 
          
@@ -177,8 +132,7 @@
               
           
              <!-- <paper-button id="butt" on-tap="{{validateIsbn}}">Comprobar ISBN</paper-button>-->
-             <paper-button id="butt" on-tap="{{validateIsbn}}">
-                Validate ISBN</paper-button>
+
              <div id="divisbn" hidden>
                
                <core-input id="tisbn" disabled></core-input>
@@ -193,7 +147,7 @@
             
           </div>
           <div id="right">
-            <paper-input-decorator label="Category" floatingLabel error="Category is required!" id="cate">
+            <paper-input-decorator label="Category" floatingLabel error="Category is required!" id="cate" class="pi">
               <select id="cat" >
                
                    
@@ -212,8 +166,8 @@
                </select> 
                  </paper-input-decorator>   
             
-            <br>
-            <paper-input-decorator label="Province" floatingLabel error="province is required!"id="provi" >
+      
+            <paper-input-decorator label="Province" floatingLabel error="province is required!"id="provi" class="pi" >
             <select id="pro">
                  <option value="0"> Select Province</option>      
               <option> A Coruña</option>
@@ -270,8 +224,8 @@
                 <option >Zaragoza</option> 
             </select>
             </paper-input-decorator>
-            <br>
-            <paper-input-decorator label="Status" floatingLabel error="Status is required!" id="esta">
+          
+            <paper-input-decorator label="Status" floatingLabel error="Status is required!" id="esta" class="pi">
             <select id="est"> 
                  <option value="0"> Select Status</option>    
                 <option >Muy malo</option>

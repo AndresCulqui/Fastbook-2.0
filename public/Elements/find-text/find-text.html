@@ -1,7 +1,7 @@
 
 	
 	
-	<polymer-element name="find-text">
+	<polymer-element name="find-text" attributes="lang">
 	<template>
 		<style>
       
@@ -120,14 +120,14 @@ padding-top: 16px;
             <div class="number">
                 1
             </div>
-            <span class="title">Search</span><p class="description">60 book buyback vendors</p>
+            <span class="title">{{search.title}}</span><p class="description">{{search.description}}</p>
         </div>
         <div class="step2">
             <div class="number">
                 2
             </div>
             <div class="step">
-                <span class="title">Compare</span><p class="description">prices and seller feedback</p>
+                <span class="title">{{compare.title}}</span><p class="description">{{compare.description}}</p>
             </div>
         </div>
         <div class="step3">
@@ -135,7 +135,7 @@ padding-top: 16px;
                 3
             </div>
             <div class="step">
-                <span class="title">Ship</span><p class="description">for FREE and get paid</p>
+                <span class="title">{{ship.title}}</span><p class="description">{{ship.description}}</p>
             </div>
         </div>
     </div>
@@ -149,6 +149,23 @@ padding-top: 16px;
 
 
     Polymer({
+      ready:function(){
+        this.search={ title:"Search", description:"60 book buyback vendors"};
+        this.compare={ title:"Compare", description:"prices and seller feedback"};
+        this.ship={ title:"Buy", description:"for FREE and get paid"};
+      },
+      languaje:function(a){
+        console.log("laguaje en  ft  "+a);
+       if(a=="en"){
+        this.search={ title:"Search", description:"60 book buyback vendors"};
+        this.compare={ title:"Compare", description:"prices and seller feedback"};
+        this.ship={ title:"Buy", description:"for FREE and get paid"}
+      }else if(a=="es"){
+        this.search={ title:"Buscar", description:"Busca libros en venta"};
+        this.compare={ title:"Comparar", description:"Mira y compara precios"};
+        this.ship={ title:"Comprar", description:"Compra un libro"}
+    }
+      }
   
     });
   </script>

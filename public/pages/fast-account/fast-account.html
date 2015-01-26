@@ -1,337 +1,400 @@
 
 <polymer-element name="fast-account">
   <template>
-      <style>    
+    <style>    
       :host {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-                
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+
       }
       #core_pages {
-        width: 100%;
-        height: 100%;
-        margin-top: -50px;
-        position: absolute;
+          width: 100%;
+          height: 100%;
+          margin-top: -50px;
+          position: absolute;
       }
       #section{
-      
-         margin: 20px;
+
+          margin: 20px;
 
       }
       #button_enter{
-        background: rgba(8,46,64, 0.6);
-        border: 3px solid dimgray;
-        border-radius: 10px;
-        height: 700px;
-        padding: 3%;
+          background: rgba(8,46,64, 0.6);
+          border: 3px solid dimgray;
+          border-radius: 10px;
+          height: 700px;
+          padding: 3%;
       }
 
       h1, label {
-        color: dimgray;
-        font-family: Courier;
-        font-weight: bold;
-        text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+          color: dimgray;
+          font-family: Courier;
+          font-weight: bold;
+          text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
       }
-      
+
       label {
-        font-weight: bold;
-        font-family: Verdana;   
-      	clear: both;
-      	
-      	text-align: left;
-        margin-top: 20px;
-       
+          font-weight: bold;
+          font-family: Verdana;   
+          clear: both;
+
+          text-align: left;
+          margin-top: 20px;
+
       }
       .accept {
-        margin-top: 10px;
-        margin-right: 20px;
-        margin-bottom: 15px;
+          margin-top: 10px;
+          margin-right: 20px;
+          margin-bottom: 15px;
       }
 
       .accept {
-        background-image: url('../images/log.jpg');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        color: white;
-        font-weight: bold;
+          background-image: url('../images/log.jpg');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          color: white;
+          font-weight: bold;
       }
       .accept:hover {
-        background-image: url('../images/log2.jpg');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        color: dimgray;
+          background-image: url('../images/log2.jpg');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          color: dimgray;
       }
 
       paper-input-decorator {
-        padding: 0px 0px 0px 7px;
-        box-shadow: blue 20px;
-        margin-left: -2px;
-        
-        margin-bottom: 30px;
+          padding: 0px 0px 0px 7px;
+          box-shadow: blue 20px;
+          margin-left: -2px;
+
+          margin-bottom: 30px;
       }
       .facebook{
-        border: 1px solid #4c69ba;
-        padding-top: 2px;
-        background-color: #4c69ba;
-        border-radius: 5px;
-        /*text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;*/
+          border: 1px solid #4c69ba;
+          padding-top: 2px;
+          background-color: #4c69ba;
+          border-radius: 5px;
+          /*text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;*/
       }
 
       #core_pages1, #core_pages2 {
-        background-color: azure;
-        border: 5px solid;
+          background-color: azure;
+          border: 5px solid;
       }
 
       #core_pages1 {
-        width: 40%;
-        height: 500px;
-        margin-right: 2%;
-        padding-left: 4%;
-        padding-right: 4%;
-        float: left;
+          width: 40%;
+          height: 500px;
+          margin-right: 2%;
+          padding-left: 4%;
+          padding-right: 4%;
+          float: left;
       }
       #core_pages2 {
-        height: 690px;
-        margin-left: 50%;
-        padding-left: 4%;
-        padding-right: 4%;
+          height: 690px;
+          margin-left: 50%;
+          padding-left: 4%;
+          padding-right: 4%;
       }
-      
+
       paper-checkbox {
-        padding: 0px 20px 0px 0px;
-        float: left;
+          padding: 0px 20px 0px 0px;
+          float: left;
       }
-       
+
       paper-checkbox.blue::shadow #ink[checked] {
-        color: #4285f4;
+          color: #4285f4;
       } 
-    
+
       paper-checkbox.blue::shadow #checkbox.checked {
-        border-color: #4285f4;
+          border-color: #4285f4;
       }
       a {
-        color: blue;
-        text-decoration: none;
+          color: blue;
+          text-decoration: none;
       }
       .comment {
-        color: dimgray; font-family: arial; font-size: 12px;
+          color: dimgray; font-family: arial; font-size: 12px;
       }
       .icon{
-        margin-left: -5%;
-        float: left;
-        clear: both;
-        border: 2px solid dimgray;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        height: 43px;
-        width: 12%;
+          margin-left: -5%;
+          float: left;
+          clear: both;
+          border: 2px solid dimgray;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          height: 43px;
+          width: 12%;
       }
       #core_icon { margin-bottom: 10%; }
 
       @media (max-width: 600px) {
-        
-        #section { margin: 0px;}
-        h1 { margin-bottom: -10px; font-size: 20px;}
 
-        #core_pages1, #core_pages2 {
-          border-radius: 10px;
-          width: 88%;
-          background-color: azure;
-          height: auto;
-        }
+          #section { margin: 0px;}
+          h1 { margin-bottom: -10px; font-size: 20px;}
 
-        #core_pages1 {
-          float: none;
-          margin-right: 40%;
-        }
-        #core_pages2{
-          margin-top: 1%;
-          margin-left: 0px;
-        }
-        paper-input-decorator {
-          width: 100%;
-          padding: 0px 0px 0px 0px;
-          margin-bottom: 0px;
-        }
+          #core_pages1, #core_pages2 {
+              border-radius: 10px;
+              width: 88%;
+              background-color: azure;
+              height: auto;
+          }
 
-        #button_e { margin-top: 5%; }
-        .icon, label, paper-checkbox, .remember { display: none; }
+          #core_pages1 {
+              float: none;
+              margin-right: 40%;
+          }
+          #core_pages2{
+              margin-top: 1%;
+              margin-left: 0px;
+          }
+          paper-input-decorator {
+              width: 100%;
+              padding: 0px 0px 0px 0px;
+              margin-bottom: 0px;
+          }
 
-        label{
-          visibility: hidden;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-        paper-item {
-          margin-top: -40px;
-        }
-        #core_icon { margin-top: 8%; margin-bottom: 8%;}
+          #button_e { margin-top: 5%; }
+          .icon, label, paper-checkbox, .remember { display: none; }
+
+          label{
+              visibility: hidden;
+              margin-top: 0px;
+              margin-bottom: 0px;
+          }
+          paper-item {
+              margin-top: -40px;
+          }
+          #core_icon { margin-top: 8%; margin-bottom: 8%;}
       }
-         
+
     </style>
-   
+
     <core-pages selected="0" selectedindex="0" notap id="page_account">
+
+
+
       <section id="section" active>        
-          <div id="button_enter">
-	          <div id="core_pages1">
-              
-                <h1> Sign In </h1><br>
+        <div id="button_enter">
+          <div id="core_pages1">
 
-                <label> Name: </label>
-                <!-- <img class="icon" src="../images/login1.jpg"> -->
-                <paper-input-decorator id="decorator" label="Name" error="Name is Required" >
-                <input id="name_user" is="core-input" required  title="El formato no es valido">
-                </paper-input-decorator>
-               
-                <label> Password: </label>
-                <!--<img class="icon" src="../images/pass.jpg">-->
-                <paper-input-decorator id="decorator2" label="Password" error="Password is Required">
-                <input id="password" is="core-input" type="password" required>
-                </paper-input-decorator>
-               
-                <div id="button_e" tool center-justified horizontal layout display:flex>
-                  <paper-button id="ok" on-tap="{{ validateAll }}" class="accept" showing> LOGIN >> </paper-button> 
-                </div><br>
+            <h1> Sign In </h1><br>
 
-                <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
-                    <br>
+            <label> Name: </label>
+            <!-- <img class="icon" src="../images/login1.jpg"> -->
+            <paper-input-decorator id="decorator" label="Name" error="Name is Required" >
+              <input id="name_user" is="core-input" required  title="El formato no es valido">
+            </paper-input-decorator>
 
-                <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
+            <label> Password: </label>
+            <!--<img class="icon" src="../images/pass.jpg">-->
+            <paper-input-decorator id="decorator2" label="Password" error="Password is Required">
+              <input id="password" is="core-input" type="password" required>
+            </paper-input-decorator>
 
+            <div id="button_e" tool center-justified horizontal layout display:flex>
+              <paper-button id="ok" on-tap="{{ validateAll }}" class="accept" showing> LOGIN >> </paper-button> 
+            </div><br>
+
+            <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
+            <br>
+
+            <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
+
+          </div>
+          <div id="core_pages2">
+
+            <h1>Register</h1>
+
+            <core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>
+            <br>
+
+            <label> Name: </label>
+
+            <paper-input-decorator id="name_register" label="Name & Lastname" error="Name & LastName is Required">
+              <input id="r_name" is="core-input" required>
+            </paper-input-decorator>
+            <label> Create Password: </label>
+
+            <paper-input-decorator id="pass_register" label="Password" error="Password is Required">
+              <input id="r_pass" is="core-input" type="password" required>
+            </paper-input-decorator>
+            <label> Reenter Password: </label>
+
+            <paper-input-decorator id="repass_register" label="Reenter Password" error="Password is Required">
+              <input id="repass" is="core-input" type="password" required>
+            </paper-input-decorator>
+            <label> Email: </label>
+
+            <paper-input-decorator id="email_register" label="example@example.com" error="Email is Required">
+              <input id="email" is="core-input" type="email" required>
+            </paper-input-decorator>
+
+            <br><br>
+
+            <div class="comment" center-justified horizontal layout>
+              Click Create account to agree to the Fastbook Services Agreement and privacy and cookies statement.</div><br>
+
+            <div id="button_register" tool center center-justified horizontal layout display:flex>
+              <paper-button  class="accept" on-tap="{{ accept }}"> CREATE ACCOUNT </paper-button> 
+               <a href="../../auth/twitter"<paper-button  class="accept" on-tap="{{ test }}"> twitter </paper-button> </a>
+               <a href="../../auth/facebook"<paper-button  class="accept" on-tap="{{ test }}"> facebook </paper-button> </a>
+               <a href="../../auth/google"<paper-button  class="accept" on-tap="{{ test }}">goolgle </paper-button> </a>
+              <a href="../../unlink/twitter"<paper-button  class="accept" on-tap="{{ test }}"> log out twitter </paper-button> </a>
+               <a href="../../unlink/facebook"<paper-button  class="accept" on-tap="{{ test }}"> log out facebook </paper-button> </a>
+               <a href="../../unlink/google"<paper-button  class="accept" on-tap="{{ test }}">log out google </paper-button> </a>
             </div>
-            <div id="core_pages2">
-              
-                <h1>Register</h1>
 
-                <core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>
-                <br>
-              
-                <label> Name: </label>
-            
-                <paper-input-decorator id="name_register" label="Name & Lastname" error="Name & LastName is Required">
-                <input id="r_name" is="core-input" required>
-                </paper-input-decorator>
-                <label> Create Password: </label>
-             
-                <paper-input-decorator id="pass_register" label="Password" error="Password is Required">
-                <input id="r_pass" is="core-input" type="password" required>
-                </paper-input-decorator>
-                 <label> Reenter Password: </label>
-           
-                <paper-input-decorator id="repass_register" label="Reenter Password" error="Password is Required">
-                <input id="repass" is="core-input" type="password" required>
-                </paper-input-decorator>
-                <label> Email: </label>
-
-                <paper-input-decorator id="email_register" label="example@example.com" error="Email is Required">
-                <input id="email" is="core-input" type="email" required>
-                </paper-input-decorator>
-
-                <br><br>
-
-                <div class="comment" center-justified horizontal layout>
-                Click Create account to agree to the Fastbook Services Agreement and privacy and cookies statement.</div><br>
-
-                <div id="button_register" tool center center-justified horizontal layout display:flex>
-                  <paper-button  class="accept" on-tap="{{ accept }}"> CREATE ACCOUNT </paper-button> 
-                </div>
-
-        </div>
+          </div>
       </section>
-</core-pages>
-  </template>
-  <script>
   
+
+    </core-pages>
+    
+        <core-ajax id="ajax" method="GET" url="http://localhost:3000/auth/google" 
+
+
+      ></core-ajax>
+  </template>
+    
+  <script>
+
     Polymer({
-      perfil: function() {
-        location.href="#account";
-      },
+        ready: function () {
+           
+        },
+        test:function(){
+          var that=this;
 
-      accept: function(){
-        var decorator_name = this.$.name_register; //decorator name
-        var decorator_pass = this.$.pass_register; //decorator pass
-        var decorator_repas = this.$.repass_register; //decorator repass
-        var decorator_email = this.$.email_register; //decorator mail
-        var user = this.$.r_name; //input
-        var pass = this.$.r_pass;
-        var repas = this.$.repass;
-        var mail = this.$.email;
-        
-        if ((!user.validity.valid) && (!pass.validity.valid) && (!repas.validity.valid) && (!mail.validity.valid)) {
-          decorator_name.isInvalid=true;
-          decorator_pass.isInvalid=true;
-          decorator_repas.isInvalid=true;
-          decorator_email.isInvalid=true;
-        }
-        else {
-          decorator_name.isInvalid=false;
-          decorator_pass.isInvalid=false;
-          decorator_repas.isInvalid=false;
-          decorator_email.isInvalid=false;
+            /*this.$.ajax.go();
+         
+                this.$.ajax.addEventListener("core-response", function(e) {
+           that.response=e.detail.response;
+            console.log(e.detail+"*");
+          });*/
+                
+          /*$.get("/auth/google", function(data){
+            console.log("data  "+data);
+          })*/
+     
+        },
+        perfil: function () {
+            location.href = "#account";
+        },
+        accept: function () {
+            var decorator_name = this.$.name_register; //decorator name
+            var decorator_pass = this.$.pass_register; //decorator pass
+            var decorator_repas = this.$.repass_register; //decorator repass
+            var decorator_email = this.$.email_register; //decorator mail
+            var user = this.$.r_name; //input
+            var pass = this.$.r_pass;
+            var repas = this.$.repass;
+            var mail = this.$.email;
 
-          if (!user.validity.valid) { decorator_name.isInvalid=true; }
-          else { decorator_name.isInvalid=false; }
+            if ((!user.validity.valid) && (!pass.validity.valid) && (!repas.validity.valid) && (!mail.validity.valid)) {
+                decorator_name.isInvalid = true;
+                decorator_pass.isInvalid = true;
+                decorator_repas.isInvalid = true;
+                decorator_email.isInvalid = true;
+            }
+            else {
+                decorator_name.isInvalid = false;
+                decorator_pass.isInvalid = false;
+                decorator_repas.isInvalid = false;
+                decorator_email.isInvalid = false;
 
-          if (!pass.validity.valid) { decorator_pass.isInvalid=true; }
-          else { decorator_pass.isInvalid=false; }
-
-          if (!repas.validity.valid) { decorator_repas.isInvalid=true; }
-          else { decorator_repas.isInvalid=false; }
-
-          if (!mail.validity.valid) { decorator_email.isInvalid=true; }
-          else { decorator_email.isInvalid=false; }
-          
-        }
-
-        if ((user.validity.valid) && (pass.validity.valid) && (repas.validity.valid) && (mail.validity.valid)) {
-            alert("los datos recibidos son:" + user.value + ' '+ pass.value+ ' '+ repas.value+ ' '+ mail.value);
-        }
-
-      
-      },
-
-      validateAll: function(){
-        var m = this.$.decorator2; //decorator pass
-        var n = this.$.decorator; //decorator user
-        var user = this.$.name_user; //input
-        var pass = this.$.password;
-
-        console.log(n);
-        console.log(m);
-        
-        if ((!user.validity.valid) && (!pass.validity.valid) ) {
-          n.isInvalid=true;
-          m.isInvalid=true;
-        }
-        else {
-          n.isInvalid=false;
-          m.isInvalid=false;
-          if (!user.validity.valid) {
-             n.isInvalid=true;
+                if (!user.validity.valid) {
+            decorator_name.isInvalid = true;
           }
-          else {
-            n.isInvalid=false;
+                else {
+            decorator_name.isInvalid = false;
           }
-          if (!pass.validity.valid) {
-             m.isInvalid=true;
+
+                if (!pass.validity.valid) {
+            decorator_pass.isInvalid = true;
           }
-          else {
-             m.isInvalid=false;
+                else {
+            decorator_pass.isInvalid = false;
           }
-          
+
+                if (!repas.validity.valid) {
+            decorator_repas.isInvalid = true;
+          }
+                else {
+            decorator_repas.isInvalid = false;
+          }
+
+                if (!mail.validity.valid) {
+            decorator_email.isInvalid = true;
+          }
+                else {
+            decorator_email.isInvalid = false;
+          }
+
+            }
+
+            if ((user.validity.valid) && (pass.validity.valid) && (repas.validity.valid) && (mail.validity.valid)) {
+
+                alert("los datos recibidos son:" + user.value + ' ' + pass.value + ' ' + repas.value + ' ' + mail.value);
+                this.postUser();
+            }
+
+
+        },
+        postUser: function () {
+
+         this.user = {name: "ahinoaa", email: "sex@nmn", password: "17658526"};
+         
+            var ajax = this.$.ajax;
+            ajax.url="/user";
+             ajax.method="POST";
+             ajax.params=this.user;
+            ajax.go();
+
+
+        },
+        validateAll: function () {
+            var m = this.$.decorator2; //decorator pass
+            var n = this.$.decorator; //decorator user
+            var user = this.$.name_user; //input
+            var pass = this.$.password;
+
+            console.log(n);
+            console.log(m);
+
+            if ((!user.validity.valid) && (!pass.validity.valid)) {
+                n.isInvalid = true;
+                m.isInvalid = true;
+            }
+            else {
+                n.isInvalid = false;
+                m.isInvalid = false;
+                if (!user.validity.valid) {
+                    n.isInvalid = true;
+                }
+                else {
+                    n.isInvalid = false;
+                }
+                if (!pass.validity.valid) {
+                    m.isInvalid = true;
+                }
+                else {
+                    m.isInvalid = false;
+                }
+
+            }
+
+            if ((user.validity.valid) && (pass.validity.valid)) {
+                //alert("los datos recibidos son:" + user.value + ' '+ pass.value);
+                this.perfil();
+            }
+
+
+
+
         }
-
-        if ((user.validity.valid) && (pass.validity.valid) ) {
-            //alert("los datos recibidos son:" + user.value + ' '+ pass.value);
-             this.perfil();
-        }
-        
-        
-
-
-      }
 
 
     });

@@ -121,7 +121,7 @@ border: 1px solid rgba(200,200,200,.8);
 
       <div class="book1">
 
-        <img id="book" src="{{book.imagen}}}" title="{{book.title}}" width="240">
+        <img id="book" src="{{book.imagen}}" title="{{book.title}}" width="240">
         <div class="detail">
             <div class="item">
                 <p>ISBN: <br>
@@ -144,12 +144,7 @@ border: 1px solid rgba(200,200,200,.8);
 Polymer({
         
         ready:function(){
-          var that=this;
-
-          this.$.ajax.addEventListener("core-response", function(e) {
-           that.response=e.detail.response;
-            console.log(e.detail.response.length);
-          })
+        
 
         } 
 

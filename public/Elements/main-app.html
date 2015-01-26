@@ -55,11 +55,12 @@
 
 	
 
-<core-header-panel main mode="waterfall">
+<core-header-panel  main  mode="waterfall">
 <core-toolbar>
-  <my-head id="mh" mtitle="FastBook"></my-head>
+  <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
+  	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
  </core-toolbar> 
-  <my-banner></my-banner>
+  <my-banner id="mb" lang="en"></my-banner>
 
 	<div id="container">
 
@@ -86,9 +87,14 @@
 			<section  hash="account">
 					<!--<core-perfil></core-perfil>-->
 					<fast-account></fast-account>
+					
 				
 			</section>
-
+			<section  hash="sign">
+				
+				
+				
+			</section>
 	
 
 
@@ -117,8 +123,13 @@
 		ready:function() {
 
 			this.pages=this.$.mh.pages;
+			this.$.mh.lang="en";
+			this.$.mb.lang="en";
+	
+
 
 			var that=this;
+			//console.log(this.$.mh.lang),
 			
 
 			//console.log(this.route);
@@ -149,8 +160,23 @@
 		    	
 		  	});		  	
 		},
-		menuTap: function  (a,b,c) {
+		languaje: function  (a,b,c) {
 
+			if(this.$.mh.lang=="en"){
+				this.$.mh.lang="es";
+				this.$.mb.lang="es";
+				this.$.mh.ready();
+				this.$.momenu.pages=this.$.mh.pages;
+				this.$.cib.src="http://tediselmedical.com/wp-content/uploads/2013/11/United_Kingdom.png";
+			}else if(this.$.mh.lang=="es"){
+				this.$.mb.lang="en";
+				this.$.mh.lang="en";
+				this.$.mh.ready();
+				this.$.momenu.pages=this.$.mh.pages;
+				this.$.cib.src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png";
+			}
+		
+			this.$.mb.languaje(this.$.mh.lang);
 		}
 
 

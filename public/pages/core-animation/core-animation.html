@@ -125,8 +125,9 @@ border: 1px solid rgba(200,200,200,.8);
 
 <div id="books">
 <div><h2>Recent Book Buyback Prices</h2></div>
-<template repeat="{{book in books}}">
-  <mi-libro book="{{book}}"></mi-libro>
+<template repeat="{{book in response}}">
+  <mi-libro  on-tap="{{onTapbook}}"book="{{book}}">
+  </mi-libro>
 </template>
 </div>
 
@@ -155,11 +156,14 @@ Polymer({
           this.$.ajax.addEventListener("core-response", function(e) {
            that.response=e.detail.response;
             console.log(e.detail.response.length);
-          }
-      )
+          })
 
 
 
+
+        },
+        onTapbook:function(a,b,c){
+          console.log(c.book);
 
         }
         

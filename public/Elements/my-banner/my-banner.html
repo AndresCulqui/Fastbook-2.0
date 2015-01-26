@@ -1,4 +1,4 @@
-<polymer-element name="my-banner" >
+<polymer-element name="my-banner" attributes="lang">
 <template>
 	<style>
 	:host{
@@ -35,13 +35,23 @@ visibility: hidden;
 	</style>
 
 	<div id="banner" vertical layout >
-		<book-animation></book-animation>
-		<find-text></find-text>
+		<book-animation id="ba" ></book-animation>
+		<find-text id="ft"></find-text>
 	</div>
 
 </template>
 <script>
     Polymer({
+    	ready:function(){
+    
+    },
+    languaje:function(a,b,c){
+
+ 
+  this.$.ba.languaje(a);
+  this.$.ft.languaje(a);
+    }
+
   
     });
   </script>

@@ -1,15 +1,19 @@
-<polymer-element name="my-head" attributes="mtitle">
+<polymer-element name="my-head" attributes="mtitle lang">
 	<template>
 		<style>
 
     core-toolbar{
           background-color: transparent;
     }
-     core-icon-button {
+     core-icon-button#menu {
       visibility: hidden;
      }
      main-menu{
       visibility: visible;
+     }
+     #languaje{
+     	background-color: transparent;
+
      }
 
 
@@ -17,7 +21,7 @@
 
      /*----------- media query mobile ----------*/
     @media (max-width: 610px) {
-        core-icon-button {
+        core-icon-button#menu {
         visibility: visible;
         }
         main-menu{
@@ -35,10 +39,10 @@
        
           <core-toolbar  horizontal layout >
 
-            <core-icon-button icon="menu" on-tap={{actionMenu}} ></core-icon-button>
+            <core-icon-button id="menu" icon="menu" on-tap="{{actionMenu}} "></core-icon-button>
             <div id="title"  flex >{{mtitle}}</div>
             <main-menu id="mainMenu" flex pages="{{pages}}"></main-menu>
-         
+
           </core-toolbar>
 
      
@@ -52,20 +56,38 @@
 
     Polymer({
       ready:function(){
-        this.pages = [
-          {name: 'Home', hash: 'home', icon: 'home'},
-          {name: 'Search', hash: 'search', icon: 'search'},
-          {name: 'Buy', hash: 'buy', icon: 'shopping-cart'},
-          {name: 'Sell', hash: 'sell', icon: 'loyalty'},
-          {name: 'Account', hash: 'account', icon: 'account-box'}
-        ];
-        
+
+      	if(this.lang=="en"){
+	        this.pages = [
+	          {name: 'Home', hash: 'home', icon: 'home'},
+	          {name: 'Search', hash: 'search', icon: 'search'},
+	          {name: 'Buy', hash: 'buy', icon: 'shopping-cart'},
+	          {name: 'Sell', hash: 'sell', icon: 'loyalty'},
+	          {name: 'Account', hash: 'account', icon: 'account-box'}
+	        ];
+	    }
+      	if(this.lang=="es"){
+	        this.pages = [
+	          {name: 'Inicio', hash: 'home', icon: 'home'},
+	          {name: 'Buscar', hash: 'search', icon: 'search'},
+	          {name: 'Vender', hash: 'buy', icon: 'shopping-cart'},
+	          {name: 'Comprar', hash: 'sell', icon: 'loyalty'},
+	          {name: 'Cuenta', hash: 'account', icon: 'account-box'}
+	        ];
+	    }
+	        
+    
+
+   
 
       },
       actionMenu:function(event,detail,sender){
    
         this.fire('actionMenu');
 
+
+      },
+      languaje:function(a,b,c){
 
       }
 

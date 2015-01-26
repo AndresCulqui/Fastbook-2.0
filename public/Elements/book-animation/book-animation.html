@@ -7,7 +7,7 @@
 		<script src="js/modernizr.custom.js"></script>-
 	
 	
-	<polymer-element name="book-animation">
+	<polymer-element name="book-animation" attributes="lang">
 	<template>
 		<style>
       
@@ -115,7 +115,7 @@ Media Queries
     <section horizontal layout flex>
         <core-icon id="icon_search" icon="search"></core-icon>
          <input id="search" placeholder="Search Book..." is="core-input">
-        <paper-button id="butt">Search</paper-button>
+        <paper-button id="butt">{{s}}</paper-button>
     </section >
 
    
@@ -125,7 +125,23 @@ Media Queries
 
 
     Polymer({
-  
+      ready:function(){
+        this.s="SEARCH";
+
+
+      },
+      languaje:function(a,b,c){
+       console.log(a+"     en search");
+       if(a=="en"){
+        this.$.search.placeholder="Search a Book...";
+        this.s="SEARCH";
+      }else if(a=="es"){
+        this.s="BUSCAR";
+        this.$.search.placeholder="Buscar un libro...";
+    }
+
+  }
     });
+      
   </script>
 </polymer-element>
