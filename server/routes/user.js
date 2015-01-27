@@ -125,14 +125,20 @@ var requestify = require('requestify');
                     
                     //response.getBody();
                     console.log("--------------->"+response.body+" ----  bosy");
+                    var jsonconverter=JSON.parse(response.body);
+                    console.log(jsonconverter+"----------->json");
                     
-                          /*  var user = new User({
-                            name: response.body.displayName,
-                            email :response.body.emails[0].value, 
-                            password : response.body.id
+                    
+         User.findOne({email: jsonconverter.emails[0].value}, function(err,user) { 
 
-                            });*/
-                             /*   console.log("//////////------------>"+user+" ////-->user created------------");
+                            if(!user) {
+                           var user = new User({
+                            name: jsonconverter.displayName,
+                            email :jsonconverter.emails[0].value, 
+                            password : jsonconverter.id
+
+                            });
+                            console.log("//////////------------>"+user+" ////-->user created------------");
                             user.save(function(err) {
                               if(!err) {
                                 console.log("User created");
@@ -148,13 +154,24 @@ var requestify = require('requestify');
                                 }
                                 console.log('Internal error(%d): %s',res.statusCode,err.message);
                               }
-                            });*/
+                            });
 
                           //revisar
-                              res.send(response.body);  
+                              res.send(response.body); 
+   
+                            
+                            }
+                            if(!err) {
+                             res.send({ status: 'OK', user:user });
+                            } else {
+                              
+                            res.send({ error: 'Usuario existente' });
+                            }
+                          });
+                   
 
 
-                            });
+                     });
                           
 
  
