@@ -71,22 +71,17 @@
 
           margin-bottom: 30px;
       }
-      .facebook{
-          border: 1px solid #4c69ba;
-          padding-top: 2px;
-          background-color: #4c69ba;
-          border-radius: 5px;
-          /*text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;*/
-      }
+      
 
       #core_pages1, #core_pages2 {
           background-color: azure;
           border: 5px solid;
+          border-radius: 10px;
       }
 
       #core_pages1 {
           width: 40%;
-          height: 500px;
+          height: 690px;
           margin-right: 2%;
           padding-left: 4%;
           padding-right: 4%;
@@ -129,6 +124,14 @@
           width: 12%;
       }
       #core_icon { margin-bottom: 10%; }
+      .button {
+        width: 250px;
+        height: 50px;
+        
+      }
+      #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
+      #twitter{ background-image: url('../../images/twitter.png'); background-size: 100% 100%;}
+      #google{ background-image: url('../../images/google.png'); background-size: 100% 100%;}
 
       @media (max-width: 600px) {
 
@@ -202,6 +205,16 @@
             <br>
 
             <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
+            <paper-item>CONNECT WITH </paper-item>
+            
+            <div class="login-social" vertical layout center>
+               <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
+               </paper-button> </a>
+               <a href="../../auth/facebook"><paper-button id="facebook" class="button" on-tap="{{ test }}">
+               </paper-button> </a>
+               <a href="../../auth/google"><paper-button id="google" class="button" on-tap="{{ test }}">
+               </paper-button> </a>
+            </div>
 
           </div>
           <div id="core_pages2">
@@ -238,13 +251,7 @@
               Click Create account to agree to the Fastbook Services Agreement and privacy and cookies statement.</div><br>
 
             <div id="button_register" tool center center-justified horizontal layout display:flex>
-              <paper-button  class="accept" on-tap="{{ accept }}"> CREATE ACCOUNT </paper-button> 
-               <a href="../../auth/twitter"<paper-button  class="accept" on-tap="{{ test }}"> twitter </paper-button> </a>
-               <a href="../../auth/facebook"<paper-button  class="accept" on-tap="{{ test }}"> facebook </paper-button> </a>
-               <a href="../../auth/google"<paper-button  class="accept" on-tap="{{ test }}">goolgle </paper-button> </a>
-              <a href="../../unlink/twitter"<paper-button  class="accept" on-tap="{{ test }}"> log out twitter </paper-button> </a>
-               <a href="../../unlink/facebook"<paper-button  class="accept" on-tap="{{ test }}"> log out facebook </paper-button> </a>
-               <a href="../../unlink/google"<paper-button  class="accept" on-tap="{{ test }}">log out google </paper-button> </a>
+              
             </div>
 
           </div>

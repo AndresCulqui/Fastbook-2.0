@@ -61,7 +61,7 @@ Use `paper-input-decorator` if you would like to implement validation.
   </style>
 
   <paper-input-decorator id="decorator" label="{{label}}" floatingLabel="{{floatingLabel}}" value="{{value}}" disabled?="{{disabled}}">
-    <input is="core-input" value="{{value}}" committedValue="{{committedValue}}" on-change="{{changeAction}}" disabled?="{{disabled}}">
+    <input is="core-input" id="input" value="{{value}}" committedValue="{{committedValue}}" on-change="{{changeAction}}" disabled?="{{disabled}}">
   </paper-input-decorator>
 
 </template>
@@ -100,10 +100,33 @@ Use `paper-input-decorator` if you would like to implement validation.
        */
       disabled: {value: false, reflect: true},
 
+      /**
+       * The current value of the input.
+       *
+       * @attribute value
+       * @type String
+       * @default ''
+       */
       value: '',
 
+      /**
+       * The most recently committed value of the input.
+       *
+       * @attribute committedValue
+       * @type String
+       * @default ''
+       */
       committedValue: ''
 
+    },
+
+    /**
+     * Focuses the `input`.
+     *
+     * @method focus
+     */
+    focus: function() {
+      this.$.input.focus();
     },
 
     valueChanged: function() {
@@ -111,10 +134,8 @@ Use `paper-input-decorator` if you would like to implement validation.
     },
 
     changeAction: function(e) {
-      if (!window.ShadowDOMPolyfill) {
-        // re-fire event that does not bubble across shadow roots
-        this.fire('change', null, this);
-      }
+      // re-fire event that does not bubble across shadow roots
+      this.fire('change', null, this);
     }
 
   });
