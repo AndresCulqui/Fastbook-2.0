@@ -42,8 +42,13 @@
             <core-icon-button id="menu" icon="menu" on-tap="{{actionMenu}} "></core-icon-button>
             <div id="title"  flex >{{mtitle}}</div>
             <main-menu id="mainMenu" flex pages="{{pages}}"></main-menu>
-            <google-signin id="gs" height="tall" offline scope=https://www.googleapis.com/auth/userinfo.profile" clientId="768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com"></google-signin>
+            
+            <div>
               
+
+              
+              
+            </div>
           </core-toolbar>
 
      
@@ -78,7 +83,7 @@
 	    }
 	 
           
-       
+      /* 
           this.$.gs.addEventListener('google-signin-success', function(e) {
         console.log(e.detail);
           var y=e.detail.result;
@@ -95,7 +100,7 @@
     
         });
     
-
+*/
 
       },
       actionMenu:function(event,detail,sender){

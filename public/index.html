@@ -7,10 +7,12 @@
 	<title> FASTBOOK.com</title>
 
 		<!-- /////////////////////// SCRIPTS /////////////////////////////////// -->
-
+<script src="https://apis.google.com/js/plusone.js" type="text/javascript"></script>
 	<script src="./bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/validator-js/validator.min.js"></script>
    <script type="text/javascript" src="./lib/typeahead.js/typeahead.bundle.min.js"></script>
+   
+   
 
 
 
@@ -102,19 +104,17 @@ lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endCo
 
 
 <main-app></main-app>
-<<<<<<< HEAD
 
 
 
-
-=======
 <!-- Añádelo donde quieras que se muestre el botón de inicio de sesión -->
->>>>>>> eba822ded865f0c12fdcc96686ea8f9365c86157
+
 
 </body>
 </html>
 <script>
-
-var x=document.getElementById('sp');
-console.log(x+"    x");
+$.get('/auth/google/callback',function(e){
+  console.log(e+"         callback");
+  
+});
 </script>

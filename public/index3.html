@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div id="signinButton">
+  <span class="g-signin"
+    data-scope="https://www.googleapis.com/auth/plus.login"
+    data-clientid="214223288758-24jri2jhnne38l3kups1om6s2r3l162v.apps.googleusercontent.com"
+    data-redirecturi="postmessage"
+    data-accesstype="online"
+    data-cookiepolicy="single_host_origin"
+    data-callback="signInCallback">
+  </span>
+</div>
+<div id="result">ggigig</div>
+ 
+<script type="text/javascript">
+function signInCallback(authResult) {
+  if (authResult.code) {
+    $.post('/auth/google/callback', { id_token: authResult.id_token})
+    .done(function(data) {
+      $('#signinButton').hide();
+    }); 
+  } else if (authResult.error) {
+    console.log('There was an error: ' + authResult.error);
+  }
+};
+
+</script>
+ 
+</body>
+</html>
