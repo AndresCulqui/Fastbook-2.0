@@ -30,7 +30,7 @@
       padding: 20px;
       }
       .pi{
-      border:2px dotted green;
+   
       width: 30%;
       margin: 0px;
       padding: 0px;
@@ -62,7 +62,7 @@
           margin-left: 50%;
          // padding-left: 4%;
           padding-right: 4%;
-          border:2px solid;
+   
       }
       #butt{
         margin-left: 40%;
@@ -117,14 +117,7 @@
               <input is="core-input" id="autor" required/>
              </paper-input-decorator> 
 
-             <paper-input-decorator label="Publisher" floatingLabel error="Publisher is required!">
-              <input is="core-input" id="editorial"/>
-             </paper-input-decorator>
-              
-            <paper-input-decorator label="Price" floatingLabel error="Price is required!" id="decoprecio">
-              <input is="core-input" id="precio"  required/>
-             </paper-input-decorator>
-            
+
               
              <paper-input-decorator label="ISBN" floatingLabel error="ISBN is required!" id="decoisbn" >
                <input is="core-input" id="isbn" on-blur="{{validateIsbn}}" required/>
@@ -147,6 +140,20 @@
             
           </div>
           <div id="right">
+            
+            
+              <paper-input-decorator label="Publisher" floatingLabel error="Publisher is required!">
+              <input is="core-input" id="editorial"/>
+             </paper-input-decorator>
+              
+            <paper-input-decorator label="Price" floatingLabel error="Price is required!" id="decoprecio">
+              <input is="core-input" id="precio"  required/>
+             </paper-input-decorator>
+              
+            
+            
+            
+            
             <paper-input-decorator label="Category" floatingLabel error="Category is required!" id="cate" class="pi">
               <select id="cat" >
                
