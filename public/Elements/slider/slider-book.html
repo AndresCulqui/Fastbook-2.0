@@ -1,4 +1,4 @@
-<polymer-element name="slider-book">
+<polymer-element name="slider-book" attributes="book">
 	<template>
 		<style>
 		body {
@@ -6,7 +6,7 @@
 		}
 		section {
 			padding: 10px;
-		    background-color: rgba(0,0,0,.7);
+		    
 		    height: 400px;
 		}
 
@@ -17,7 +17,6 @@
 		.title, figcaption {
 		    width: 100%;
 		    color: white;
-		    background-color: rgba(0,0,0,.7);
 		    opacity: 0;
 		    filter: alpha(opacity=0);
 		    -webkit-transition: opacity .5s ease-in-out;
@@ -34,7 +33,7 @@
 		}
 
 		 article:hover .title{
-		      opacity: 9;
+		    opacity: 9;
 		}
 
 
@@ -62,6 +61,7 @@
 		    overflow: hidden;
 		    text-align: left;
 		    width: 1200px;
+		    padding-left: 10px;
 		}
 		.slider-element {
 		    float: left;
@@ -69,30 +69,26 @@
 		    height: 300px;
 		}
 
-		.element-blue,
-		.element-green,
-		.element-red,
-		.element-yellow,
-		.element-pink,
-		.element-gray,
-		.element-brown {
+		.element-green
+		 {
 		    width: 280px;
 		    height: 400px;
 		    border-radius: 10px;
+		    
 		}
 
-		.element-blue,
-		.element-green,
-		.element-red,
-		.element-yellow,
-		.element-pink,
-		.element-gray,
-		.element-brown  {
+		
+		.element-green  {
 		  	background-color: whitesmoke;
 		}
 
+		mi-libro /deep/ .book1 {
+			margin: 0px;
+			width: auto;
+		}
 
-		@-moz-keyframes autoSlider {
+
+		/*@-moz-keyframes autoSlider {
 		    0% {
 		        margin-left: 0;
 		    }
@@ -177,78 +173,23 @@
 
 		    100% {
 		        margin-left: -900px;
-		    }
+		    }*/
 		}
 		</style>
 		<section>
-                
+                <core-ajax id="ajax" auto url="/lastBooks" handleAs="json"></core-ajax>
                 <div id="slider-container">
                     <div id="slider-box">
-                        <div class="slider-element">
-                            
-                            <article class="element-red">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="slider-element">
-                            <article class="element-green">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="slider-element">
-                            <article class="element-blue">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>                            
-                        </div>
-                        <div class="slider-element">
-                            <article class="element-yellow">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>                            
-                        </div>
-                         <div class="slider-element">
-                            <article class="element-pink">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>                            
-                        </div>
-                         <div class="slider-element">
-                            <article class="element-gray">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>                            
-                        </div>
-                         <div class="slider-element">
-                            <article class="element-brown">
-                                <div class="title">The Pulpit Rock </div>
-                                <figure>
-                                  <img src="http://ecx.images-amazon.com/images/I/61m63XVmq7L._SL240_.jpg" tittle="The Pulpit Rock" width="220" height="228">
-                                  <figcaption> The Pulpit Rock is a massive cliff 604 metres (1982 feet) above Lysefjorden, opposite the Kjerag plateau, in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 </figcaption>
-                                </figure>
-                            </article>                            
-                        </div>
-                        
+
+                    <template repeat="{{slide in book}}">
+                    	<div class="slider-element">
+                        <article class="element-green">
+						  <mi-libro book="{{slide}}"></mi-libro>
+						</article>
+						</div>
+					</template>	
+					                  
+				
                     </div>
                 </div>
                 
@@ -256,7 +197,14 @@
 	</template>
 	<script>
 		Polymer({
-	
+			ready:function(){
+				var that=this;
+
+          		this.$.ajax.addEventListener("core-response", function(e) {
+           		that.response=e.detail.response;
+            	console.log(e.detail.response.length);
+          })
+			}
 		});
 	</script>
 
