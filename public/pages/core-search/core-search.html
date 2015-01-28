@@ -1,23 +1,25 @@
-
-
 <polymer-element name="core-search">
     <template>
         <style>
         :host {
             position: absolute;
+            margin: 20px;
             width: 100%;
             height: 100%;
             box-sizing: border-box;
         }
         section {
-            margin: 20px;
-            
-             background: rgba(8,46,64, 0.6);
-            padding: 20px;
-                    border: 3px solid dimgray;
-         border-radius: 10px;
+          padding: 20px;
+          border: 2px white solid;
+          border-radius: 7px;
+          background: rgba(95,31,7, 0.2);
         }
-        paper-input {
+        #options {
+          width: 324px;
+          padding: 0px;
+          margin: 0px;
+        }
+        paper-input-decorator {
             width: 300px;
             background-color: white;
             border: 2px solid dimgray;
@@ -45,6 +47,9 @@
             box-shadow: blue 20px;
             margin: 10px;
         }
+        paper-dropdown {
+          width: 300px;
+        }
         paper-item {
             width: 300px;
         }
@@ -67,78 +72,81 @@
         paper-radio-button::shadow #offRadio {
             border-color: white;
         }
-        #options {
-            width: 300px;
-        }
         paper-radio-group {
             width: 300px;
         }
         paper-radio-button {
             float: left;
         }
-        @media (max-width: 600px) {
-            paper-input{
+        @media (max-width: 400px) {
+            paper-input-decorator{
                 width: 90%;
             }
             paper-dropdown-menu {
-                width: 100%;
+              width: 90%;
             }
-            paper-item {
-                width: 100%;
-            }
-            #options {
-                width: 90%;
-            }
-            paper-radio-group {
-                width: 100%;
-            }
-            #check {
-                padding: 0px;
+            #option {
+              width: 100%;
             }
         }
- @media (max-width: 800px) {
-   
- 
-     
-    
-          section{
-              margin:0px;
-              padding: 0px;
-          }
-        
-      }
         </style>
         <section vertical layout center flex>
-            <paper-input placeholder="Find a book..." id="buscar"></paper-input>
-            <paper-button id="butt" on-tap="{{restful}}">Search</paper-button>
-            <paper-button id="advanced" on-tap="{{show}}">Advanced search</paper-button>
-            <div id="options" hidden vertical layout center>
-            <paper-dropdown-menu label="Categories">
-                <paper-item label="Primaria"></paper-item>
-                <paper-item label="Segundaria"></paper-item>
-                <paper-item label="Bachillerato"></paper-item>
-                <paper-item label="Universidad"></paper-item>
-                <paper-item label="Oposiciones"></paper-item>
-                <paper-item label="Idiomas"></paper-item>
-                <paper-item label="Formación profesional"></paper-item>
-                <paper-item label="Libros de lectura"></paper-item>
-            </paper-dropdown-menu>
+          
+            <paper-input-decorator label="Find a book...">
+              <input is="core-input" id="title">
+            </paper-input-decorator>
+          
             
-            <paper-dropdown-menu label="Conditions">
+
+              
+              <paper-input-decorator label="Author">
+                <input is="core-input" id="author">
+              </paper-input-decorator>
+                
+              <paper-input-decorator label="ISBN">
+                <input is="core-input" id="isbn">
+              </paper-input-decorator>
+          
+          
+
+            <paper-dropdown-menu label="Categories" id="categories">
+              <paper-dropdown halign="right">
+                <div>
+                  <paper-item label="Primaria"></paper-item>
+                  <paper-item label="Segundaria"></paper-item>
+                  <paper-item label="Bachillerato"></paper-item>
+                  <paper-item label="Universidad"></paper-item>
+                  <paper-item label="Oposiciones"></paper-item>
+                  <paper-item label="Idiomas"></paper-item>
+                  <paper-item label="Formación profesional"></paper-item>
+                  <paper-item label="Libros de lectura"></paper-item>
+                </div>
+                </paper-dropdown>
+            </paper-dropdown-menu>
+          
+          
+            
+            <paper-dropdown-menu label="Conditions" id="conditions">
                 <paper-item label="Muy bueno"></paper-item>
                 <paper-item label="Bueno"></paper-item>
                 <paper-item label="Normal"></paper-item>
                 <paper-item label="Malo"></paper-item>
                 <paper-item label="Muy malo"></paper-item>
             </paper-dropdown-menu>
-            
-            <div id="check">
-                <paper-radio-group>
-                    <paper-radio-button name="isbn" label="ISBN" toggles="true"></paper-radio-button>
-                    <paper-radio-button name="author" label="Author" toggles="true"></paper-radio-button>
-                    <paper-radio-button  name="titulo" label="Title" toggles="true"></paper-radio-button>
-                </paper-radio-group>  
-            </div>
+              <!--
+             <paper-dropdown-menu label="Price" id="price">
+                <paper-item label="Free"></paper-item>
+                <paper-item label="5$ - 10$"></paper-item>
+                <paper-item label="10$ - 20$"></paper-item>
+                <paper-item label="20$ - 30$"></paper-item>
+                <paper-item label=">30$"></paper-item>
+            </paper-dropdown-menu>-->
+              
+            <paper-button id="butt" on-tap="{{restful}}">Search</paper-button>
+            <div layout horizontal center id="result_books">
+              <template repeat="{{res in r}}">
+                <mi-libro titulo="{{titulo}}" imagen="{{imagen}}"></mi-libro>             
+              </template>  
             </div>
         </section>
     </template>
@@ -146,29 +154,36 @@
       
         Polymer({
             show: function() {
-                var options = this.$.options;
-                options.hidden =!options.hidden;
+                this.$.options.toggle();
             },
             restful: function(){
-              var t = document.querySelector('menu-index').shadowRoot.querySelector('core-search').shadowRoot.querySelector('paper-input').value;
-       
-            
-
-            
-             var books="http://localhost:8080/api/books/"+t;
-              alert(books);
-             $.getJSON(books,function(result){
-               
-               console.log(result);
-              var isbn=result.isbn;
-              var title=result.title;
-              var author=result.author;
-               var year=result.year;
-                var publisher=result.publisher;
-                 var description=result.description;
-                 var id=result._id;
-                 var genre=result.genre;
+              var that=this;
               
+              var bookSearch = {
+                title: this.$.title.value,
+                author: this.$.author.value,
+                isbn: this.$.isbn.value,
+                categories: this.$.categories.selected,
+                conditions: this.$.conditions.selected,
+                price: this.$.price.selected                
+              };
+              
+              console.log(bookSearch);
+              
+              var books="http://localhost:8080/book/title/"+title;
+              alert(books);
+              var result_books = this.$.result_books;
+              this.res=[];
+              $.getJSON(books,function(result){
+               
+              console.log(result.book);
+              for(var i = 0; i < result.book.length; i++) {
+                console.log(result.book[i]);
+                $(result_books).append('<mi-libro  imagen='+result.book[i].imagen+' titulo='+result.book[i].title+'>  </mi-libro>');
+              }
+              
+    
+    /*
               console.log(isbn);
               console.log(title);
               console.log(author);
@@ -176,8 +191,8 @@
               console.log(publisher);
               console.log(description);
                console.log(id);
-                console.log(genre);
-        
+                console.log(genre);*/
+       
                
                      // Set the table td text
                 $('#titulo1').text("Titulo  :"+title);
@@ -187,20 +202,7 @@
                 $('#descripcion').text("Descripcion  :"+description);
                 //$("#imagen").attr("src",imagen);
                 $('#otro').text("ISBN  :"+isbn);
-
-   
-     
-       
-  
-    
-               
-               
-               
-               
-               
-               
-               
-               
+ 
              });
              
    
