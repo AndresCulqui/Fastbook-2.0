@@ -126,7 +126,7 @@ var requestify = require('requestify');
                     //response.getBody();
                     console.log("--------------->"+response.body+" ----  bosy");
                     var jsonconverter=JSON.parse(response.body);
-                    console.log(jsonconverter+"----------->json");
+                    console.log(jsonconverter.id+"----------->json");
                     
                     
          User.findOne({email: jsonconverter.emails[0].value}, function(err,user) { 
@@ -157,13 +157,17 @@ var requestify = require('requestify');
                             });
 
                           //revisar
-                              res.send(response.body); 
+                              
    
                             
+                            }else{
+                            res.send({name:jsonconverter.displayName ,email:jsonconverter.emails[0].value, password:jsonconverter.id}); 
+                                
                             }
                             if(!err) {
                              res.send({ status: 'OK', user:user });
-                            } else {
+                            } else 
+                            {
                               
                             res.send({ error: 'Usuario existente' });
                             }

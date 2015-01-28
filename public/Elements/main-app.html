@@ -159,19 +159,22 @@
               var y=e.detail;
               console.log(y.result.access_token+"          token");
               y.gapi.client.request({path:'/plus/v1/people/me', method:'GET', callback: function(result) {
-                  debugger;
+                  
                 var token={id:result.id, token:y.result.access_token};
+                
                 $.post('/googleUser',token, function(data,status){
+                 
                       if (status){
                  
                       
                      
-                      var datajson=jQuery.parseJSON(data);
-                      console.log(datajson+" datos de usuario en cliente");
+                     // var datajson=jQuery.parseJSON(data);
                       
-                      
-                         that.user={id:datajson.id,name:datajson.displayName, email:datajson.emails[0].value, photo:datajson.image.url};
-                        
+                     console.log(data);
+                       
+                         that.user={id:data.password,name:data.name, email:data.email, photo:result.image.url};
+                     
+                 
                       
                       
                     }else{
