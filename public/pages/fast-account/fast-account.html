@@ -1,4 +1,3 @@
-
 <polymer-element name="fast-account">
   <template>
     <style>    
@@ -74,7 +73,7 @@
       
 
       #core_pages1, #core_pages2 {
-          background-color: azure;
+          background-color: gainsboro;
           border: 5px solid;
           border-radius: 10px;
       }
@@ -185,20 +184,20 @@
 
             <h1> Sign In </h1><br>
 
-            <label> Name: </label>
-            <!-- <img class="icon" src="../images/login1.jpg"> -->
-            <paper-input-decorator id="decorator" label="Name" error="Name is Required" >
-              <input id="name_user" is="core-input" required  title="El formato no es valido">
+            <label> E-mail: </label>
+          
+            <paper-input-decorator id="decorator" label="someone@example.com" error="Email is Required" >
+              <input id="email_s" is="core-input" on-keyup="{{validate_email_sign}}" required>
             </paper-input-decorator>
 
             <label> Password: </label>
-            <!--<img class="icon" src="../images/pass.jpg">-->
+        
             <paper-input-decorator id="decorator2" label="Password" error="Password is Required">
               <input id="password" is="core-input" type="password" required>
             </paper-input-decorator>
 
             <div id="button_e" tool center-justified horizontal layout display:flex>
-              <paper-button id="ok" on-tap="{{ validateAll }}" class="accept" showing> LOGIN >> </paper-button> 
+              <paper-button id="ok" on-tap="{{ validateSigin }}" class="accept" showing> LOGIN >> </paper-button> 
             </div><br>
 
             <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
@@ -214,12 +213,6 @@
                </paper-button> </a>
                <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
                </paper-button> -->
-             
-        
-              
-               
-               
-               
             </div>
 
           </div>
@@ -233,7 +226,7 @@
             <label> Name: </label>
 
             <paper-input-decorator id="name_register" label="Name & Lastname" error="Name & LastName is Required">
-              <input id="r_name" is="core-input" required>
+              <input id="r_name" is="core-input" maxlength="30" on-keyup="{{validate_name}}"  required>
             </paper-input-decorator>
             <label> Create Password: </label>
 
@@ -243,7 +236,7 @@
             <label> Reenter Password: </label>
 
             <paper-input-decorator id="repass_register" label="Reenter Password" error="Password is Required">
-              <input id="repass" is="core-input" type="password" required>
+              <input id="repass" is="core-input" type="password" on-blur="{{validate_repass}}" required>
             </paper-input-decorator>
             <label> Email: </label>
 
@@ -276,14 +269,48 @@
     Polymer({
         ready: function () {
           
-          
+        },
 
-          
+        validate_email_sign:function(){
+          var email = this.$.email_s.value;
+          var decorator = this.$.decorator;
+          if(validator.isEmail(email)){
+            decorator.isInvalid = false;
+          }              
+          else {
+            decorator.isInvalid = true;
+            decorator.error="Write an email with the format someone@example.com";
+          }
+        },
 
-          
-          
-  
-  
+        show_errors:function(string, pattern){
+          var decorator_name = this.$.name_register;
+          if (string.match(pattern) != null ) {
+            decorator_name.isInvalid = false;
+          }else {
+            decorator_name.isInvalid = true;
+            decorator_name.error="Character Incorrect, Only letters.";
+           
+          }
+        },
+
+        validate_name: function(){
+          var name = this.$.r_name.value;
+          var pattern = /^[a-zA-Z0-9áéíóúñÁÉÍÓÚÑ -]*$/i;
+          this.show_errors(name,pattern);
+        },
+
+        validate_repass:function(){
+          var pass = this.$.r_pass.value;
+          var repas = this.$.repass.value;
+          var decorator_repas = this.$.repass_register;
+          if (!pass==repas) {
+            decorator_repas.isInvalid = false;
+          }
+          else {
+           decorator_repas.isInvalid = true;
+           decorator_repas.error="Passwords do not match.";
+          }
         },
         loginGoogle :function(){
 
@@ -364,10 +391,10 @@
 
 
         },
-        validateAll: function () {
+        validateSigin: function () {
             var m = this.$.decorator2; //decorator pass
             var n = this.$.decorator; //decorator user
-            var user = this.$.name_user; //input
+            var user = this.$.email_s; //input
             var pass = this.$.password;
 
             console.log(n);
@@ -396,8 +423,8 @@
             }
 
             if ((user.validity.valid) && (pass.validity.valid)) {
-                //alert("los datos recibidos son:" + user.value + ' '+ pass.value);
-                this.perfil();
+                alert("los datos recibidos son:" + user.value + ' '+ pass.value);
+                //this.perfil();
             }
 
 
