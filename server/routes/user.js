@@ -1,5 +1,5 @@
 
-// book.js
+// User.js
 //=======================================================================
 
 module.exports = function(app) {
@@ -46,11 +46,10 @@ var requestify = require('requestify');
       }
     });
   };*/
- //--------------------buscar por email------------
+ //-----------------search by email------------
    findByEmail = function(req, res) {
         console.log("GET - /user/:email");
-        console.log(req.params.isbn);
-         res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+        res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
         User.findOne({email: req.params.email}, function(err,user) { 
@@ -60,7 +59,7 @@ var requestify = require('requestify');
              res.send({ error: 'Not found' });
             }
             if(!err) {
-             res.send({ status: 'OK', user:user });
+             res.send({ status: 'OK User Created', user:user });
             } else {
               res.statusCode = 500;
               console.log('Internal error(%d): %s',res.statusCode,err.message);
@@ -274,7 +273,7 @@ var requestify = require('requestify');
 
   };
  
-  //DELETE - Delete a Book with specified ID
+  //DELETE - Delete a User with specified ID
   deleteUser = function(req, res) {
        console.log("DELETE - /user/:email");
        res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
