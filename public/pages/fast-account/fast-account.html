@@ -320,12 +320,8 @@
         ready: function () {
           
           //--------->escuchando si se loggea con google----------->
-          var that=this;
-         this.$.signGoogle.addEventListener('google-signin-success', function(a,b,c) {
-		    	console.log(a.detail.result.access_token);
-          
-		  	})
 
+  },
         show_errors:function(string, pattern){
           var decorator_name = this.$.name_register;
           if (string.match(pattern) != null ) {
