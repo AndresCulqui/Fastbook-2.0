@@ -59,7 +59,8 @@
 <core-toolbar>
   <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
   	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
-      <google-signin on-tap="{{loginGoogle}}" id="gs" theme="dark" width="iconOnly"   clientId="768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com" scopes="email"></google-signin>
+     
+      <core-icon-button hidden on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
  </core-toolbar> 
   <my-banner id="mb" lang="en"></my-banner>
 
@@ -152,79 +153,65 @@
         that.user=e.detail;
       });*/
     
-    //------------------escuchando evento si ehay conexion----------------
-              var that=this;
-         this.$.gs.addEventListener('google-signin-success', function(e) {
-       
-              var y=e.detail;
-              console.log(y.result.access_token+"          token");
-              y.gapi.client.request({path:'/plus/v1/people/me', method:'GET', callback: function(result) {
-                  
-                var token={id:result.id, token:y.result.access_token};
-                
-                $.post('/googleUser',token, function(data,status){
-                 
-                      if (status){
-                 
-                      
-                     
-                     // var datajson=jQuery.parseJSON(data);
-                      
+    //----------------------------google sing escuchandoooo
+        var that=this;
+         this.$.fa.addEventListener('google-signin-success', function(a,b,c) {
+		    	var token=a.detail.result.access_token;
+          console.log(token);
+          
+          $.post('/googleUser',{token:token}, function(data,status){     
+              if (status){
                      console.log(data);
-                       
-                         that.user={id:data.password,name:data.name, email:data.email, photo:result.image.url};
-                     
-                 
+                 that.user={id:data.id,name:data.name, email:data.email, photo:data.image};
                       
-                      
-                    }else{
-                      alert("error¡¡¡¡------------------------->");
-                    }
+               }else{
+                    alert("error¡¡¡¡------------------------->");
+                 }
                      
-                    });
-                    
-                    
-                
-        
-              }});
-     ///--------------------------->------> si se desconecta-->revokar token----->
-            
-                  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+y.result.access_token;
+            });
+               
+               
+        //-----------------------------revokar token----------------------       
+             var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+token;
                         
 
             
-                  that.$.gs.addEventListener('google-signed-out',function(e,f,g){
-               console.log(e.returnValue+"soy return valueeee si esta desconectado");
-               if(e.returnValue){
-                 
-                 $.ajax({
-                        type: 'GET',
-                        url: revokeUrl,
-                        async: false,
-                        contentType: "application/json",
-                        dataType: 'jsonp',
-                        success: function() {
-                          location.reload();  
-                        },
-                        error: function(e) {
+                  that.$.fa.addEventListener('google-signed-out',function(e){
+                      console.log(e.returnValue+"soy return valueeee si esta desconectado");
+                      if(e.returnValue){
 
-                        }
-                      }); 
-                   
-                 console.log("soy true");
-               }else{
-                 console.log("soy false");
-               }
+                        $.ajax({
+                               type: 'GET',
+                               url: revokeUrl,
+                               async: false,
+                               contentType: "application/json",
+                               dataType: 'jsonp',
+                               success: function() {
+                                 location.reload();  
+                               },
+                               error: function(e) {
+
+                               }
+                             }); 
+
+                        console.log("soy true");
+                      }else{
+                        console.log("soy false");
+                      }
+
+                       });
+               
+               
+         });
           
-        });
-              
-        });
-   
-   
-         
-      
+
       
 		},
+     tapxploit:function(){
+      
+      window.open("/xploit.html","width=200, height=100","toolbar=no");
+      
+    },
 		languaje: function  (a,b,c) {
 
 			if(this.$.mh.lang=="en"){

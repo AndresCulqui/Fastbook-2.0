@@ -15,9 +15,8 @@
   	console.log(authResult);
     if (authResult) {
       if (authResult['error'] == undefined){
-        gapi.auth.setToken(authResult); // Almacena el token recuperado.
-        toggleElement('signin-button'); // Oculta el inicio de sesión si se ha accedido correctamente.
-        getEmail();                     // Activa la solicitud para obtener la dirección de correo electrónico.
+       
+                   console.log(authResult);
       } else {
         console.log('An error occurred');
       }
@@ -26,47 +25,7 @@
     }
   }
 
-  /*
-   * Inicia la solicitud del punto final userinfo para obtener la dirección de correo electrónico del
-   * usuario. Esta función se basa en gapi.auth.setToken que contiene un token
-   * de acceso de OAuth válido.
-   *
-   * Cuando se completa la solicitud, se activa getEmailCallback y recibe
-   * el resultado de la solicitud.
-   */
-
-  function getEmail(){
-  	debugger;
-console.log(gapi.load+"    soy gapi");
-    // Carga las bibliotecas oauth2 para habilitar los métodos userinfo.
-    gapi.load('oauth2', 'v2', function() {
-          var request = gapi.client.oauth2.userinfo.get();
-          request.execute(getEmailCallback);
-        });
-  }
-
-  function getEmailCallback(obj){
-    var el = document.getElementById('email');
-    var email = '';
-
-    if (obj['email']) {
-      email = 'Email: ' + obj['email'];
-    }
-
-    console.log(obj);   // Sin comentario para inspeccionar el objeto completo.
-
-    el.innerHTML = email;
-    toggleElement('email');
-  }
-
-  function toggleElement(id) {
-    var el = document.getElementById(id);
-    if (el.getAttribute('class') == 'hide') {
-      el.setAttribute('class', 'show');
-    } else {
-      el.setAttribute('class', 'hide');
-    }
-  }
+  
   </script>
 </head>
 <body>

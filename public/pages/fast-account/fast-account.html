@@ -214,6 +214,8 @@
                </paper-button> </a>
                <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
                </paper-button> -->
+               
+               <google-signin id="signGoogle"  class="button" labelSignin="Sign in with Google"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
              
         
               
@@ -276,7 +278,12 @@
     Polymer({
         ready: function () {
           
+          //--------->escuchando si se loggea con google----------->
+          var that=this;
+         this.$.signGoogle.addEventListener('google-signin-success', function(a,b,c) {
+		    	console.log(a.detail.result.access_token);
           
+		  	})
 
           
 
