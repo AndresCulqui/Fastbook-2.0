@@ -14,11 +14,7 @@
           margin-top: -50px;
           position: absolute;
       }
-      #section{
-
-          margin: 20px;
-
-      }
+      #section{ margin: 20px; }
       #button_enter{
           background: rgba(8,46,64, 0.6);
           border: 3px solid dimgray;
@@ -26,9 +22,16 @@
           height: 700px;
           padding: 3%;
       }
+      h1 {
+        font-size: 35px;
+        color: white;
+        font-family: Courier;
+        font-weight: bold;
+        text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+      }
 
-      h1, label {
-          color: dimgray;
+      label {
+          color: black;
           font-family: Courier;
           font-weight: bold;
           text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
@@ -38,28 +41,33 @@
           font-weight: bold;
           font-family: Verdana;   
           clear: both;
-
           text-align: left;
           margin-top: 20px;
+      }
 
+      p{
+        color: white;
+        font-family: Courier;
+        font-weight: bold;
+        text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
       }
       .accept {
           margin-top: 10px;
           margin-right: 20px;
           margin-bottom: 15px;
-      }
-
-      .accept {
-          background-image: url('../images/log.jpg');
-          background-size: 100% 100%;
-          background-repeat: no-repeat;
+          background: rgb(255,168,76); /* Old browsers */
+          background: -moz-linear-gradient(top,  rgba(255,168,76,1) 60%, rgba(255,123,13,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(255,168,76,1)), color-stop(100%,rgba(255,123,13,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
           color: white;
           font-weight: bold;
       }
       .accept:hover {
-          background-image: url('../images/log2.jpg');
-          background-size: 100% 100%;
-          background-repeat: no-repeat;
+          opacity: 0.8;
           color: dimgray;
       }
 
@@ -67,13 +75,11 @@
           padding: 0px 0px 0px 7px;
           box-shadow: blue 20px;
           margin-left: -2px;
-
           margin-bottom: 30px;
       }
-      
-
       #core_pages1, #core_pages2 {
-          background-color: gainsboro;
+          background-image: url('../images/form.png');
+          background-size: 100% 100%;
           border: 5px solid;
           border-radius: 10px;
       }
@@ -105,13 +111,11 @@
       paper-checkbox.blue::shadow #checkbox.checked {
           border-color: #4285f4;
       }
-      a {
+      a { font-size: 15px;
           color: blue;
           text-decoration: none;
       }
-      .comment {
-          color: dimgray; font-family: arial; font-size: 12px;
-      }
+      .comment { color: dimgray; font-family: arial; font-size: 12px; }
       .icon{
           margin-left: -5%;
           float: left;
@@ -125,28 +129,34 @@
       #core_icon { margin-bottom: 10%; }
       .button {
         width: 250px;
-        height: 50px;
-        
+        height: 45px;
       }
+      .button:hover { opacity: 0.6;}
       #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
       #twitter{ background-image: url('../../images/twitter.png'); background-size: 100% 100%;}
       #google{ background-image: url('../../images/google.png'); background-size: 100% 100%;}
 
       @media (max-width: 600px) {
 
+          #button_enter {
+              padding: 0px;
+              border: 0px;
+              background: none;
+          }
           #section { margin: 0px;}
           h1 { margin-bottom: -10px; font-size: 20px;}
 
           #core_pages1, #core_pages2 {
               border-radius: 10px;
-              width: 88%;
-              background-color: azure;
+              width: 91.5%;
+              background-image: url('../images/form.png');
+              background-size: 100% 100%;
               height: auto;
+              border: 1px solid dimgray;
           }
 
           #core_pages1 {
               float: none;
-              margin-right: 40%;
           }
           #core_pages2{
               margin-top: 1%;
@@ -167,16 +177,48 @@
               margin-bottom: 0px;
           }
           paper-item {
-              margin-top: -40px;
+              margin-top: -30px;
+              margin-bottom: -10px;
           }
           #core_icon { margin-top: 8%; margin-bottom: 8%;}
+          .accept {
+              width: 100%;
+              height: 25px;
+              font-size: 10px;
+              margin-right: 0px;
+          }
+          a { font-size: 10px;}
+          p { font-size: 15px;}
+          .button {
+              width: 50px;
+              height: 50px;
+          }
+          .login-social{
+              
+              height: 0px;
+              margin-bottom: 80px;
+          }
+          #facebook{ 
+            background-image: url('../../images/facebook.png'); 
+            background-size: 580% 100%;
+            quotesmargin-right: 200px;
+          }
+          #twitter{ 
+            background-image: url('../../images/twitter.png'); 
+            background-size: 580% 100%;
+            margin-right: 200px;
+          }
+          #google{ 
+            background-image: url('../../images/google.png'); 
+            background-size: 580% 100%;}
+          h1 {
+            margin-bottom: 15px;
+          }
       }
 
     </style>
 
     <core-pages selected="0" selectedindex="0" notap id="page_account">
-
-
 
       <section id="section" active>        
         <div id="button_enter">
@@ -201,11 +243,11 @@
             </div><br>
 
             <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
-            <br>
-
+           
             <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
-            <paper-item>CONNECT WITH </paper-item>
-            
+
+            <p>Connect with Social Login </p>
+                        
             <div class="login-social" vertical layout center>
                <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
                </paper-button> </a>
@@ -220,8 +262,8 @@
 
             <h1>Register</h1>
 
-            <core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>
-            <br>
+            <!--<core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>
+            <br>-->
 
             <label> Name: </label>
 
@@ -241,26 +283,26 @@
             <label> Email: </label>
 
             <paper-input-decorator id="email_register" label="example@example.com" error="Email is Required">
-              <input id="email" is="core-input" type="email" required>
+              <input id="email" is="core-input" type="email" on-keyup="{{validate_mail_r}}" required>
             </paper-input-decorator>
 
             <br><br>
 
             <div class="comment" center-justified horizontal layout>
-              Click Create account to agree to the Fastbook Services Agreement and privacy and cookies statement.</div><br>
+              Click Create Account to agree to the Fastbook Services Agreement and Privacy and cookies statement.</div><br>
 
             <div id="button_register" tool center center-justified horizontal layout display:flex>
-              <paper-button class="accept" on-tap="{{accept}}">Create account</paper-button>
+              <paper-button class="accept" on-tap="{{ accept }}">Create account</paper-button>
             </div>
-              <core-ajax id="ajax"></core-ajax>
+            
+            <core-ajax id="ajax"></core-ajax>
 
           </div>
       </section>
   
 
     </core-pages>
-    
-       
+           
   </template>
     
   <script>
@@ -269,8 +311,12 @@
     Polymer({
         ready: function () {
           
+          $.get("/users",function(data){
+          var users=data;
+          console.log('usuarios'+users.name);
+          });
+          
         },
-
         validate_email_sign:function(){
           var email = this.$.email_s.value;
           var decorator = this.$.decorator;
@@ -290,7 +336,6 @@
           }else {
             decorator_name.isInvalid = true;
             decorator_name.error="Character Incorrect, Only letters.";
-           
           }
         },
 
@@ -302,14 +347,31 @@
 
         validate_repass:function(){
           var pass = this.$.r_pass.value;
+          var pass_tam = pass.length;
           var repas = this.$.repass.value;
           var decorator_repas = this.$.repass_register;
-          if (!pass==repas) {
+          if (pass==repas && repas.length==pass_tam) {
             decorator_repas.isInvalid = false;
           }
           else {
            decorator_repas.isInvalid = true;
            decorator_repas.error="Passwords do not match.";
+          }
+        },
+
+        validate_mail_r: function(){
+          var email = this.$.email.value;
+          var pattern= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,15})+\.)+([a-zA-Z0-9]{2,4})+$/;
+          this.show_error_email(email,pattern);
+        },
+        show_error_email:function(string, pattern){
+          var decorator_email = this.$.email_register;
+          if (string.match(pattern) != null ) {
+            decorator_email.isInvalid = false;
+          }else {
+            decorator_email.isInvalid = true;
+            decorator_email.error="Write an email with the format someone@example.com.";
+           
           }
         },
         loginGoogle :function(){
@@ -342,53 +404,52 @@
                 decorator_email.isInvalid = false;
 
                 if (!user.validity.valid) {
-            decorator_name.isInvalid = true;
-          }
-                else {
-            decorator_name.isInvalid = false;
-          }
+                  decorator_name.isInvalid = true;
+                }
+                      else {
+                  decorator_name.isInvalid = false;
+                }
 
-                if (!pass.validity.valid) {
-            decorator_pass.isInvalid = true;
-          }
-                else {
-            decorator_pass.isInvalid = false;
-          }
+                      if (!pass.validity.valid) {
+                  decorator_pass.isInvalid = true;
+                }
+                      else {
+                  decorator_pass.isInvalid = false;
+                }
 
-                if (!repas.validity.valid) {
-            decorator_repas.isInvalid = true;
-          }
-                else {
-            decorator_repas.isInvalid = false;
-          }
+                      if (!repas.validity.valid) {
+                  decorator_repas.isInvalid = true;
+                }
+                      else {
+                  decorator_repas.isInvalid = false;
+                }
 
-                if (!mail.validity.valid) {
-            decorator_email.isInvalid = true;
-          }
-                else {
-            decorator_email.isInvalid = false;
-          }
+                      if (!mail.validity.valid) {
+                  decorator_email.isInvalid = true;
+                }
+                      else {
+                  decorator_email.isInvalid = false;
+                }
 
             }
 
             if ((user.validity.valid) && (pass.validity.valid) && (repas.validity.valid) && (mail.validity.valid)) {
-
-                alert("los datos recibidos son:" + user.value + ' ' + pass.value + ' ' + repas.value + ' ' + mail.value);
-                this.postUser();
+                var user={name: user.value, email: mail.value, password: pass.value};
+                //console.log('usuario'+user);
+                this.postUser(user);
             }
-
-
         },
-        postUser: function () {
+        postUser: function (user) {
 
-         this.user = {name: "ahinoaa", email: "sex@nmn", password: "17658526"};
-         
+         //console.log("usuario postuser"+user.name);
             var ajax = this.$.ajax;
             ajax.url="/user";
-             ajax.method="POST";
-             ajax.params=this.user;
+            ajax.method="POST";
+            ajax.params=user;
             ajax.go();
+        },
 
+        findUser:function(){
 
         },
         validateSigin: function () {
