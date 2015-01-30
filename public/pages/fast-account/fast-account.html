@@ -212,8 +212,14 @@
                </paper-button> </a>
                <a href="../../auth/facebook"><paper-button id="facebook" class="button" on-tap="{{ test }}">
                </paper-button> </a>
-               <a href="../../auth/google"><paper-button id="google" class="button" on-tap="{{ test }}">
-               </paper-button> </a>
+               <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
+               </paper-button> -->
+             
+        
+              
+               
+               
+               
             </div>
 
           </div>
@@ -251,8 +257,9 @@
               Click Create account to agree to the Fastbook Services Agreement and privacy and cookies statement.</div><br>
 
             <div id="button_register" tool center center-justified horizontal layout display:flex>
-              
+              <paper-button class="accept" on-tap="{{accept}}">Create account</paper-button>
             </div>
+              <core-ajax id="ajax"></core-ajax>
 
           </div>
       </section>
@@ -260,32 +267,27 @@
 
     </core-pages>
     
-        <core-ajax id="ajax" method="GET" url="http://localhost:3000/auth/google" 
-
-
-      ></core-ajax>
+       
   </template>
     
   <script>
+    
 
     Polymer({
         ready: function () {
-           
-        },
-        test:function(){
-          var that=this;
+          
+          
 
-            /*this.$.ajax.go();
-         
-                this.$.ajax.addEventListener("core-response", function(e) {
-           that.response=e.detail.response;
-            console.log(e.detail+"*");
-          });*/
-                
-          /*$.get("/auth/google", function(data){
-            console.log("data  "+data);
-          })*/
-     
+          
+
+          
+          
+  
+  
+        },
+        loginGoogle :function(){
+
+
         },
         perfil: function () {
             location.href = "#account";

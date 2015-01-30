@@ -42,7 +42,13 @@
             <core-icon-button id="menu" icon="menu" on-tap="{{actionMenu}} "></core-icon-button>
             <div id="title"  flex >{{mtitle}}</div>
             <main-menu id="mainMenu" flex pages="{{pages}}"></main-menu>
+            
+            <div>
+              
 
+              
+              
+            </div>
           </core-toolbar>
 
      
@@ -75,10 +81,26 @@
 	          {name: 'Cuenta', hash: 'account', icon: 'account-box'}
 	        ];
 	    }
-	        
+	 
+          
+      /* 
+          this.$.gs.addEventListener('google-signin-success', function(e) {
+        console.log(e.detail);
+          var y=e.detail.result;
+          console.log(y);
+      
+          console.log("token   "+y.access_token);
+        });
+        
+        
+          this.$.gs.addEventListener('core-signal', function(a,e,i) {
+        console.log(e);
+        console.log(a);
+        console.log(i);
     
-
-   
+        });
+    
+*/
 
       },
       actionMenu:function(event,detail,sender){

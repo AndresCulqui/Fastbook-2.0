@@ -1,4 +1,4 @@
-<polymer-element name="mobile-menu" attributes="pages">
+<polymer-element name="mobile-menu" attributes=" pages user">
 <template>
 	<style>
 		#menu {
@@ -47,8 +47,9 @@
 	
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
-			<img id="photo" src="{{perfil.photo}}">
-			<core-item id="name" label="{{perfil.name}}"></core-item>
+			<img id="photo" src="{{user.photo}}">
+			<core-item id="name" label="{{user.name}}"></core-item>
+      <core-item id="name" label="{{user.email}}"></core-item>
 		</div>
 		</core-toolbar>
 		<core-menu vertical layout selected="{{ route }}" selectedindex="home" valueattr="hash">

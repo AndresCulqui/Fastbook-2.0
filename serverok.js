@@ -4,7 +4,7 @@ var app=express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var bodyParser=require('body-parser');
-var engines = require('consolidate');
+//var engines = require('consolidate');
 ///---------- login conection--------------
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -96,6 +96,14 @@ function perimitirCrossDomain(req, res, next) {
 
 
 
+/*requestify.get('https://www.googleapis.com/books/v1/volumes?q=isbn:9788495733184')
+  .then(function(response) {
+      console.log(response);
+      response.getBody();
+  }
+);*/
+
+ 
 
 
 

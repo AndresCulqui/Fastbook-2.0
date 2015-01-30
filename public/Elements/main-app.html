@@ -50,7 +50,7 @@
 	<core-drawer-panel id="cdp"responsiveWidth="2000px" >
 	
 	<div drawer id="drawer" >
-	<mobile-menu id="momenu"pages="{{pages}}"></mobile-menu>
+	<mobile-menu id="momenu"pages="{{pages}}" user="{{user}}"></mobile-menu>
 
 	</div>
 	   
@@ -61,6 +61,7 @@
 <core-toolbar>
   <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
   	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
+      <google-signin on-tap="{{loginGoogle}}" id="gs" theme="dark" width="iconOnly"   clientId="768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com" scopes="email"></google-signin>
  </core-toolbar> 
   <my-banner id="mb" lang="en"></my-banner>
 
@@ -88,28 +89,14 @@
 			</section>
 			<section  hash="account">
 					<!--<core-perfil></core-perfil>-->
-					<fast-account></fast-account>
-					
+					<fast-account id="fa"></fast-account>
 				
 			</section>
-			<section  hash="sign">
-				
-				
-				
+			<section  hash="sign">	
 			</section>
-	
-
-
 		</core-animated-pages>
-		
-		
-
 
 	</div>
-
-
-
-	    		
 
   </core-header-panel>
 
@@ -160,7 +147,85 @@
 		    	console.log(e.detail.alt+"           soy evento ");
 		    	
 		    	
-		  	});		  	
+		  	});	
+      //--------------------------escuchando evento load profile-----------------------
+      /*this.$.fa.addEventListener('profile-load',function(e){
+        console.log(e.detail.name+"  soy profile en main");
+        that.user=e.detail;
+      });*/
+    
+    //------------------escuchando evento si ehay conexion----------------
+              var that=this;
+         this.$.gs.addEventListener('google-signin-success', function(e) {
+       
+              var y=e.detail;
+              console.log(y.result.access_token+"          token");
+              y.gapi.client.request({path:'/plus/v1/people/me', method:'GET', callback: function(result) {
+                  
+                var token={id:result.id, token:y.result.access_token};
+                
+                $.post('/googleUser',token, function(data,status){
+                 
+                      if (status){
+                 
+                      
+                     
+                     // var datajson=jQuery.parseJSON(data);
+                      
+                     console.log(data);
+                       
+                         that.user={id:data.password,name:data.name, email:data.email, photo:result.image.url};
+                     
+                 
+                      
+                      
+                    }else{
+                      alert("error¡¡¡¡------------------------->");
+                    }
+                     
+                    });
+                    
+                    
+                
+        
+              }});
+     ///--------------------------->------> si se desconecta-->revokar token----->
+            
+                  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+y.result.access_token;
+                        
+
+            
+                  that.$.gs.addEventListener('google-signed-out',function(e,f,g){
+               console.log(e.returnValue+"soy return valueeee si esta desconectado");
+               if(e.returnValue){
+                 
+                 $.ajax({
+                        type: 'GET',
+                        url: revokeUrl,
+                        async: false,
+                        contentType: "application/json",
+                        dataType: 'jsonp',
+                        success: function() {
+                          location.reload();  
+                        },
+                        error: function(e) {
+
+                        }
+                      }); 
+                   
+                 console.log("soy true");
+               }else{
+                 console.log("soy false");
+               }
+          
+        });
+              
+        });
+   
+   
+         
+      
+      
 		},
 		languaje: function  (a,b,c) {
 
