@@ -29,6 +29,7 @@
     "paper-elements": "Polymer/paper-elements#~0.5.2",
     "webcomponentsjs": "~0.5.2",
     "slider-polymer": "~0.0.3",
-    "jquery-ui": "~1.11.2"
+    "jquery-ui": "~1.11.2",
+    "facebook-login": "davidwittenbrink/facebook-login#master"
   }
 }

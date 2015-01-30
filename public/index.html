@@ -7,12 +7,11 @@
 	<title> FASTBOOK.com</title>
 
 		<!-- /////////////////////// SCRIPTS /////////////////////////////////// -->
-<script src="https://apis.google.com/js/plusone.js" type="text/javascript"></script>
+	<script src="https://apis.google.com/js/plusone.js" type="text/javascript"></script>
 	<script src="./bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/validator-js/validator.min.js"></script>
    <script type="text/javascript" src="./lib/typeahead.js/typeahead.bundle.min.js"></script>
-   
-   
+
 
 
 
@@ -54,9 +53,10 @@
  			
  	<link rel="import" href="./bower_components/core-ajax/core-ajax.html"> 
  	<link rel="import" href="./bower_components/core-ajax/core-ajax.html"> 
-  <link rel="import" href="./bower_components/google-signin/google-signin.html"> 
-  <link rel="import" href="./bower_components/google-signin/google-signin.css"> 
-  <link rel="import" href="./bower_components/google-signin/google-icons.html"> 
+  	<link rel="import" href="./bower_components/google-signin/google-signin.html"> 
+  	<link rel="import" href="./bower_components/google-signin/google-signin.css"> 
+  	<link rel="import" href="./bower_components/google-signin/google-icons.html"> 
+  	<link rel="import" href="./bower_components/paper-checkbox/paper-checkbox.html"> 
 
 
 	<!-- /////////////////////// PAGES __> ELEMENTOS QUE VAN EN LAS SECTIONS /////////////////////////////////// -->
@@ -80,7 +80,8 @@
 	<link rel="import" href="./Elements/book-animation/book-animation.html">
 	<link rel="import" href="./Elements/find-text/find-text.html">
 	<link rel="import" href="./Elements/my-scaffold/my-scaffold.html">
-	<link rel="import" href="./Elements/main-menu/main-menu.html">	
+	<link rel="import" href="./Elements/main-menu/main-menu.html">
+	<link rel="import" href="./Elements/my-google/my-google.html">
 	<link rel="import" href="./Elements/main-app.html">
   
 	
@@ -112,7 +113,14 @@ lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endCo
 
 
 <main-app></main-app>
+<div id="initGoogle"hidden>
 
+  <div id="gSignInWrapper">
+    <div id="customBtn" class="customGPlusSignIn">
+
+    </div>
+  </div>
+</div>
 
 
 <!-- Añádelo donde quieras que se muestre el botón de inicio de sesión -->
@@ -121,8 +129,8 @@ lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endCo
 </body>
 </html>
 <script>
-$.get('/auth/google/callback',function(e){
-  console.log(e+"         callback");
-  
-});
+
+
+
 </script>
+

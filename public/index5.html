@@ -1,0 +1,76 @@
+
+  <script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script>
+
+  <style type="text/css">
+    #customBtn {
+      display: inline-block;
+      background: #dd4b39;
+      color: white;
+      width: 200px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      background: #e74b37;
+      cursor: hand;
+    }
+    span.label {
+      font-weight: bold;
+    }
+    span.icon {
+      background: url('https://developers.google.com/+/images/branding/btn_red_32.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 35px;
+      height: 35px;
+     border-right: #bb3f30 1px solid;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      //padding-left: 35px;
+      //padding-right: 35px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto',arial,sans-serif;
+    }
+  </style>
+  <!-- In the callback, you would hide the gSignInWrapper element on a
+  successful sign in -->
+  <div id="gSignInWrapper">
+    <div id="customBtn" class="customGPlusSignIn">
+      <span class="icon"></span>
+      <span class="buttonText">Sign in with Google</span>
+    </div>
+  </div>
+
+
+
+  
+    <script>
+  function render() {
+    gapi.signin.render('customBtn', {
+      'callback': 'signinCallback',
+      'clientid': '768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com',
+      'cookiepolicy': 'single_host_origin',
+      'requestvisibleactions': 'http://schema.org/AddAction',
+      'scope': 'https://www.googleapis.com/auth/plus.login'
+    });
+  }
+  </script>
+  <script>
+  function signinCallback(authResult) {
+    console.log(authResult);
+    if (authResult) {
+      if (authResult['error'] == undefined){
+       
+                   console.log(authResult);
+      } else {
+        console.log('An error occurred');
+      }
+    } else {
+      console.log('Empty authResult');  // Se ha producido algún error
+    }
+  }
+  </script>
