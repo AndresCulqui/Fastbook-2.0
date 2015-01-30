@@ -251,8 +251,7 @@
             <div class="login-social" vertical layout center>
                <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
                </paper-button> </a>
-               <a href="../../auth/facebook"><paper-button id="facebook" class="button" on-tap="{{ test }}">
-               </paper-button> </a>
+               <facebook-login  class="button" appID="1503835363198599" buttonText=" Sign in with Fbk. "></facebook-login>
                <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
                </paper-button> -->
                
@@ -321,10 +320,8 @@
           
           //--------->escuchando si se loggea con google----------->
           var that=this;
-         this.$.signGoogle.addEventListener('google-signin-success', function(a,b,c) {
-		    	console.log(a.detail.result.access_token);
-          
-		  	})
+
+        },
 
         show_errors:function(string, pattern){
           var decorator_name = this.$.name_register;
