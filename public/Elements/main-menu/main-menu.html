@@ -1,6 +1,6 @@
-<link rel="import" href="../lib/flatiron-director/flatiron-director.html">
 <polymer-element name="main-menu" attributes="pages">
 	<template>
+      <flatiron-director route="{{route}}" autoHash></flatiron-director>
 		<style>
      
 a:link, a:visited, a:hover, a:active{
@@ -17,7 +17,7 @@ color: white;
 		</style>
 
     <div horizontal layout center >
-        <paper-tabs style="width:800px" selected="{{ route }}" selectedindex="home" valueattr="hash" selected="{{route}}">
+        <paper-tabs style="width:800px" selected="{{route}}" selectedindex="home" valueattr="hash" selected="{{route}}">
         <template repeat="{{page in pages}}">
           <paper-tab flex hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
           <a href="#{{page.hash}}">{{page.name}}</a>

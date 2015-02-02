@@ -444,7 +444,12 @@
         },
 
         findUser:function(){
+          
 
+        },
+        logout:function(){
+          this.$.signGoogle.signOut();
+          
         },
         validateSigin: function () {
             var m = this.$.decorator2; //decorator pass

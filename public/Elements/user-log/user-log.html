@@ -1,0 +1,114 @@
+
+<polymer-element name="user-log" attributes="user">
+	<template>
+		<style>
+			:host{
+				font-size: 80%;
+
+			}
+			#logOut{
+				text-decoration: underline;
+				 cursor: pointer;
+				 color:red;
+			
+			}
+		#photo {
+			margin-top: 10px;
+			width: 50px;
+			height: 50px;
+			border-radius: 100px;
+			border: 1px solid white;
+			margin-bottom: 5px;
+			float: right;
+		}
+		#photo1{
+		
+			width: 80px;
+			height: 80px;
+			float: left;
+	
+		
+		}
+		#dialog {
+		border: 1px solid skyblue;
+		  position: fixed;
+
+	      top: 16px;
+	      right: 16px;
+		 }
+		 #butt{
+		 	width: 100px;
+		 	height: 20px;
+		 	background-image: url('../../pages/images/log.jpg');
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+			font-size:65%;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 5px;  
+		 }
+
+		 #buttons{
+		 	margin-top: 5%;
+		 	text-align: center;
+		 }
+
+
+		</style>
+
+
+	
+
+		  	<div >
+
+		  	 	
+		  		<img id="photo" src="{{user.photo}}" on-tap="{{dialog}}"> 
+		  		
+		  	</div>
+		  	<paper-action-dialog id="dialog"  layered="false">
+		
+		  	<div>
+		  		<div>
+		  			<img id="photo1" src="{{user.photo}}">
+		  		</div>
+		  			<div style="margin-left:30%">
+				  		<span ><b> {{user.name}}</b></span>
+				  		<span style="font-size:85%; color:grey"> {{user.email}}</span>
+			  		</div>
+			  		<div id="buttons">
+					  	<paper-button on-tap="{{profile}}"id="butt">Profile</paper-button>
+					  	<paper-button id="butt" on-tap="{{Logout}}">Log out</paper-button>	
+					</div>
+			  	
+		  	</div>
+
+
+
+		  	</paper-action-dialog>
+	 		 
+	</template>
+	<script>
+
+
+	Polymer({
+		ready:function(){
+		
+			
+		},
+		dialog:function(){
+			this.$.dialog.toggle();
+		
+
+		},
+		Logout:function(){
+			this.fire('log-out');
+		},
+		profile:function(){
+			this.fire('profile');
+
+		}
+
+
+	});
+	</script>
+</polymer-element>

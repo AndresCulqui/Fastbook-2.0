@@ -161,6 +161,7 @@ var requestify = require('requestify');
   addGoogleUser = function(req, res) {
         console.log('POST - /user');
        
+    
     console.log(req.body.token+"token------id");
       
     var url='https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token='+req.body.token;
@@ -215,6 +216,7 @@ var requestify = require('requestify');
                                    image:body.picture
 
                                    }   );
+                                 
                             } else 
                             {
                               

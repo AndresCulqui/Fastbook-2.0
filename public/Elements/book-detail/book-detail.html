@@ -1,0 +1,106 @@
+<polymer-element name="book-detail" attributes="book">
+  <template>
+    <style>
+      :host {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+      }
+      #dialog {
+        width: 800px;
+        border: 2px white solid;
+        border-radius: 7px;
+        background: rgba(95,31,7, 0.2);
+      }
+      #title {
+        margin: 0px;
+        font-size: 2em;
+      }
+      em {
+        color: cadetblue;
+      }
+      .fields {
+        background: white;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 6px;
+      }
+      #description {
+        height: 200px;
+        overflow: auto;
+        text-align: justify;
+      }
+      paper-button {
+        width: 100px;
+        height: 35px;
+        margin: 10px;
+        background: white;
+        color: cadetblue;
+      }
+      #photo {
+        text-align: center;
+        width: 30%;
+        float: left;
+      }
+      #data {
+        margin-left: 1%;
+        float: right;
+        width: 69%;
+      }
+      #buttons {
+        text-align: center;
+      }
+      @media (max-width: 800px) {
+        #title {
+          font-size: 1.5em;
+        }
+        paper-dialog {
+          width: 90%;
+        }
+        #photo {
+          width: 100%;
+          float: none;
+        }
+        #data {
+          margin-left: 0;
+          width: 100%;
+          float: none;
+        }
+      }
+    </style>
+      <paper-action-dialog id="dialog" transition="core-transition-left" horizontal center-justified layout>
+            <div id="title">{{book.title}}</div>
+            <div>
+                <div id="photo">
+                  <div id="buttons" layout horizontal>
+                    <paper-button on-tap="{{buy}}">Buy</paper-button>
+                    <paper-button on-tap="{{favorite}}">Favorite</paper-button>
+                  </div>
+                  <a href="{{book.imagen}}">
+                    <img id="imagen" src="{{book.imagen}}" title="{{book.title}}">
+                  </a>
+                </div>
+
+                <div id="data" layout vertica>
+                <p class="fields"><em>Author:</em> {{book.author}}</p>
+                <p class="fields"><em>Editorial:</em> {{book.editorial}}</p>
+                <p class="fields"><em>ISBN:</em> {{book.isbn}}</p>
+                <p class="fields"><em>Category:</em> {{book.category}}</p>
+                <p class="fields"><em>Precio:</em> {{book.precio}}</p>
+                </div>
+             </div>
+            <div>
+            <p class="fields" id="description"><em>Description:</em> {{book.description}}</p>
+            </div>  
+          <paper-button dismissive>Close</paper-button>
+      </paper-action-dialog>
+	</template>
+	<script>
+		Polymer({
+      showBook:function(){
+       this.$.dialog.toggle();
+      }
+		});
+	</script>
+</polymer-element>

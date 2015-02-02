@@ -1,11 +1,9 @@
-
-
-
-
-
 <polymer-element name="mi-biblioteca">
   <template>
     <style>
+      book-detail /deep/ {
+        
+      }
      :host{
       position: absolute;
       width: 100%;
@@ -340,12 +338,7 @@
         </div> 
 
      
-            <book-detail id="bd"book="{{book}}"></book-detail>
-          <div>
-            
-
-
-          </div>
+            <book-detail id="detail" book=""></book-detail>
     </section>
   </template>
   <script>
@@ -365,7 +358,11 @@
        
       },
       bookDetail:function(a,b,c){
-        this.$.bd.book=c.book;
+       var detail = this.$.detail;
+        console.log(detail);
+        detail.book = c.book;
+        console.log(detail.book);
+        detail.showBook();
       }
 
 
