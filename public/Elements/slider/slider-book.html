@@ -90,8 +90,12 @@
 			width: auto;
 		}
 
-
-		/*@-moz-keyframes autoSlider {
+		@media (max-width: 600px){
+		    	section { padding: 0px; height: 425px; }
+		    	#slider-container { padding-left: 13px; }
+		}
+/*
+		@-moz-keyframes autoSlider {
 		    0% {
 		        margin-left: 0;
 		    }
@@ -176,7 +180,8 @@
 
 		    100% {
 		        margin-left: -900px;
-		    }*/
+		    }
+		    */
 		}
 		</style>
 		<section>
@@ -206,7 +211,7 @@
 
           		this.$.ajax.addEventListener("core-response", function(e) {
            		that.response=e.detail.response;
-            	console.log(e.detail.response.length);
+            	//console.log(e.detail.response.length);
           })
 			},
       bookDetail: function(a,b,c) {

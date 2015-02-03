@@ -80,32 +80,43 @@ var requestify = require('requestify');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
         //----------------------------------------
     console.log(req.body);
+
+    User.findOne({email: req.body.email}, function(err,user) { 
+              
+        if(!user){
+
+	          var user = new User({
+            name: req.body.name,
+            email :req.body.email, 
+            password : req.body.password
+            });
  
-    var user = new User({
-                name: req.body.name,
-                email :req.body.email, 
-                password : req.body.password
-    });
- 
-    user.save(function(err) {
-      if(!err) {
-        console.log("User created");
-        res.send({ status: 'OK', user:user });
-      } else {
-        console.log(err);
-        if(err.name === 'ValidationError') {
-          res.statusCode = 400;
-          res.send({ error: 'Validation error' });
+      	    user.save(function(err) {
+        	    if(!err) {
+          		  console.log("User created");
+          		  res.send({ status: 'OK', user:user });
+        	    } 
+              else {
+        		    console.log(err);
+          		  if(err.name === 'ValidationError') {
+          		  res.statusCode = 400;
+          		  res.send({ error: 'Validation error' });
+          		  } else {
+          		  res.statusCode = 500;
+          		  res.send({ error: 'Server error' });
+          		  }
+        		    console.log('Internal error(%d): %s',res.statusCode,err.message);
+        	    }
+      	    });
+		       
         } else {
-          res.statusCode = 500;
-          res.send({ error: 'Server error' });
+          res.send("KO");
         }
-        console.log('Internal error(%d): %s',res.statusCode,err.message);
-      }
     });
+   
  
   //revisar
-      res.send(user);
+     // res.send(user);
     
   };
   
