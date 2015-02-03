@@ -13,7 +13,7 @@ var Images = new Schema({
 
 var Book   = new Schema({
 	author: String,
-        images:    [Images],
+        value: Number,
         title: String,
         publisher:   String ,
         isbn:  Number ,
