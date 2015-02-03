@@ -199,18 +199,19 @@
               margin-bottom: 80px;
           }
           #facebook{ 
-            background-image: url('../../images/facebook.png'); 
-            background-size: 580% 100%;
-            quotesmargin-right: 200px;
+            width: 50px;
+            margin-right: 200px;
           }
           #twitter{ 
             background-image: url('../../images/twitter.png'); 
             background-size: 580% 100%;
             margin-right: 200px;
           }
-          #google{ 
+          #signgoogle{ 
             background-image: url('../../images/google.png'); 
-            background-size: 580% 100%;}
+            background-size: 580% 100%;
+            margin-right: 200px;
+          }
           h1 {
             margin-bottom: 15px;
           }
@@ -251,8 +252,7 @@
             <div class="login-social" vertical layout center>
                <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
                </paper-button> </a>
-               <a href="../../auth/facebook"><paper-button id="facebook" class="button" on-tap="{{ test }}">
-               </paper-button> </a>
+               <facebook-login id="facebook" class="button" appID="1503835363198599" buttonText="Sing in with Facebook"></facebook-login>
                <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
                </paper-button> -->
                
@@ -307,7 +307,8 @@
 
           </div>
       </section>
-  
+  	
+  	<paper-toast id="toast1" text="New User Created"></paper-toast>
 
     </core-pages>
            
@@ -320,8 +321,10 @@
         ready: function () {
           
           //--------->escuchando si se loggea con google----------->
+          var that=this;
 
-  },
+        },
+
         show_errors:function(string, pattern){
           var decorator_name = this.$.name_register;
           if (string.match(pattern) != null ) {
@@ -359,8 +362,10 @@
         },
         show_error_email:function(string, pattern){
           var decorator_email = this.$.email_register;
+          var input = this.$.email;
           if (string.match(pattern) != null ) {
             decorator_email.isInvalid = false;
+            input.style.color = "black";
           }else {
             decorator_email.isInvalid = true;
             decorator_email.error="Write an email with the format someone@example.com.";
@@ -433,6 +438,9 @@
             }
         },
         postUser: function (user) {
+        	var decorator_email = this.$.email_register;
+        	var input = this.$.email;
+        	var toast = this.$.toast1;
 
          //console.log("usuario postuser"+user.name);
             var ajax = this.$.ajax;
@@ -440,10 +448,30 @@
             ajax.method="POST";
             ajax.params=user;
             ajax.go();
+            ajax.addEventListener("core-response", function(e) {
+            
+            //console.log(e.detail.response);
+            //console.log(e.detail.response == "KO");
+            if (e.detail.response == "KO"){
+            	toast.show();
+            	decorator_email.isInvalid = true;
+            	input.style.color = "red";
+            	//console.log(decorator_email);
+            	decorator_email.error="That address is already registered with an account";
+            	
+            	//alert("This email is already in use");
+            }
+            else {
+            	alert("User created");
+            	//toast.show();
+            	//location.href="#home";
+            }
+        	}); 
         },
 
-        findUser:function(){
-
+        logout:function(){
+          this.$.signGoogle.signOut();
+          
         },
         validateSigin: function () {
             var m = this.$.decorator2; //decorator pass

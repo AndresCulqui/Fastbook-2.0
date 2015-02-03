@@ -43,6 +43,8 @@
 		        color: #fff;
 		      
 		     }
+     
+   
 
 		</style>
 
@@ -61,8 +63,8 @@
 <core-toolbar>
   <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
   	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
-     
-      <core-icon-button  on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
+    <core-icon-button hidden on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
+    <user-log id="userLog" user="{{user}}" flex></user-log>
  </core-toolbar> 
   <my-banner id="mb" lang="en"></my-banner>
 
@@ -93,6 +95,8 @@
 				<!--	<fast-account id="fa"></fast-account>-->
           				
 			</section>
+			<section  hash="profile">	
+        <core-perfil user="{{user}}"></core-perfil>
 			<section id="detailbook" hash="">	
         <book-detail id="bdetail" book="{{book}}"></book-detail>
 			</section>
@@ -106,7 +110,7 @@
 </core-drawer-panel>
 </template>
 	<script>
-	    
+
 
 
 //--------------------------escuchando eventos------------------------
@@ -174,7 +178,8 @@
           
           $.post('/googleUser',{token:token}, function(data,status){     
               if (status){
-                     console.log(data);
+                     console.log(data+"--->");
+                       that.$.userLog.hidden=false;
                  that.user={id:data.id,name:data.name, email:data.email, photo:data.image};
                       
                }else{
@@ -220,8 +225,7 @@
       //------------------------------------escuchando facebook--------------------------ç
           
           this.$.fa.addEventListener('facebook-signin-success', function(a) {
-		    	
-          console.log(a.detail);
+
       
            });
           
@@ -259,6 +263,7 @@
 		
 			this.$.mb.languaje(this.$.mh.lang);
 		}
+    
 
 
 

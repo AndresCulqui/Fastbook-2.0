@@ -7,6 +7,21 @@
         :host {
  
         }
+        
+   paper-input-decorator /deep/ .label-text {
+    /* inline label,  floating label, error message and error icon color when the input is unfocused */
+    color: blue;
+}
+
+paper-input-decorator /deep/ .error{
+  color:red;
+}
+paper-input-decorator /deep/ ::-webkit-input-placeholder {
+    /* platform specific rules for placeholder text */
+    color: black;
+}
+
+ 
         section{
           
       margin: 20px;
@@ -46,7 +61,17 @@
         width: 40%;
       }
       #left, #right {
+             
+          background-image: url('../images/form.png');
+          background-size: 100% 100%;
+          border: 5px solid;
+          border-radius: 10px;
+      
    
+      }
+      #tit{
+       font-size:300%;
+       
       }
 
       #left {
@@ -60,13 +85,16 @@
       #right {
           
           margin-left: 50%;
-         // padding-left: 4%;
+         padding-left: 4%;
           padding-right: 4%;
    
       }
       #butt{
         margin-left: 40%;
         margin-top: 2%;
+      }
+      core-input{
+        color:black;
       }
 
        @media (max-width: 600px) {
@@ -94,11 +122,14 @@
               padding: 0px 0px 0px 0px;
               margin-bottom: 0px;
           }
+          #tit{
+            font-size: 150%;
+          }
         }
 
         </style>
         <section id="main" >
-          <div><h2>Put a book for sale or close this page.. ¬¬</h2></div>
+          <div id="tit">Put a book for sale </div>
           
           <div  id="left">
             
@@ -110,11 +141,11 @@
          
             
              <paper-input-decorator label="Title" floatingLabel error="Title is required!">
-              <input is="core-input" id="titulo" required/>
+              <input is="core-input" id="titulo" on-blur="{{valid}}" required/>
              </paper-input-decorator>
              
               <paper-input-decorator label="Author" floatingLabel error="Author is required!">
-              <input is="core-input" id="autor" required/>
+              <input is="core-input" id="autor" on-blur="{{valid}}" required/>
              </paper-input-decorator> 
 
 
@@ -143,11 +174,11 @@
             
             
               <paper-input-decorator label="Publisher" floatingLabel error="Publisher is required!">
-              <input is="core-input" id="editorial"/>
+              <input is="core-input" id="editorial"on-blur="{{valid}}"/>
              </paper-input-decorator>
               
             <paper-input-decorator label="Price" floatingLabel error="Price is required!" id="decoprecio">
-              <input is="core-input" id="precio"  required/>
+              <input is="core-input" id="precio"  on-blur="{{valid}}" required/>
              </paper-input-decorator>
               
             
@@ -155,7 +186,7 @@
             
             
             <paper-input-decorator label="Category" floatingLabel error="Category is required!" id="cate" class="pi">
-              <select id="cat" >
+              <select id="cat"  on-blur="{{valid}}">
                
                    
                   <option value="0"> Select Category</option>          
@@ -175,7 +206,7 @@
             
       
             <paper-input-decorator label="Province" floatingLabel error="province is required!"id="provi" class="pi" >
-            <select id="pro">
+            <select id="pro" on-blur="{{valid}}">
                  <option value="0"> Select Province</option>      
               <option> A Coruña</option>
               <option> Alicante</option>
@@ -233,7 +264,7 @@
             </paper-input-decorator>
           
             <paper-input-decorator label="Status" floatingLabel error="Status is required!" id="esta" class="pi">
-            <select id="est"> 
+            <select id="est" on-blur="{{valid}}"> 
                  <option value="0"> Select Status</option>    
                 <option >Muy malo</option>
                 <option>Malo</option>
@@ -245,7 +276,7 @@
             
        
             <paper-input-decorator label="Description (max 515 )" floatingLabel error="description is required!" id="desc">
-              <textarea id="descripcion"rows="4" cols="50"  maxlength="517"required></textarea>
+              <textarea id="descripcion"rows="4" cols="50"  maxlength="517"required on-blur="{{valid}}"></textarea>
             </paper-input-decorator>  
          <!--   <span class="titulo">Añade algunas imágenes, ¡se venderá más rápido!</span><br><br>
                             
@@ -288,7 +319,7 @@
                   
                   
                    var isbn=this.$.isbn;
-                   
+                   var that=this;
                 
                    
                    if(isbn.validity.valid){
@@ -302,21 +333,20 @@
                        this.$.timg.src="";
                      
 
-                      var that=this;
+              
                       var book="https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn.value;
                      
                       $.getJSON(book,function(result){
                        
                        var titulo=result.items[0].volumeInfo.title;
                        var autor=result.items[0].volumeInfo.authors;
-                       var isbn=result.items[0].volumeInfo.industryIdentifiers[0].identifier;  
+                      var isbn=result.items[0].volumeInfo.industryIdentifiers[0].identifier;  
                       that.imagen=result.items[0].volumeInfo.imageLinks.thumbnail;
-
 
                        // Set the table td text
                        that.$.tisbn.value="El ISBN   "+isbn+"  corresponde a:";
                        that.$.ttitulo.value="Titulo:   "+titulo;
-                       that.$.tautor.value="Autor :    "+autor;
+                      
                        that.$.timg.src=that.imagen;
                      
                      });

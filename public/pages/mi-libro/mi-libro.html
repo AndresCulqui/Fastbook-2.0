@@ -20,7 +20,7 @@
     }
     #book {
     width: 100%;
-    height: 250px;
+    height: 280px;
     margin: 0 auto;
     border-radius: 7px;
     }
@@ -31,80 +31,70 @@
     .detail {
       width: 100%;
       margin: 0 auto;
-      padding: 8px;
+      padding-top: 8px;
       color: #4b4b4b;
       text-transform: uppercase;
       }
       .item {
-float: left;
-text-align: left;
-font-size: 13px;
-line-height: 1.7em;
-color: #4b4b4b;
-}
-.value {
-float: right;
-text-align: right;
-font-size: 15px;
-font-weight: 700;
-}
-.prices {
-margin-top: -7px;
-float: left;
-width: 100%;
-text-align: center;
-font-size: 11px;
-color: red;
-font-weight: 700;
-}
-h5{
-  color:#ee4f30;
-}
-a{
-  text-decoration: none;
-  color:#4b4b4b;
-}
+        float: left;
+        text-align: left;
+        font-size: 13px;
+        line-height: 1.7em;
+        color: #4b4b4b;
+      }
+      .value {
+        float: right;
+        text-align: right;
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 5%;
+      }
+      .prices {
+        margin-top: -7px;
+        float: left;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        color: red;
+        font-weight: 700;
+      }
+      h5{
+          color:#ee4f30;
+      }
+      a{
+          text-decoration: none;
+          color:#4b4b4b;
+      }
+      p, h5 {
+        margin: 0px;
+      }
+      p { margin-bottom: 8%; }
+      h2{
+        margin-left: 10%;
+        color:whitesmoke;
+        font-size: 250%;
+        font-family: verdana;
+        text-shadow:grey 0.1em 0.1em 0.2em;
+        //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+      }
 
-h2{
-margin-left: 10%;
-color:whitesmoke;
-font-size: 250%;
-font-family: verdana;
-text-shadow:grey 0.1em 0.1em 0.2em;
-//text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
+        @media (max-width: 600px) {
+          
+          .book1 {
+          width: 200px;
+          height: 360px;
+          display: inline-block;
+          margin-right: 1%;
+          background: none;
+          border: 1px solid rgba(200,200,200,.8);
+          }
+          
+        }
+        @media (max-width: 1400px){
+      
+        }
 
-@media (max-width: 479px) and (min-width: 321px){
-.book1 {
-width: 129px;
-height: 250px;
-margin-right: 3px;
-}
-.book1 {
-width: 200px;
-height: 330px;
-display: inline-block;
-margin-right: 1%;
-background: rgba(225,225,225,.8);
-border: 1px solid rgba(200,200,200,.8);
-}
-}
-@media (max-width: 479px) and (min-width: 321px){
-.book1 {
-width: 129px;
-height: 250px;
-margin-right: 3px;
-}
-.book1 {
-width: 200px;
-height: 330px;
-display: inline-block;
-margin-right: 1%;
-background: rgba(225,225,225,.8);
-border: 1px solid rgba(200,200,200,.8);
-}
-
-}
+        }
 
 
  
@@ -122,8 +112,8 @@ border: 1px solid rgba(200,200,200,.8);
                 Price: </p>
             </div>
             <div class="value">
-                <p>{{book.isbn}}<br>
-                <span class="price"><h5>${{book.price}}</h5></span></p>
+                <p>{{book.isbn}}
+                <span class="price"><h5>{{book.price}}€</h5></span></p>
             </div>
             <div class="prices">
                 <div class="current-historic"><a rel="nofollow" href="/used-book/0763778907.html">Sell this</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="/buy/0763778907">Buy this</a></div>
