@@ -3,7 +3,7 @@
     <style>    
       :host {
           position: absolute;
-          width: 100%;
+          width: 60%;
           height: 100%;
           box-sizing: border-box;
 
@@ -14,13 +14,14 @@
           margin-top: -50px;
           position: absolute;
       }
-      #section{ margin: 20px; }
+      #section{ margin: 20px; width: 40%;}
       #button_enter{
-          background: rgba(8,46,64, 0.6);
-          border: 3px solid dimgray;
+            background: rgba(95,31,7, 0.2);
+          border: 2px solid white;
           border-radius: 10px;
-          height: 700px;
+          height: auto;
           padding: 3%;
+          margin-top: -20px;
       }
       h1 {
         font-size: 35px;
@@ -85,14 +86,16 @@
       }
 
       #core_pages1 {
-          width: 40%;
-          height: 690px;
+          //width: 40%;
+          height: auto;
           margin-right: 2%;
           padding-left: 4%;
           padding-right: 4%;
-          float: left;
+          //float: left;
       }
       #core_pages2 {
+          visibility: hidden;
+          display: none;
           height: 690px;
           margin-left: 50%;
           padding-left: 4%;
@@ -132,7 +135,7 @@
         height: 45px;
       }
       .button:hover { opacity: 0.6;}
-      #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
+     // #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
       #twitter{ background-image: url('../../images/twitter.png'); background-size: 100% 100%;}
       #google{ background-image: url('../../images/google.png'); background-size: 100% 100%;}
 
@@ -250,13 +253,13 @@
             <p>Connect with Social Login </p>
                         
             <div class="login-social" vertical layout center>
-               <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
+               <!--<a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
                </paper-button> </a>
-               <facebook-login id="facebook" class="button" appID="1503835363198599" buttonText="Sing in with Facebook"></facebook-login>
+               <facebook-login class="button" appID="1503835363198599"  buttonText= 'hola q hace'></facebook-login>-->
                <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
                </paper-button> -->
                
-               <google-signin id="signGoogle"  class="button" labelSignin="Sign in with Google"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
+               <google-signin id="signGoogle"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
              
         
               

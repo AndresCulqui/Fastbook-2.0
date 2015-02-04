@@ -8,18 +8,21 @@
 	<template>
 		<style>
     section{
-      margin: 20px;
+      width: 70%;
+     // height: 600px;
+     margin: 20px;
       border:2px white solid;
       border-radius: 7px;
       background: rgba(95,31,7, 0.2);
       //background-color: beige;
+      float: left;
     }
     .book1 {
       //float: left;
       display: inline-block;
       width: 200px;
       margin: 8px;
-      padding: 20px;
+      padding: 8px;
       background-color: whitesmoke;
      border-radius: 7px;
      border:0.5px solid grey;
@@ -101,16 +104,21 @@
  
 		</style>
     <section>
+    <div class="container" horizontal layout>
 
-  <core-ajax id="ajax" auto url="/lastBooks" 
-      handleAs="json"></core-ajax>
+      <core-ajax id="ajax" auto url="/lastBooks" 
+          handleAs="json"></core-ajax>
 
-<div id="books">
-  <div><h2>Recent Book Buyback Prices</h2></div>
-  <slider-book book="{{response}}"></slider-book>
-  </div>
+      <div id="books">
+        <div><h2>Recent Book Buyback Prices</h2></div>
+        <slider-book book="{{response}}"></slider-book>
+       </div>
 
+            <fast-account></fast-account>
 
+    </div>  
+    </section>
+    <section>
       
     </section>
 

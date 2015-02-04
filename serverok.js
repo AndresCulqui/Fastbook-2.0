@@ -13,7 +13,7 @@ var flash    = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
-var cors = require('cors');
+//var cors = require('cors');
 
 //-----------
 mongoose = require('mongoose');
@@ -22,7 +22,7 @@ mongoose = require('mongoose');
 //----estaticoo-----------
 
 //
-app.use(cors());
+//app.use(cors());
 
 
 app.use(bodyParser.json());
@@ -42,7 +42,6 @@ mongoose.connect('mongodb://localhost/books', function(err, res) {
 
 
 
-require('./server/config/passport')(passport); // pass passport for configuration//pilaaas¿¿
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -61,7 +60,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
 routes = require('./server/routes/book')(app);
-routes = require('./server/routes/user')(app,passport);
+routes = require('./server/routes/user')(app);
 
 //---------------------------autenticacion para probar api n localhost
 app.all("/*", function(req, res, next) {

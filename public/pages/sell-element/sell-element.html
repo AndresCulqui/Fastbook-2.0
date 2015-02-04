@@ -99,23 +99,32 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
 
        @media (max-width: 600px) {
 
-          #section { margin: 0px;}
+          #main { margin: 0px;padding:0px}
           h1 { margin-bottom: -10px; font-size: 20px;}
 
           #left, #right {
          
               width: 88%;
-           
+           background-image: none;
               height: auto;
+          }
+          #mobile{
+            background-image: url('../images/form.png');
           }
 
           #left {
               float: none;
               margin-right: 40%;
+              border-bottom: 0px;
+              border-bottom-left-radius: 0px;
+              border-bottom-right-radius: 0px; 
           }
           #right{
-              margin-top: 1%;
+            border-top: 0px;
+              margin-top: 0%;
               margin-left: 0px;
+               border-top-left-radius: 0px;
+              border-top-right-radius: 0px; 
           }
           paper-input-decorator {
               width: 100%;
@@ -130,7 +139,7 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
         </style>
         <section id="main" >
           <div id="tit">Put a book for sale </div>
-          
+          <div id="mobile">
           <div  id="left">
             
             
@@ -288,14 +297,14 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                                  
   
             
-
-        
-              
-        </div>
           <div id="foo">
             <paper-button id="butt" on-tap="{{validates}}">Continue y publish</paper-button>
           </div>
         
+              
+        </div>
+
+          </div>
         </section>     
       
 
@@ -403,9 +412,9 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                     function(data,status){
                       if (status){
                       alert("Book Save¡¡¡¡¡" + status);
-                      console.log(data);
+                      //console.log(data);
                      
-                      //location.reload();
+                      location.reload();
                     }else{
                       alert("error¡¡¡¡");
                     }

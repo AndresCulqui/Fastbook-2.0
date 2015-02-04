@@ -39,6 +39,7 @@
     "path": "~0.11.14",
     "consolidate": "~0.10.0",
     "request": "~2.51.0",
-    "requestify": "~0.1.16"
+    "requestify": "~0.1.16",
+    "passport-local": "~1.0.0"
   }
 }
