@@ -94,7 +94,7 @@
 		    	section { padding: 0px; height: 425px; }
 		    	#slider-container { padding-left: 13px; }
 		}
-/*
+
 		@-moz-keyframes autoSlider {
 		    0% {
 		        margin-left: 0;
@@ -181,13 +181,10 @@
 		    100% {
 		        margin-left: -780px;
 		    }
-		   */
+		   
 		}
 		</style>
 		<section>
-		        <core-ajax id="ajax" auto url="/lastBooks" handleAs="json"></core-ajax>
-             
-
                 <div id="slider-container">
                     <div id="slider-box">
 
@@ -208,16 +205,13 @@
 	<script>
 		Polymer({
 			ready:function(){
-				var that=this;
 
-          this.$.ajax.addEventListener("core-response", function(e) {
-           		that.response=e.detail.response;
-            	//console.log(e.detail.response.length);
-          })
-			},
-      bookDetail: function(a,b,c) {
-        this.fire("bookdetail", c.book);
-      }
+          
+          },
+			
+		      bookDetail: function(a,b,c) {
+		        this.fire("bookdetail", c.book);
+		      }
 		});
 	</script>
 

@@ -1,6 +1,6 @@
 <polymer-element name="book-detail" attributes="book">
   <template>
-    <flatiron-director route="{{route}}" autoHash></flatiron-director>
+<!--    <flatiron-director route="{{route}}" autoHash></flatiron-director>-->
     <style>
       :host {
           position: absolute;
@@ -127,7 +127,7 @@
       ready: function() {
         
        
-        var that=this;
+      /*  var that=this;
         if(/bookdetail/.test(this.route)) {
           var id = this.route.slice(10);
           console.log("hacer get con _id   "+  id);
@@ -142,7 +142,7 @@
            that.book.value=parseInt(that.book.value*100/10);
         
           });
-        
+        */
          
          
       },

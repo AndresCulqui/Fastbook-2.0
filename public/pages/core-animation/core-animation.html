@@ -1,10 +1,4 @@
-	<!--	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />-->
-		<script src="js/modernizr.custom.js"></script>-
-	
-	
-	<polymer-element name="core-animation">
+<polymer-element name="core-animation">
 	<template>
 		<style>
     section{
@@ -106,8 +100,10 @@
     <section>
     <div class="container" horizontal layout>
 
-      <core-ajax id="ajax" auto url="/lastBooks" 
-          handleAs="json"></core-ajax>
+      <core-ajax id="ajax"  url="/lastBooks" 
+          handleAs="json" auto="false"></core-ajax>
+
+
 
       <div id="books">
         <div><h2>Recent Book Buyback Prices</h2></div>
@@ -129,21 +125,17 @@
 Polymer({
         
         ready:function(){
-          this.books = [
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'},
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'},
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'},
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'},
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'},
-          {title: 'dakjwdkjwand', isb: 219879284, author: 'pepe'}
-          ];
-          console.log(this.books);
-          var that=this;
 
-          this.$.ajax.addEventListener("core-response", function(e) {
-           that.response=e.detail.response;
-            console.log(e.detail.response);
-          })
+          var that=this;
+           this.$.ajax.addEventListener("core-response", function(e) {
+            /*that.$.tmpl.model = {
+              response: e.detail.response
+            };*/
+
+            that.response = e.detail.response;
+          });
+          this.$.ajax.go();
+          
 
 
 

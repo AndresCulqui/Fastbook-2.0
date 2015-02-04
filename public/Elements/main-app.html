@@ -92,14 +92,15 @@
 					<sell-element></sell-element>
 			</section>
 			<section  hash="account">
-        <core-perfil></core-perfil>
-				<!--	<fast-account id="fa"></fast-account>-->
+        
+					<fast-account id="fa"></fast-account>
           				
 			</section>
 			<section  hash="profile">	
-        <core-perfil user="{{user}}"></core-perfil>
+        		<core-perfil user="{{user}}"></core-perfil>
+        	</section>	
 			<section id="detailbook" hash="">	
-        <book-detail id="bdetail" book="{{book}}"></book-detail>
+       			 <book-detail id="bdetail" book="{{book}}"></book-detail>
 			</section>
 
 		</core-animated-pages>
@@ -118,6 +119,7 @@
 
 	Polymer({
 		ready:function() {
+			 var that=this;
 
 			this.pages=this.$.mh.pages;
 			this.$.mh.lang="en";
@@ -126,9 +128,9 @@
       this.$.detailbook.hash=this.route;
       
       
-      
+    
 //-------------------escuchando evento closedialog de bookdetail-----------------------
-			this.$.bdetail.addEventListener('closedialog', function(e) {
+		this.$.bdetail.addEventListener('closedialog', function(e) {
           that.route="home";
 		  	});
 
@@ -139,8 +141,10 @@
            that.route="bookdetail"+that.book._id;
         
           
-		  	});
-			//-------------------escuchando evento boton menu left-----------------------
+		  	})
+
+
+		//-------------------escuchando evento boton menu left-----------------------
 			this.$.mh.addEventListener('actionMenu', function() {
 		    	that.$.cdp.togglePanel();
 		  	});
@@ -172,7 +176,7 @@
       });*/
     
     //----------------------------google sing escuchandoooo
-        var that=this;
+       
          this.$.fa.addEventListener('google-signin-success', function(a,b,c) {
 		    	var token=a.detail.result.access_token;
           console.log(token);
