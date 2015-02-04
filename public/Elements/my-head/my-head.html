@@ -1,6 +1,10 @@
 <polymer-element name="my-head" attributes="mtitle lang">
 	<template>
 		<style>
+      @font-face {
+    font-family: Bronx;
+    src: url(./fonts/Bronx/Bronx.ttf) format("truetype");;
+    }
 
     core-toolbar{
           background-color: transparent;
@@ -14,6 +18,11 @@
      #languaje{
      	background-color: transparent;
 
+     }
+     
+     #title{
+       color:white;
+       font-family: Bronx;
      }
 
 
@@ -69,7 +78,7 @@
 	          {name: 'Search', hash: 'search', icon: 'search'},
 	          {name: 'Buy', hash: 'buy', icon: 'shopping-cart'},
 	          {name: 'Sell', hash: 'sell', icon: 'loyalty'},
-	          {name: 'Account', hash: 'account', icon: 'account-box'}
+	          {name: 'Profile', hash: 'profile', icon: 'account-box'}
 	        ];
 	    }
       	if(this.lang=="es"){
@@ -78,7 +87,7 @@
 	          {name: 'Buscar', hash: 'search', icon: 'search'},
 	          {name: 'Vender', hash: 'buy', icon: 'shopping-cart'},
 	          {name: 'Comprar', hash: 'sell', icon: 'loyalty'},
-	          {name: 'Cuenta', hash: 'account', icon: 'account-box'}
+	          {name: 'Cuenta', hash: 'profile', icon: 'account-box'}
 	        ];
 	    }
 	 

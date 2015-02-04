@@ -1,4 +1,4 @@
-<polymer-element name="slider-book" attributes="book">
+<polymer-element name="slider-book" attributes="books">
 	<template>
 		<style>
 		body {
@@ -188,7 +188,7 @@
                 <div id="slider-container">
                     <div id="slider-box">
 
-                    <template repeat="{{slide in book}}">
+                    <template repeat="{{slide in books}}">
                     	<div class="slider-element">
                         <article class="element-green">
                         <mi-libro id="book" book="{{slide}}" on-click="{{bookDetail}}"></mi-libro>

@@ -107,16 +107,14 @@
 
       <div id="books">
         <div><h2>Recent Book Buyback Prices</h2></div>
-        <slider-book book="{{response}}"></slider-book>
+        <slider-book books="{{response}}"></slider-book>
        </div>
 
             <fast-account></fast-account>
 
     </div>  
     </section>
-    <section>
-      
-    </section>
+
 
 
 	</template>
@@ -128,9 +126,6 @@ Polymer({
 
           var that=this;
            this.$.ajax.addEventListener("core-response", function(e) {
-            /*that.$.tmpl.model = {
-              response: e.detail.response
-            };*/
 
             that.response = e.detail.response;
           });
