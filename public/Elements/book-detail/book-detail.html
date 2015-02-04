@@ -1,5 +1,6 @@
 <polymer-element name="book-detail" attributes="book">
   <template>
+    <flatiron-director route="{{route}}" autoHash></flatiron-director>
     <style>
       :host {
           position: absolute;
@@ -8,10 +9,14 @@
           box-sizing: border-box;
       }
       #dialog {
+        margin: 20px;
+      }
+      #book {
+        background: white;
+        border-radius: 6px;
+        margin: 20px auto;
+        padding: 20px;
         width: 800px;
-        border: 2px white solid;
-        border-radius: 7px;
-        background: rgba(95,31,7, 0.2);
       }
       #title {
         margin: 0px;
@@ -21,24 +26,25 @@
         color: cadetblue;
       }
       .fields {
-        background: white;
+        width: 100%;
+        background: #F1F1F1;
         padding: 5px;
-        margin-bottom: 5px;
+        margin-top: 10px;
         border-radius: 6px;
       }
       #description {
+        margin-top: 10px; 
         height: 200px;
         overflow: auto;
         text-align: justify;
       }
-      paper-button {
-        width: 100px;
-        height: 35px;
+      .buttons {
         margin: 10px;
-        background: white;
+        background: #F1F1F1;
         color: cadetblue;
       }
       #photo {
+        margin-bottom: 10px;
         text-align: center;
         width: 30%;
         float: left;
@@ -51,11 +57,14 @@
       #buttons {
         text-align: center;
       }
-      @media (max-width: 800px) {
+      #star {
+        float: right;
+      }
+      @media (max-width: 850px) {
         #title {
           font-size: 1.5em;
         }
-        paper-dialog {
+        #book {
           width: 90%;
         }
         #photo {
@@ -67,15 +76,30 @@
           width: 100%;
           float: none;
         }
+        #star {
+          position: relative;
+          float: none;
+        }
       }
+      
     </style>
-      <paper-action-dialog id="dialog" transition="core-transition-left" horizontal center-justified layout>
+    <paper-action-dialog heading="Title" role="dialog" layout="" vertical="" aria-label="Title" tabindex="-1" style="position: fixed; outline: none; z-index: 12; top: 226px; left: 0px;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+      <paper-button dismissive="" role="button" tabindex="0">More Info...</paper-button>
+      <paper-button affirmative="" role="button" tabindex="0">Decline</paper-button>
+      <paper-button affirmative="" autofocus="" role="button" tabindex="0">Accept</paper-button>
+    </paper-action-dialog>
+    
+      <section id="dialog">
+        <div id="book">
             <div id="title">{{book.title}}</div>
+            <div id="star"><star-rate id="rate" value="{{book.value}}" on-tap="{{starrate}}"></star-rate></div>
             <div>
                 <div id="photo">
                   <div id="buttons" layout horizontal>
-                    <paper-button on-tap="{{buy}}">Buy</paper-button>
-                    <paper-button on-tap="{{favorite}}">Favorite</paper-button>
+                    <paper-button class="buttons" on-tap="{{buy}}">Buy</paper-button>
+                    <paper-button class="buttons" on-tap="{{favorite}}">Favorite</paper-button>
                   </div>
                   <a href="{{book.imagen}}">
                     <img id="imagen" src="{{book.imagen}}" title="{{book.title}}">
@@ -90,17 +114,81 @@
                 <p class="fields"><em>Precio:</em> {{book.precio}}</p>
                 </div>
              </div>
-            <div>
+            <div id="des">
             <p class="fields" id="description"><em>Description:</em> {{book.description}}</p>
             </div>  
-          <paper-button dismissive>Close</paper-button>
-      </paper-action-dialog>
+          <paper-button class="buttons" dismissive on-click="{{closeDialog}}">Close</paper-button>
+          </div>
+      </section>
+    <core-ajax id="ajax"   handleAs="json"></core-ajax>
 	</template>
 	<script>
 		Polymer({
-      showBook:function(){
-       this.$.dialog.toggle();
-      }
+      ready: function() {
+        
+       
+        var that=this;
+        if(/bookdetail/.test(this.route)) {
+          var id = this.route.slice(10);
+          console.log("hacer get con _id   "+  id);
+          var ajax = this.$.ajax;
+            ajax.url="/book/id/"+id;
+            ajax.method="GET";
+            ajax.go();
+        }
+           this.$.ajax.addEventListener("core-response", function(e) {
+           console.log(e.detail.response.book);
+           that.book=e.detail.response.book;
+           that.book.value=parseInt(that.book.value*100/10);
+        
+          });
+        
+         
+         
+      },
+      closeDialog: function() {
+        this.fire("closedialog");
+      },
+      starrate:function(a,b,c){
+     
+      var url="/book/"+this.book.isbn;
+      console.log(url);
+              var bookput={
+                 title: this.book.title,
+                 author: this.book.author,
+                 isbn: this.book.isbn,
+                 publisher: this.book.publisher,
+                 price: this.book.price,
+                 description: this.book.description,
+                 genre: this.book.genre,
+                 province: this.book.province,
+                 status: this.book.status,
+                 imagen:this.book.imagen,
+                 value:this.book.value+c.value
+
+            };
+                   var that=this;
+                   var  jbook=JSON.stringify(bookput);
+           $.ajax({
+                type: "PUT",
+                url: url,
+                data: jbook,
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    
+                    alert("Book Update¡¡¡");
+   
+            
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseText);
+                    
+                }
+            });
+
+        }
+      
+
 		});
 	</script>
 </polymer-element>

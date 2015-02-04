@@ -1,9 +1,6 @@
 <polymer-element name="slider-book" attributes="book">
 	<template>
 		<style>
-      book-detail /deep/ #detail {
-        background: red;
-      }
 		body {
 		    
 		}
@@ -188,29 +185,27 @@
 		}
 		</style>
 		<section>
-                <core-ajax id="ajax" auto url="/lastBooks" handleAs="json"></core-ajax>
+
                 <div id="slider-container">
                     <div id="slider-box">
 
                     <template repeat="{{slide in book}}">
                     	<div class="slider-element">
                         <article class="element-green">
-						  <mi-libro id="book" book="{{slide}}" on-click="{{bookDetail}}"></mi-libro>
-						</article>
-						</div>
-					</template>	
+                        <mi-libro id="book" book="{{slide}}" on-click="{{bookDetail}}"></mi-libro>
+                      </article>
+                      </div>
+                    </template>	
 					                  
 				
                     </div>
                 </div>
         
             </section> 
-  <book-detail id="bdetail" book=""></book-detail>
 	</template>
 	<script>
 		Polymer({
 			ready:function(){
-				var that=this;
 
           		this.$.ajax.addEventListener("core-response", function(e) {
            		that.response=e.detail.response;
@@ -218,11 +213,7 @@
           })
 			},
       bookDetail: function(a,b,c) {
-        var detail = this.$.bdetail;
-        console.log(detail);
-        detail.book = c.book;
-        console.log(detail.book);
-        detail.showBook();
+        this.fire("bookdetail", c.book);
       }
 		});
 	</script>

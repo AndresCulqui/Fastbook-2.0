@@ -28,7 +28,7 @@ var io = require('socket.io')(http);
  
   //GET - Return a Book with specified ID
   findById = function(req, res) {
-        console.log("GET - /book/:id");
+        console.log("GET - /book/id/:id");
     return Book.findById(req.params.id, function(err, book) {
       if(!book) {
         res.statusCode = 404;
@@ -92,7 +92,8 @@ var io = require('socket.io')(http);
                 status:req.body.status,
                 province:req.body.province,
                 imagen:req.body.imagen,
-                price: req.body.price
+                price: req.body.price,
+                value: req.body.value
               
     });
  
@@ -142,6 +143,7 @@ var io = require('socket.io')(http);
       book.province=req.body.province;
       book.imagen=req.body.imagen;
       book.price=req.body.price;
+      book.value = req.body.value;
   
  
      book.save(function(err) {
@@ -214,6 +216,7 @@ var io = require('socket.io')(http);
   //Link routes and functions
   app.get('/books', findAllBooks);
   app.get('/book/:isbn', findByIsbn);
+   app.get('/book/id/:id', findById);
   app.post('/book', addBook);
   app.put('/book/:isbn', updateBook);
   app.delete('/book/:isbn', deleteBook);

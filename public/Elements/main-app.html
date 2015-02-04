@@ -92,13 +92,16 @@
 					<sell-element></sell-element>
 			</section>
 			<section  hash="account">
-					<!--<core-perfil></core-perfil>-->
-					<fast-account id="fa"></fast-account>
-				
+        <core-perfil></core-perfil>
+				<!--	<fast-account id="fa"></fast-account>-->
+          				
 			</section>
 			<section  hash="profile">	
         <core-perfil user="{{user}}"></core-perfil>
+			<section id="detailbook" hash="">	
+        <book-detail id="bdetail" book="{{book}}"></book-detail>
 			</section>
+
 		</core-animated-pages>
 
 	</div>
@@ -119,26 +122,24 @@
 			this.pages=this.$.mh.pages;
 			this.$.mh.lang="en";
 			this.$.mb.lang="en";
-
-			var that=this;
-      this.$.userLog.hidden=true;
-			
-
-			//console.log(this.route);
-      //----------------------escuchando ruta de perfil------------------------
-      		this.$.userLog.addEventListener('profile', function(e) {
-		    	
-		    	that.route='profile';
-
-		    	
-		  	});
+	
+      this.$.detailbook.hash=this.route;
       
-      //--------------------------------escuchando logut desd user-log--------------
-      this.$.userLog.addEventListener('log-out',function(){
-        that.$.fa.logout();
-        
-      });
+      
+      
+//-------------------escuchando evento closedialog de bookdetail-----------------------
+			this.$.bdetail.addEventListener('closedialog', function(e) {
+          that.route="home";
+		  	});
 
+//-------------------escuchando evento bookdetail en slider-----------------------
+			this.$.ca.addEventListener('bookdetail', function(e) {
+        that.book=e.detail;
+        that.$.detailbook.hash="bookdetail"+that.book._id;
+           that.route="bookdetail"+that.book._id;
+        
+          
+		  	});
 			//-------------------escuchando evento boton menu left-----------------------
 			this.$.mh.addEventListener('actionMenu', function() {
 		    	that.$.cdp.togglePanel();
