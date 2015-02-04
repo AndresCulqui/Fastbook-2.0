@@ -185,6 +185,8 @@
 		}
 		</style>
 		<section>
+		        <core-ajax id="ajax" auto url="/lastBooks" handleAs="json"></core-ajax>
+             
 
                 <div id="slider-container">
                     <div id="slider-box">
@@ -206,8 +208,9 @@
 	<script>
 		Polymer({
 			ready:function(){
+				var that=this;
 
-          		this.$.ajax.addEventListener("core-response", function(e) {
+          this.$.ajax.addEventListener("core-response", function(e) {
            		that.response=e.detail.response;
             	//console.log(e.detail.response.length);
           })
