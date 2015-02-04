@@ -1,4 +1,4 @@
-<polymer-element name="book-detail" attributes="book">
+<polymer-element name="book-detail" attributes="book miroute">
   <template>
 <!--    <flatiron-director route="{{route}}" autoHash></flatiron-director>-->
     <style>
@@ -120,31 +120,27 @@
           <paper-button class="buttons" dismissive on-click="{{closeDialog}}">Close</paper-button>
           </div>
       </section>
-    <core-ajax id="ajax"   handleAs="json"></core-ajax>
+    <core-ajax id="ajax" handleAs="json"></core-ajax>
 	</template>
 	<script>
 		Polymer({
       ready: function() {
+        var that=this;
         
-       
-      /*  var that=this;
-        if(/bookdetail/.test(this.route)) {
-          var id = this.route.slice(10);
-          console.log("hacer get con _id   "+  id);
+        if(/bookdetail/.test(this.miroute)) {
+          var id = this.miroute.slice(10);
           var ajax = this.$.ajax;
-            ajax.url="/book/id/"+id;
-            ajax.method="GET";
-            ajax.go();
+          ajax.url="/book/id/"+id;
+          ajax.method="GET";
+          ajax.go();
         }
-           this.$.ajax.addEventListener("core-response", function(e) {
-           console.log(e.detail.response.book);
-           that.book=e.detail.response.book;
-           that.book.value=parseInt(that.book.value*100/10);
-        
-          });
-        */
-         
-         
+        /****************************** EVENT STAR  ************************************/
+        this.$.ajax.addEventListener("core-response", function(e) {
+        console.log(e.detail.response.book);
+        that.book=e.detail.response.book;
+        that.book.value=parseInt(that.book.value*100/10);
+
+        });
       },
       closeDialog: function() {
         this.fire("closedialog");
