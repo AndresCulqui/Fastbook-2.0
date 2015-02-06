@@ -8,6 +8,9 @@
           box-sizing: border-box;
 
       }
+      core-animated-pages {
+          height: 500px;
+      }
       #core_pages {
           width: 100%;
           height: 100%;
@@ -16,10 +19,10 @@
       }
       #section{ margin: 20px; width: 40%;}
       #button_enter{
-            background: rgba(95,31,7, 0.2);
+          background: rgba(95,31,7, 0.2);
           border: 2px solid white;
           border-radius: 10px;
-          height: auto;
+          
           padding: 3%;
           margin-top: -20px;
       }
@@ -51,21 +54,15 @@
         font-family: Courier;
         font-weight: bold;
         text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+        text-align: center;
       }
       .accept {
-          margin-top: 10px;
-          margin-right: 20px;
-          margin-bottom: 15px;
-          background: rgb(255,168,76); /* Old browsers */
-          background: -moz-linear-gradient(top,  rgba(255,168,76,1) 60%, rgba(255,123,13,1) 100%); /* FF3.6+ */
-          background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(255,168,76,1)), color-stop(100%,rgba(255,123,13,1))); /* Chrome,Safari4+ */
-          background: -webkit-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Chrome10+,Safari5.1+ */
-          background: -o-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* Opera 11.10+ */
-          background: -ms-linear-gradient(top,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* IE10+ */
-          background: linear-gradient(to bottom,  rgba(255,168,76,1) 60%,rgba(255,123,13,1) 100%); /* W3C */
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 ); /* IE6-9 */
+          margin-bottom: 10px;
           color: white;
           font-weight: bold;
+          background-color: #F76700;
+          background-image: linear-gradient(#F76700,#FA3219);
+          border: 1px solid #C53421;
       }
       .accept:hover {
           opacity: 0.8;
@@ -78,26 +75,40 @@
           margin-left: -2px;
           margin-bottom: 30px;
       }
+      paper-tabs {
+        background-image: url(../../images/font-menu.png);
+        background-size: 100% 100%;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+      }
+      paper-tab {
+        font-family: courier;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+      }
+      paper-tab /deep/ #ink { color: #F76700; }
+      paper-tabs /deep/ #selectionBar { background-color: #F76700; }
+
+      #sign { border-right: 1px solid white; }
+
       #core_pages1, #core_pages2 {
           background-image: url('../images/form.png');
-          background-size: 100% 100%;
-          border: 5px solid;
-          border-radius: 10px;
+          //background-size: 100% 100%;
+          //border: 5px solid;
+          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 10px;
       }
 
       #core_pages1 {
-          //width: 40%;
           height: auto;
-          margin-right: 2%;
           padding-left: 4%;
           padding-right: 4%;
-          //float: left;
+        
       }
       #core_pages2 {
-    
-
-          height: 690px;
-      
+  
+          height: auto;
           padding-left: 4%;
           padding-right: 4%;
       }
@@ -115,7 +126,7 @@
           border-color: #4285f4;
       }
       a { font-size: 15px;
-          color: blue;
+          color: #06c;;
           text-decoration: none;
       }
       .comment { color: dimgray; font-family: arial; font-size: 12px; }
@@ -226,100 +237,104 @@
 
       <div id="section" active>        
         <div id="button_enter">
-        <paper-tabs>
-          <paper-tab flex on-tap="{{login}}">login</paper-tab>
-           <paper-tab flex  on-tap="{{register}}">Sign</paper-tab>
-        </paper-tabs> 
-      <core-animated-pages id="cap" selected="0" >
-          <section id="one" >
-              <div id="core_pages1">
+          <paper-tabs>
+              <paper-tab flex id="sign" on-tap="{{login}}">Sing In </paper-tab>
+              <paper-tab flex id="reg" on-tap="{{register}}">Register </paper-tab>
+          </paper-tabs> 
+          <core-animated-pages id="cap" selected="0" >
+              <!--<section id="one" >-->
 
+                  <div id="core_pages1">
 
-                <h1> Sign In </h1><br>
+                    <!--<h1> Sign In </h1>--><br><br>
 
-                <label> E-mail: </label>
-              
-                <paper-input-decorator id="decorator" label="someone@example.com" error="Email is Required" >
-                  <input id="email_s" is="core-input" on-keyup="{{validate_email_sign}}" required>
-                </paper-input-decorator>
+                    <label> E-mail: </label>
+                  
+                    <paper-input-decorator id="decorator" label="someone@example.com" error="Email is Required" >
+                      <input id="email_s" is="core-input" on-keyup="{{validate_email_sign}}" required>
+                    </paper-input-decorator>
 
-                <label> Password: </label>
-            
-                <paper-input-decorator id="decorator2" label="Password" error="Password is Required">
-                  <input id="password" is="core-input" type="password" required>
-                </paper-input-decorator>
-
-                <div id="button_e" tool center-justified horizontal layout display:flex>
-                  <paper-button id="ok" on-tap="{{ validateSigin }}" class="accept" showing> LOGIN >> </paper-button> 
-                </div><br>
-
-                <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
-               
-                <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
-
-                <p>Connect with Social Login </p>
-                            
-                <div class="login-social" vertical layout center>
-                   <!--<a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
-                   </paper-button> </a>
-                   <facebook-login class="button" appID="1503835363198599"  buttonText= 'hola q hace'></facebook-login>-->
-                   <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
-                   </paper-button> -->
-                   
-                   <google-signin id="signGoogle"  class="button" labelSignin="Sign in with Google"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
-                 
-     
-                </div>
-
-              </div>
-          </section>
-          <section id="two">
-              <div id="core_pages2">
-
-                <h1>Register</h1>
-
-                <!--<core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>
-                <br>-->
-
-                <label> Name: </label>
-
-                <paper-input-decorator id="name_register" label="Name & Lastname" error="Name & LastName is Required">
-                  <input id="r_name" is="core-input" maxlength="30" on-keyup="{{validate_name}}"  required>
-                </paper-input-decorator>
-                <label> Create Password: </label>
-
-                <paper-input-decorator id="pass_register" label="Password" error="Password is Required">
-                  <input id="r_pass" is="core-input" type="password" required>
-                </paper-input-decorator>
-                <label> Reenter Password: </label>
-
-                <paper-input-decorator id="repass_register" label="Reenter Password" error="Password is Required">
-                  <input id="repass" is="core-input" type="password" on-blur="{{validate_repass}}" required>
-                </paper-input-decorator>
-                <label> Email: </label>
-
-                <paper-input-decorator id="email_register" label="example@example.com" error="Email is Required">
-                  <input id="email" is="core-input" type="email" on-keyup="{{validate_mail_r}}" required>
-                </paper-input-decorator>
-
-                <br><br>
-
-                <div class="comment" center-justified horizontal layout>
-                  Click Create Account to agree to the Fastbook Services Agreement and Privacy and cookies statement.</div><br>
-
-                <div id="button_register" tool center center-justified horizontal layout display:flex>
-                  <paper-button class="accept" on-tap="{{ accept }}">Create account</paper-button>
-                </div>
+                    <label> Password: </label>
                 
-                <core-ajax id="ajax"></core-ajax>
+                    <paper-input-decorator id="decorator2" label="Password" error="Password is Required">
+                      <input id="password" is="core-input" type="password" on-keyup="{{validate_mail_r}}"  required>
+                    </paper-input-decorator>
 
-              </div>
-          </section>
-      </core-animated-pages>  
+                    <div id="button_e" tool center-justified horizontal layout display:flex>
+                      <paper-button id="ok" on-tap="{{ validateSigin }}" class="accept" showing> Login >> </paper-button> 
+                    </div><br>
+
+                    <paper-checkbox for> </paper-checkbox> <div class="remember"> Remember me </div>
+                   
+                    <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
+
+                    <p>Connect with Social Login </p>
+                                
+                    <div class="login-social" vertical layout center>
+                       <!--<a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
+                       </paper-button> </a>
+                       <facebook-login class="button" appID="1503835363198599"  buttonText= 'hola q hace'></facebook-login>-->
+                       <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
+                       </paper-button> -->
+                       
+                       <google-signin id="signGoogle"  class="button" labelSignin="Sign in with Google"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
+                     
+         
+                    </div>
+
+                  </div>
+              <!--</section>
+
+              <section id="two">-->
+
+                  <div id="core_pages2">
+
+                    <!--<h1>Register</h1>-->
+
+                    <!--<core-icon icon="avatars:avatar-1" id="core_icon" designmeta="topeka-avatar"></core-icon>-->
+                    <br><br>
+
+                    <label> Name: </label>
+
+                    <paper-input-decorator id="name_register" label="Name & Lastname" error="Name & LastName is Required">
+                      <input id="r_name" is="core-input" maxlength="30" on-keyup="{{validate_name}}"  required>
+                    </paper-input-decorator>
+                    <label> Create Password: </label>
+
+                    <paper-input-decorator id="pass_register" label="Password" error="Password is Required">
+                      <input id="r_pass" is="core-input" type="password" required>
+                    </paper-input-decorator>
+                    <label> Reenter Password: </label>
+
+                    <paper-input-decorator id="repass_register" label="Reenter Password" error="Password is Required">
+                      <input id="repass" is="core-input" type="password" on-blur="{{validate_repass}}" required>
+                    </paper-input-decorator>
+                    <label> Email: </label>
+
+                    <paper-input-decorator id="email_register" label="example@example.com" error="Email is Required">
+                      <input id="email" is="core-input" type="email" on-keyup="{{validate_mail_r}}" required>
+                    </paper-input-decorator>
+
+                    <br>
+
+                    <div class="comment" center-justified horizontal layout>
+                      Click Create Account to agree to the Fastbook Services Agreement and Privacy and cookies statement.</div><br>
+
+                    <div id="button_register" tool center center-justified horizontal layout display:flex>
+                      <paper-button class="accept" on-tap="{{ accept }}">Create account</paper-button>
+                    </div>
+                    
+                    <core-ajax id="ajax"></core-ajax>
+
+                  </div>
+
+              <!--</section>-->
+          </core-animated-pages>  
+          <paper-toast id="toast1" text="New User Created"></paper-toast>
+        </div>
+
+  	     
       </div>
-
-  	<paper-toast id="toast1" text="New User Created"></paper-toast>
-
     </div>
            
   </template>
@@ -336,10 +351,14 @@
         },
         login:function(){
           this.$.cap.selected=0;
+          this.$.reg.style.backgroundImage = "url('../../images/font-menu.png')";
+          this.$.sign.style.backgroundImage = "url('../images/form.png')";
 
         },
         register:function(){
           this.$.cap.selected=1;
+          this.$.sign.style.backgroundImage = "url('../../images/font-menu.png')";
+          this.$.reg.style.backgroundImage = "url('../images/form.png')";
 
         },
 
@@ -355,7 +374,7 @@
 
         validate_name: function(){
           var name = this.$.r_name.value;
-          var pattern = /^[a-zA-Z0-9áéíóúñÁÉÍÓÚÑ -]*$/i;
+          var pattern = /^[a-zA-ZáéíóúñÁÉÍÓÚÑ -]*$/i;
           this.show_errors(name,pattern);
         },
 
@@ -497,8 +516,8 @@
             var user = this.$.email_s; //input
             var pass = this.$.password;
 
-            console.log(n);
-            console.log(m);
+            //console.log(n);
+            //console.log(m);
 
             if ((!user.validity.valid) && (!pass.validity.valid)) {
                 n.isInvalid = true;
@@ -523,12 +542,38 @@
             }
 
             if ((user.validity.valid) && (pass.validity.valid)) {
-                alert("los datos recibidos son:" + user.value + ' '+ pass.value);
-                //this.perfil();
+                //alert("los datos recibidos son:" + user.value + ' '+ pass.value);
+                var identify = {email: user.value, password: pass.value};
+                this.validateSigninPass(identify);
             }
+        },
+        validate_email_sign:function(){
+          var email = this.$.email_s.value;
+          var pattern= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,15})+\.)+([a-zA-Z0-9]{2,4})+$/;
+          this.show_error_email_s(email,pattern);
+        },
+        show_error_email_s:function(string, pattern){
+          var decorator_email = this.$.decorator;
+          var input = this.$.email_s;
+          if (string.match(pattern) != null ) {
+            decorator_email.isInvalid = false;
+            input.style.color = "black";
+          }else {
+            decorator_email.isInvalid = true;
+            decorator_email.error="Write an email with the format someone@example.com.";
+           
+          }
+        },
+        validateSigninPass:function(user){
 
-
-
+            var ajax = this.$.ajax;
+            ajax.url="signok";
+            ajax.method="POST";
+            ajax.params=user;
+            ajax.go();
+            ajax.addEventListener("core-response", function(e) {
+              console.log('soy e'+e.detail.response);
+            });
 
         }
 

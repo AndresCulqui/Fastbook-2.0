@@ -3,23 +3,32 @@
       <flatiron-director route="{{route}}" autoHash></flatiron-director>
 		<style>
      
-a:link, a:visited, a:hover, a:active{
-text-decoration: none;
-font-style: normal;
-color: white;
-  text-align: center;
-  margin-top: 70%;
+    a:link, a:visited, a:hover, a:active{
+      text-decoration: none;
+      font-style: normal;
+      color: white;
+      text-align: center;
+      margin-top: 50%;
+      font-size: 25px;
+      font-family: serif;
 
-}
-
-
+    }
+    paper-tab>a.selected {
+      box-shadow: inset 0 0 15px rgba(0,0,0,.6); 
+    }
+    paper-tab {
+      height: 50%;
+      border
+    }
+    #menus /deep/ #selectionBar { background-color: #F76700; }
+    #item /deep/ #ink { color: #F76700; }
 
 		</style>
 
     <div horizontal layout center >
-        <paper-tabs style="width:800px" selected="{{route}}" selectedindex="home" valueattr="hash" selected="{{route}}">
+        <paper-tabs id="menus" style="width:800px" selected="{{route}}" selectedindex="home" valueattr="hash" selected="{{route}}">
         <template repeat="{{page in pages}}">
-          <paper-tab flex hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
+          <paper-tab id="item" flex hash="{{page.hash}}"label="{{page.name}}" on-tap="{{tapMenu}}">
           <a href="#{{page.hash}}">{{page.name}}</a>
           </paper-tab>
         </template>  
