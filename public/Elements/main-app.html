@@ -78,7 +78,7 @@
   <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
   	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
     <core-icon-button hidden on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
-    <user-log id="userLog" user="{{user}}" flex></user-log>
+    <user-log id="userLog" user="{{user}}"  flex></user-log>
  </core-toolbar> 
   <my-banner id="mb" lang="en"></my-banner>
 
@@ -103,13 +103,17 @@
 			</section>
 			<section  hash="sell">
 					
-					<sell-element></sell-element>
+					<sell-element id="se" ></sell-element>
 			</section>
 			<section  hash="account">
         
 					<fast-account id="fa"></fast-account>
           				
 			</section>
+			<section  hash="about">	
+        		acreca de nosotros:
+        	</section>
+
 			<section  hash="profile">	
         		<core-perfil user="{{user}}"></core-perfil>
         	</section>	
@@ -134,6 +138,41 @@
 	Polymer({
 		ready:function() {
 			 var that=this;
+
+//-------------------------------escuchando usuarios locales conectados----------------
+
+	$.get('/profile', function(data,success,error){
+	if(data.user){
+			console.log(data.user)		
+			that.$.userLog.hidden=false;	
+			that.$.ca.login();
+			that.user=data.user;
+			//console.log(data.user.local)
+			window.localStorage.setItem('token',data.token);
+
+			if(data.user.twitter){
+				that.user=data.user.twitter;
+			}
+			if(data.user.facebook){
+				that.user=data.user.facebook;
+			}
+			/*if(data.user.google){
+				that.user=data.user.google;
+			}*/
+			if(data.user.local){
+				that.user=data.user.local;
+
+			}
+
+	}	
+	else{
+		that.$.ca.logout();
+		that.$.userLog.hidden=true;	
+		}
+	})
+
+
+	//--------------------------------------------------------------
 
 			this.pages=this.$.mh.pages;
 			this.$.mh.lang="en";
@@ -193,66 +232,41 @@
         that.user=e.detail;
       });
     
-    //----------------------------google sing escuchandoooo
-       
-         this.$.fa.addEventListener('google-signin-success', function(a,b,c) {
-		    	var token=a.detail.result.access_token;
-          console.log(token);
-          
-          $.post('/googleUser',{token:token}, function(data,status){     
-              if (status){
-                     console.log(data+"--->");
-                       that.$.userLog.hidden=false;
-                 that.user={id:data.id,name:data.name, email:data.email, photo:data.image};
-                      
-               }else{
-                    alert("error¡¡¡¡------------------------->");
-                 }
-                     
-            });
-               
-               
-        //-----------------------------revokar token----------------------       
-             var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token='+token;
-                        
 
-            
-                  that.$.fa.addEventListener('google-signed-out',function(e){
-                      console.log(e.returnValue+"soy return valueeee si esta desconectado");
-                      if(e.returnValue){
+    //----------------------------escuchando login/register social-login-------------
+  
+         	    this.$.ca.addEventListener('social-login',function(e){
+		       	console.log(e.detail+"---------socila");
 
-                        $.ajax({
-                               type: 'GET',
-                               url: revokeUrl,
-                               async: false,
-                               contentType: "application/json",
-                               dataType: 'jsonp',
-                               success: function() {
-                                 location.reload();  
-                               },
-                               error: function(e) {
+		      });
+  
 
-                               }
-                             }); 
 
-                        console.log("soy true");
-                      }else{
-                        console.log("soy false");
-                      }
+    //----------------------------escuchando login/register-------------
+    	    this.$.ca.addEventListener('user-logged',function(e){
+		      	
 
-                       });
-               
-               
-         });
-         
-      //------------------------------------escuchando facebook--------------------------ç
-          
-          this.$.fa.addEventListener('facebook-signin-success', function(a) {
+		  
+		       var user=JSON.parse(e.detail.response);
+		            console.log(user);
+		            that.$.userLog.hidden=false;
+		        that.user=user.local;
+		        that.$.ca.login();
+		        location.reload();
 
-      
-           });
-          
-          
+		      });
+    	       this.$.ca.addEventListener('user-reg',function(e){
+		      	
+
+		  
+		       //var user=JSON.parse(e.detail.response);
+		            user=e.detail;
+		           that.$.userLog.hidden=false;
+		        that.user=user.local;
+		        that.$.ca.login();
+		         location.reload();
+
+		      });
           
           
           

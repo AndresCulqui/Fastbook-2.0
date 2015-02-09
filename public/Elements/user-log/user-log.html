@@ -62,28 +62,29 @@
 		  	<div >
 
 		  	 	
-		  		<img id="photo" src="{{user.photo}}" on-tap="{{dialog}}"> 
+		  		<img id="photo" src="{{user.photo || photodefault}}" on-tap="{{dialog}}"> 
 		  		
 		  	</div>
 		  	<paper-action-dialog id="dialog"  layered="false">
 		
 		  	<div>
 		  		<div>
-		  			<img id="photo1" src="{{user.photo}}">
+		  			<img id="photo1" src="{{photo || photodefault}}">
 		  		</div>
 		  			<div style="margin-left:30%">
-				  		<span ><b> {{user.name}}</b></span>
-				  		<span style="font-size:85%; color:grey"> {{user.email}}</span>
+				  		<span ><b> {{user.displayName || user.name}}</b></span>
+				  		<span style="font-size:85%; color:grey"> {{user.email || user.username}}</span>
 			  		</div>
 			  		<div id="buttons">
 					  	<paper-button on-tap="{{profile}}"id="butt">Profile</paper-button>
 					  	<paper-button id="butt" on-tap="{{Logout}}">Log out</paper-button>	
+					  	<a href="/unlink/facebook">Unlink Facebook</a>
 					</div>
 			  	
 		  	</div>
 
 
-
+		  	<core-ajax id="ajax"></core-ajax>
 		  	</paper-action-dialog>
 	 		 
 	</template>
@@ -92,16 +93,34 @@
 
 	Polymer({
 		ready:function(){
-		
+			this.photodefault=    '../../images/user.png';
+			//this.photo="http://graph.facebook.com/10202602399135717/picture?type=square";
+			
+
+
+		;
 			
 		},
 		dialog:function(){
 			this.$.dialog.toggle();
+			console.log(this.user)
 		
 
 		},
 		Logout:function(){
-			this.fire('log-out');
+			 var that=this;
+         	  var ajax = this.$.ajax;
+            ajax.url="/logout";
+            ajax.method="GET";
+            ajax.go();
+            ajax.addEventListener("core-response", function(e,f) {
+                  console.log(e);
+                  window.localStorage.removeItem('token'); 
+                 location.reload();
+
+         
+            });
+
 		},
 		profile:function(){
 			this.fire('profile');

@@ -114,7 +114,7 @@
 		<section vertical layout center flex>
 			<div horizontal layout center>
 				<div id="avatar" horizontal layout>
-					<img id="photo" src="{{user.photo}}">
+					<img id="photo" src="{{user.photo || photodefault}}">
 					<core-icon class="icon-edit" icon="delete"></core-icon>
 					<core-icon class="icon-edit" icon="create"></core-icon>
 				</div>
@@ -126,7 +126,7 @@
 			<div id="campos" horizontal layout>
 				<div class="rows" vertical layout flex>
 
-					<paper-input-decorator id="d_name" label="{{user.name}}" floatingLabel error="Name is invalid!">
+					<paper-input-decorator id="d_name" label="{{user.displayName}}" floatingLabel error="Name is invalid!">
 						<input is="core-input" id="name" disabled="true"/>
 					</paper-input-decorator>
 
@@ -154,7 +154,7 @@
 		Polymer({
 			ready: function () {
 				this.perfil = {name: 'Carlos', email: 'carlos@gmail.com', userName: 'charlie', password: '12345', photo: "https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG", number: 655072180};
-	
+				this.photodefault="../../images/user.png";
 			},
 			edit: function() {
 				this.$.actu.style.visibility="visible";

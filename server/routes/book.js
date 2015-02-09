@@ -4,10 +4,16 @@
 
 module.exports = function(app) {
 
+  var jwt = require('jwt-simple');
+
+
+
  var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var requestify = require('requestify');
 
-  var Book = require('../model/book.js');
+  var Book = require('../models/book.js');
+   var User = require('../models/user.js');
  var id=1;
   //GET - Return all books in the DB
   findAllBooks = function(req, res) {
@@ -29,7 +35,7 @@ var io = require('socket.io')(http);
   //GET - Return a Book with specified ID
   findById = function(req, res) {
         console.log("GET - /book/id/:id");
-    return Book.findById(req.params.id, function(err, book) {
+      Book.findById(req.params.id, function(err, book) {
       if(!book) {
         res.statusCode = 404;
         return res.send({ error: 'Not found' });
@@ -68,6 +74,11 @@ var io = require('socket.io')(http);
             }
           });
   };
+
+
+  //GET - find books by Id_user
+
+
   
   
  
@@ -79,9 +90,18 @@ var io = require('socket.io')(http);
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
         //----------------------------------------
-    console.log(req.body);
  
-    var book = new Book({
+    var tokenSecret="ilovefastbook";
+    var token = jwt.decode(req.body.id_user, tokenSecret);
+       console.log(token._id+"---useriddd");
+
+ User.findById(token._id, function(err, user) {
+     if(!user) {
+        res.statusCode = 404;
+        return res.send({ error: 'Invalid token' });
+      }
+      if(!err){
+             var book = new Book({
                 title: req.body.title,
                 author :req.body.author, // set the books name (comes from the request)
                 year : req.body.year,
@@ -93,30 +113,34 @@ var io = require('socket.io')(http);
                 province:req.body.province,
                 imagen:req.body.imagen,
                 price: req.body.price,
-                value: req.body.value
+                value: req.body.value,
+                id_user:token._id
               
-    });
+            });
  
-    book.save(function(err) {
-      if(!err) {
-        console.log("Book created");
-         io.emit('bookAdd', { message: 'Book added!', book:book });
-        return res.send({ status: 'OK', book:book });
-      } else {
-        console.log(err);
-        if(err.name === 'ValidationError') {
-          res.statusCode = 400;
-          res.send({ error: 'Validation error' });
+          book.save(function(err) {
+            if(!err) {
+              console.log("Book created");
+               io.emit('bookAdd', { message: 'Book added!', book:book });
+              return res.send({ status: 'OK', book:book });
+            } else {
+              console.log(err);
+              if(err.name === 'ValidationError') {
+                res.statusCode = 400;
+                res.send({ error: 'Validation error' });
+              } else {
+                res.statusCode = 500;
+                res.send({ error: 'Server error' });
+              }
+              console.log('Internal error(%d): %s',res.statusCode,err.message);
+            }
+          });
         } else {
-          res.statusCode = 500;
-          res.send({ error: 'Server error' });
-        }
-        console.log('Internal error(%d): %s',res.statusCode,err.message);
-      }
-    });
- 
-    res.send(book);
-    id++;
+              res.statusCode = 500;
+              console.log('Internal error(%d): %s',res.statusCode,err.message);
+            res.send({ error: 'Server error' });
+            }
+     });        
   };
  
   //PUT - Update a register already exists

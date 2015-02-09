@@ -1,4 +1,5 @@
 var mongoose     = require('mongoose');
+var User=mongoose.model('User');
 var Schema       = mongoose.Schema;
 var Images = new Schema({
     kind: {
@@ -23,6 +24,8 @@ var Book   = new Schema({
         province:String,
          price: Number,
          imagen:String,
+       // id_user:{type: Schema.ObjectId, ref: "User"},
+       id_user:String,
         modified: { type: Date, default: Date.now }    
 });
 

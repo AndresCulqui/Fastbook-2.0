@@ -51,8 +51,8 @@
 	
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
-			<img id="photo" src="{{user.photo}}">
-			<core-item class="name" id="name" label="{{user.name}}"></core-item>
+			<img id="photo" src="{{user.photo || photodefault}}">
+			<core-item class="name" id="name" label="{{user.displayName || user.name}}"></core-item>
       		<core-item class="name" id="name" label="{{user.email}}"></core-item>
 		</div>
 		</core-toolbar>
@@ -73,9 +73,12 @@
 
 </template>
 <script>
+
     Polymer({
     	ready:function(){
-    	this.perfil = {name: 'Carlos Garcia', photo: 'https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG'};
+    		this.photodefault=    '../../images/user.png';
+
+
     },
     tapMenu: function(e,detail,sender){
         

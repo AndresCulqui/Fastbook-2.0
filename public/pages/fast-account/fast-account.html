@@ -146,7 +146,7 @@
         height: 45px;
       }
       .button:hover { opacity: 0.6;}
-     // #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
+      #facebook{ background-image: url('../../images/facebook.png'); background-size: 100% 100%;}
       #twitter{ background-image: url('../../images/twitter.png'); background-size: 100% 100%;}
       #google{ background-image: url('../../images/google.png'); background-size: 100% 100%;}
 
@@ -215,6 +215,8 @@
           #facebook{ 
             width: 50px;
             margin-right: 200px;
+            background-image: url('../../images/facebook.png'); 
+            background-size: 580% 100%;
           }
           #twitter{ 
             background-image: url('../../images/twitter.png'); 
@@ -271,13 +273,15 @@
                     <p>Connect with Social Login </p>
                                 
                     <div class="login-social" vertical layout center>
-                       <!--<a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{ test }}">
+                       <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{social_login}}">
                        </paper-button> </a>
-                       <facebook-login class="button" appID="1503835363198599"  buttonText= 'hola q hace'></facebook-login>-->
-                       <!--<paper-button id="google" class="button" on-tap="{{loginGoogle }}">
-                       </paper-button> -->
-                       
-                       <google-signin id="signGoogle"  class="button" labelSignin="Sign in with Google"  scopes="email" clientId='768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com'></google-signin> 
+                      <a href="../../auth/facebook"><paper-button id="facebook" class="button" on-tap="{{social_login}}">
+                       </paper-button> </a>
+                      <a href="../../auth/google"><paper-button id="google" class="button" on-tap="{{social_login}}">
+                       </paper-button> </a>
+                
+                      
+              
                      
          
                     </div>
@@ -347,6 +351,11 @@
           
           //--------->escuchando si se loggea con google----------->
           var that=this;
+        
+        },
+        social_login:function(a,b,c){
+         
+          this.fire('social-login');
 
         },
         login:function(){
@@ -478,18 +487,23 @@
         	var decorator_email = this.$.email_register;
         	var input = this.$.email;
         	var toast = this.$.toast1;
-
-         //console.log("usuario postuser"+user.name);
-            var ajax = this.$.ajax;
-            ajax.url="/user";
-            ajax.method="POST";
-            ajax.params=user;
-            ajax.go();
-            ajax.addEventListener("core-response", function(e) {
-            
-            //console.log(e.detail.response);
-            //console.log(e.detail.response == "KO");
-            if (e.detail.response == "KO"){
+          var that=this;
+    
+         $.ajax({ type: 'POST', 
+          url: '/signup',
+          data: user,
+          success: function(data) {
+               console.log(data);
+               that.fire('user-reg',data);
+            },
+            error: function(xmlHttpRequest) {
+              console.log(xmlHttpRequest.responseText);
+              
+            }
+         });
+    
+        
+            /*if (e.detail.response == "KO"){
             	toast.show();
             	decorator_email.isInvalid = true;
             	input.style.color = "red";
@@ -502,8 +516,8 @@
             	alert("User created");
             	//toast.show();
             	//location.href="#home";
-            }
-        	}); 
+            }*/
+        	
         },
 
         logout:function(){
@@ -565,14 +579,15 @@
           }
         },
         validateSigninPass:function(user){
-
-            var ajax = this.$.ajax;
-            ajax.url="signok";
+          var that=this;
+           var ajax = this.$.ajax;
+            ajax.url="/login";
             ajax.method="POST";
             ajax.params=user;
             ajax.go();
             ajax.addEventListener("core-response", function(e) {
-              console.log('soy e'+e.detail.response);
+                    that.fire('user-logged',e.detail);
+         
             });
 
         }

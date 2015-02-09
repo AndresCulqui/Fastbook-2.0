@@ -94,7 +94,7 @@
 
  
 		</style>
-    <section>
+    <section id="section">
     <div class="container" horizontal layout>
 
       <core-ajax id="ajax"  url="/lastBooks" 
@@ -107,7 +107,7 @@
         <slider-book books="{{response}}"></slider-book>
        </div>
 
-            <fast-account></fast-account>
+            <fast-account id="fa"></fast-account>
 
     </div>  
     </section>
@@ -136,6 +136,14 @@ Polymer({
         onTapbook:function(a,b,c){
           console.log(c.book);
 
+        },
+        login:function(){
+          this.$.fa.style.display="none";
+          this.$.section.style.width="96%";
+        },
+        logout:function(){
+          this.$.fa.style.display="inline";
+          this.$.section.style.width="70%";
         }
         
   

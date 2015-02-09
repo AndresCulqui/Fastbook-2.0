@@ -1,7 +1,7 @@
 
 
 
-<polymer-element name="sell-element">
+<polymer-element name="sell-element" >
     <template>
         <style>
         :host {
@@ -313,12 +313,28 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
     </template>
     <script>
         Polymer({
+
           
                ready:function(){
                     
                   //  this.socket = io();
+                 
+                
+                  var that=this;
                   
-               
+                    $.get('/profile',function(data){
+                       var t=that.$.tit;
+                      if(data.user){
+                         that.$.butt.active="true";
+
+                      $(t).text("Put a book for sale");
+
+                    }else{
+                       
+                        $(t).text(" You must login to upload a book ");
+                         that.$.butt.disabled="true";
+                      }
+                    });
                    
                   
                 },
@@ -394,8 +410,8 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                   
                
                   //------------apiss/////
-               
-               
+
+                  var token=window.localStorage.getItem('token');
                  $.post("/book",
                     {
                      genre : genre,
@@ -408,7 +424,8 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                     title : title,
                     description : description,
                     imagen:imagen,
-                    value: 0
+                    value: 0,
+                    id_user:token
                     },
                     function(data,status){
                       if (status){

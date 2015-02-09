@@ -1,5 +1,6 @@
 module.exports = function(app, passport) {
-  
+
+	var jwt = require('jwt-simple');
 
 // normal routes ===============================================================
 
@@ -10,15 +11,21 @@ module.exports = function(app, passport) {
 
 	// PROFILE SECTION =========================
 	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render( {
-			user : req.user
+		var tokenSecret="ilovefastbook";
+		 var token = jwt.encode(req.user, tokenSecret);
+
+		res.send( {
+			user : req.user,
+			token:token
 		});
+
 	});
 
 	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
+		
 	});
 
 // =============================================================================
@@ -27,31 +34,28 @@ module.exports = function(app, passport) {
 
 	// locally --------------------------------
 		// LOGIN ===============================
-		// show the login form
-		/*app.get('/login', function(req, res) {
-			res.render('', { message: req.flash('loginMessage') });
-		});*/
+
+	
 
 		// process the login form
-              
-		app.post('/login', passport.authenticate('local-login', {
-			successRedirect : '/profile', // redirect to the secure profile section
-			failureRedirect : '/login', // redirect back to the signup page if there is an error
-			failureFlash : true // allow flash messages
-		}));
+		app.post('/login', 
+			passport.authenticate('local-login'),
+				function(req,res){
+					res.send(req.user);
+				}
+				);
+		
 
 		// SIGNUP =================================
-		// show the signup form
-		app.get('/signup', function(req, res) {
-			res.render('/', { message: req.flash('signupMessage') });
-		});
+
 
 		// process the signup form
-		app.post('/signup', passport.authenticate('local-signup', {
-			successRedirect : '/profile', // redirect to the secure profile section
-			failureRedirect : '/signup', // redirect back to the signup page if there is an error
-			failureFlash : true // allow flash messages
-		}));
+		app.post('/signup', 
+			passport.authenticate('local-signup'),
+				function(req,res){
+					res.send(req.user);
+				}
+				);
 
 	// facebook -------------------------------
 
@@ -61,9 +65,11 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
 			passport.authenticate('facebook', {
-				successRedirect : '/profile',
+				successRedirect : '/',
 				failureRedirect : '/'
-			}));
+			}),function(req,res){
+				res.send(req.user)
+			});
 
 	// twitter --------------------------------
 
@@ -73,7 +79,7 @@ module.exports = function(app, passport) {
 		// handle the callback after twitter has authenticated the user
 		app.get('/auth/twitter/callback',
 			passport.authenticate('twitter', {
-				successRedirect : '/profile',
+				successRedirect : '/',
 				failureRedirect : '/'
 			}));
 
@@ -86,7 +92,7 @@ module.exports = function(app, passport) {
 		// the callback after google has authenticated the user
 		app.get('/auth/google/callback',
 			passport.authenticate('google', {
-				successRedirect : '/profile',
+				successRedirect : '/',
 				failureRedirect : '/'
 			}));
 
@@ -112,7 +118,7 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authorized the user
 		app.get('/connect/facebook/callback',
 			passport.authorize('facebook', {
-				successRedirect : '/profile',
+				successRedirect : '/',
 				failureRedirect : '/'
 			}));
 
@@ -163,7 +169,7 @@ module.exports = function(app, passport) {
 		var user            = req.user;
 		user.facebook.token = undefined;
 		user.save(function(err) {
-			res.redirect('/profile');
+			res.redirect('/');
 		});
 	});
 
@@ -172,7 +178,7 @@ module.exports = function(app, passport) {
 		var user           = req.user;
 		user.twitter.token = undefined;
 		user.save(function(err) {
-			res.redirect('/profile');
+			res.redirect('/');
 		});
 	});
 
@@ -181,7 +187,7 @@ module.exports = function(app, passport) {
 		var user          = req.user;
 		user.google.token = undefined;
 		user.save(function(err) {
-			res.redirect('/profile');
+			res.redirect('/');
 		});
 	});
 
@@ -193,5 +199,5 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	res.redirect('/');
+	res.redirect('../#profile');
 }
