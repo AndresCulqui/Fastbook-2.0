@@ -146,16 +146,31 @@
 					</paper-input-decorator>
 				</div>
 			</div>
-			<biblio-user></biblio-user>	
+			<biblio-user id="bu"></biblio-user>	
 		</section>
 
 	</template>
 	<script>
 		Polymer({
 			ready: function () {
-				this.perfil = {name: 'Carlos', email: 'carlos@gmail.com', userName: 'charlie', password: '12345', photo: "https://lh5.googleusercontent.com/-GiF-k96QJZ0/Uk28qg27t-I/AAAAAAAAACE/JBQBACxCsLw/w561-h560-no/RSCN0370.JPG", number: 655072180};
+
+     /* $.get('/profile', function(data,success,error){
+        if(data.user){
+          alert("hay usuario")
+        }else{
+          alert("NOOOOOOOOO hay usuario")
+        }
+         });  */
+  
+      
 				this.photodefault="../../images/user.png";
+     
 			},
+      loadbooks:function(){
+          console.log(this.user);
+        this.$.bu.loadbooks();
+     
+      },
 			edit: function() {
 				this.$.actu.style.visibility="visible";
 				this.$.name.disabled=false;

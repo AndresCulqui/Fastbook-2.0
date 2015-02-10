@@ -402,19 +402,17 @@
 		Polymer({
 			ready: function () {
 				/*this.perfil = {name: 'Carlos Andrés', lastName: 'García Maldonado', email: 'carlos@gmail.com', userName: 'charlie', password: '12345'};*/
-				var that=this;
+			
+			},
+      loadbooks:function(){
+        	var that=this;
         var token=window.localStorage.getItem('token');
         var url="/books/user/"+token;
 
 				$.get(url,function(data){
 					that.libros=data.books;
-       
-			
-			console.log(that.libros+"---------->data");
-							
-
 				});
-			},
+      },
 			edit: function() {
 				var edit = this.$.name;
 				edit.disabled = false;

@@ -57,7 +57,16 @@
        
 		      
 		     }
-     
+          /*----------- media query mobile ----------*/
+    @media (max-width: 610px) {
+      	my-head /deep/ #title{
+				font-size: 48px;
+
+				
+			}
+
+    }
+
    
 
 		</style>
@@ -78,7 +87,7 @@
   <my-head id="mh" lang="en" mtitle="FastBook"></my-head>
   	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
     <core-icon-button hidden on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
-    <user-log id="userLog" user="{{user}}"  flex></user-log>
+    <user-log id="userLog" user="{{user}}" photo="{{photo}}"  flex></user-log>
  </core-toolbar> 
   <my-banner id="mb" lang="en"></my-banner>
 
@@ -115,7 +124,7 @@
         	</section>
 
 			<section  hash="profile">	
-        		<core-perfil id="cp" user="{{user}}"></core-perfil>
+        		<core-perfil id="cp" user="{{user}}" hidden></core-perfil>
         	</section>	
 			<section id="detailbook" hash="">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
@@ -124,11 +133,16 @@
 		</core-animated-pages>
 
 	</div>
+    <paper-toast id="toast" class="capsule" text="Book Added¡¡¡" style="padding-right: 60px;">
+      <p id="t"></p>
+      <p id="a"></p>
+    </paper-toast>
 
   </core-header-panel>
 
 </core-drawer-panel>
 </template>
+   <script src="/socket.io/socket.io.js"></script>
 	<script>
 
 
@@ -138,36 +152,78 @@
 	Polymer({
 		ready:function() {
 			 var that=this;
-
+       var then=this;
+      
+      
+   //-------------------------socket io--------------------------------
+   
+  
++                    this.socket.on('chat message', function(msg){
++                    console.log(msg.title+"     okok");
++                    
++                    var toast=that.$.toast;
++                    console.log(toast);
++                    var tit=that.$.t;
++                    var aut=that.$.a;
++                    $(tit).text("Title: "+msg.title);
++                    $(aut).text("Author: "+msg.author);
++               
++                    toast.show();
++
++                    that.$.bookAnimation.ready();
++                    that.$.buy.ready();
++                    
++                  });
 //-------------------------------escuchando usuarios locales conectados----------------
 
 	$.get('/profile', function(data,success,error){
 	if(data.user){
 			console.log(data.user)		
+      	window.localStorage.setItem('token',data.token);
 			that.$.userLog.hidden=false;	
+      that.$.cp.hidden=false;
 			that.$.ca.login();
 			that.user=data.user;
+      
 			//console.log(data.user.local)
-			window.localStorage.setItem('token',data.token);
+	
+      that.$.cp.loadbooks();
 
-			/*if(data.user.twitter){
-				that.user=data.user.twitter;
-			}*/
+			if(data.user.twitter){
+				that.user=data.user.twitter;      
+        //pendiente la foto///
+        
+			}
 			if(data.user.facebook){
 				that.user=data.user.facebook;
+        that.photo="http://graph.facebook.com/"+that.user.id+"/picture?type=normal";
+ 
 			}
-			/*if(data.user.google){
+			if(data.user.google){
+ 
 				that.user=data.user.google;
+        var url='http://picasaweb.google.com/data/entry/api/user/'+that.user.id+'?alt=json'
+        $.get(url,function(data){
+          //console.log(data.entry.gphoto$thumbnail.$t);
+          then.photo=data.entry.gphoto$thumbnail.$t;
+          
+        })
 			}
 			if(data.user.local){
 				that.user=data.user.local;
 
-			}*/
+			}
 
 	}	
 	else{
 		that.$.ca.logout();
 		that.$.userLog.hidden=true;	
+    that.$.cp.hidden=true;
+    if(location.hash==="#profile"){
+      that.route="home";
+    }
+     
+    
 		}
 	})
 

@@ -240,7 +240,8 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-
+          
+      console.log(profile.photos[0].value+"phphp");
             // check if the user is already logged in
             if (!req.user) {
 

@@ -30,6 +30,7 @@
     "webcomponentsjs": "~0.5.2",
     "slider-polymer": "~0.0.3",
     "jquery-ui": "~1.11.2",
-    "facebook-login": "davidwittenbrink/facebook-login#master"
+    "facebook-login": "davidwittenbrink/facebook-login#master",
+    "social-button": "1000ch/social-button#master"
   }
 }

@@ -20,11 +20,16 @@ module.exports = function(app, passport) {
 		});
 
 	});
+  /*app.get('/', function(req, res) {
+  res.sendfile("../../public/index.html#home");
+});*/
+
 
 	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.redirect('../#home');
+		//res.redirect('/');
+    res.sendfile("../../public/index.html#home");
 		
 	});
 
@@ -65,8 +70,8 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
 			passport.authenticate('facebook', {
-				successRedirect : '/',
-				failureRedirect : '/'
+				successRedirect : '/#home',
+				failureRedirect : '/#home'
 			}),function(req,res){
 				res.send(req.user)
 			});

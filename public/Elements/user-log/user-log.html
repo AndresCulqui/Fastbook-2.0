@@ -1,5 +1,5 @@
 
-<polymer-element name="user-log" attributes="user">
+<polymer-element name="user-log" attributes="user photo">
 	<template>
 		<style>
 			:host{
@@ -62,7 +62,7 @@
 		  	<div >
 
 		  	 	
-		  		<img id="photo" src="{{user.photo || photodefault}}" on-tap="{{dialog}}"> 
+		  		<img id="photo" src="{{photo || photodefault}}" on-tap="{{dialog}}"> 
 		  		
 		  	</div>
 		  	<paper-action-dialog id="dialog"  layered="false">
@@ -103,7 +103,7 @@
 		},
 		dialog:function(){
 			this.$.dialog.toggle();
-			console.log(this.user)
+
 		
 
 		},
