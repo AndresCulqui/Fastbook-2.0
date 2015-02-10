@@ -115,7 +115,7 @@
         	</section>
 
 			<section  hash="profile">	
-        		<core-perfil user="{{user}}"></core-perfil>
+        		<core-perfil id="cp" user="{{user}}"></core-perfil>
         	</section>	
 			<section id="detailbook" hash="">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
@@ -150,19 +150,19 @@
 			//console.log(data.user.local)
 			window.localStorage.setItem('token',data.token);
 
-			if(data.user.twitter){
+			/*if(data.user.twitter){
 				that.user=data.user.twitter;
-			}
+			}*/
 			if(data.user.facebook){
 				that.user=data.user.facebook;
 			}
 			/*if(data.user.google){
 				that.user=data.user.google;
-			}*/
+			}
 			if(data.user.local){
 				that.user=data.user.local;
 
-			}
+			}*/
 
 	}	
 	else{
@@ -189,6 +189,14 @@
 
 //-------------------escuchando evento bookdetail en slider-----------------------
 			this.$.ca.addEventListener('bookdetail', function(e) {
+        that.book=e.detail;
+        that.$.detailbook.hash="bookdetail"+that.book._id;
+           that.route="bookdetail"+that.book._id;
+        
+          
+		  	})
+//---------------------------escuchando book detail en biblio-user----------------
+			this.$.cp.addEventListener('bookdetail', function(e) {
         that.book=e.detail;
         that.$.detailbook.hash="bookdetail"+that.book._id;
            that.route="bookdetail"+that.book._id;

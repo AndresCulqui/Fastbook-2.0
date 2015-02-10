@@ -7,6 +7,40 @@
             height: 100%;
             box-sizing: border-box;
 		}
+
+
+
+
+
+      mi-libro /deep/ .detail {
+        visibility: hidden;
+      }
+     mi-libro /deep/ .book1, #book {
+    width: 100px;
+    height: 130px;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+    padding: 1px;
+    }
+    mi-libro /deep/ #book{
+      height: 130px;
+      padding: 0px;
+    }
+        
+    mi-libro /deep/ img {
+          width: 70px;
+          height: 120px;
+          border: 2px solid whitesmoke;
+        }
+         mi-libro /deep/ img:hover {
+          width: 70px;
+          height: 120px;
+      
+        }
+
+
 		section {
 			margin: 20px 40px 20px 0px;
 			background: rgba(8,46,64, 0.6);
@@ -210,10 +244,15 @@
  <section>
     <h3>My Books</h3>
     <div class="content" center-justified layout flex>
-			<template repeat="{{libro in libros}}">
+			<!--<template repeat="{{libro in libros}}">
     	            <div class="libros">
     	              <mi-libro  class="lib" titulo="{{libro.isbn}}" imagen="{{libro.imagen}}" on-tap="{{bookDetail}}"></mi-libro>
     	          	</div> 
+      </template>-->
+     <template repeat="{{libro in libros}}">
+        <div class="libros">
+           <mi-libro book="{{libro}}" on-tap="{{bookDetail}}"></mi-libro>
+       </div> 
       </template>
 		
       
@@ -364,16 +403,17 @@
 			ready: function () {
 				/*this.perfil = {name: 'Carlos Andrés', lastName: 'García Maldonado', email: 'carlos@gmail.com', userName: 'charlie', password: '12345'};*/
 				var that=this;
-        
+        var token=window.localStorage.getItem('token');
+        var url="/books/user/"+token;
 
-				/*$.get("/books",function(data){
-					
-					that.libros=data;
+				$.get(url,function(data){
+					that.libros=data.books;
+       
 			
-			
+			console.log(that.libros+"---------->data");
 							
 
-				});*/
+				});
 			},
 			edit: function() {
 				var edit = this.$.name;
@@ -414,6 +454,10 @@ this.imgg=i.imagen;
 
         
       },
+     bookDetail: function(a,b,c) {
+            this.fire("bookdetail", c.book);
+      },
+
       closeDialog:function(){
              this.$.modify.label="Modify";
          var d=this.$.dialog;

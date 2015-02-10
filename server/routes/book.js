@@ -15,6 +15,7 @@ var requestify = require('requestify');
   var Book = require('../models/book.js');
    var User = require('../models/user.js');
  var id=1;
+   var tokenSecret="ilovefastbook";
   //GET - Return all books in the DB
   findAllBooks = function(req, res) {
         console.log("GET - /books");
@@ -77,7 +78,31 @@ var requestify = require('requestify');
 
 
   //GET - find books by Id_user
+   findByUser = function(req, res) {
+        console.log("GET - /book/:id_user");
+       
+         res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+        res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
+        console.log(req.params.user);
+        var token = jwt.decode(req.params.user, tokenSecret);
 
+
+        Book.find({id_user:token._id}, function(err,books) { 
+
+            if(!books) {
+              res.statusCode = 404;
+             res.send({ error: 'Not found' });
+            }
+            if(!err) {
+             res.send({ status: 'OK', books:books });
+            } else {
+              res.statusCode = 500;
+              console.log('Internal error(%d): %s',res.statusCode,err.message);
+            res.send({ error: 'Server error' });
+            }
+          });
+  };
 
   
   
@@ -91,7 +116,7 @@ var requestify = require('requestify');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
         //----------------------------------------
  
-    var tokenSecret="ilovefastbook";
+  
     var token = jwt.decode(req.body.id_user, tokenSecret);
        console.log(token._id+"---useriddd");
 
@@ -240,6 +265,7 @@ var requestify = require('requestify');
   //Link routes and functions
   app.get('/books', findAllBooks);
   app.get('/book/:isbn', findByIsbn);
+   app.get('/books/user/:user', findByUser);
    app.get('/book/id/:id', findById);
   app.post('/book', addBook);
   app.put('/book/:isbn', updateBook);
