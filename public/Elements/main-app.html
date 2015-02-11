@@ -215,7 +215,14 @@
 			}
 			if(data.user.local){
 				that.user=data.user.local;
-				//that.photo="/uploads/"
+				var url="/upload/"+data.user._id;
+				$.get(url, function(data,error){
+					if(data!=="not found"){
+					then.photo="uploads/"+data;
+				}
+					
+
+				});
 
 			}
 

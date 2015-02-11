@@ -128,7 +128,7 @@
 
 				  			<form enctype="multipart/form-data" action="/upload" 
 							method="post" class="putImages">
-							<input name="token" type="hidden" value="{{token}}">
+							<input name="token" type="hidden" value="{{user}}">
 							   <input name="file" type="file" multiple/>
 							   <input class="button" type="submit" alt="Upload" value="Upload" />
 							</form>
@@ -178,14 +178,15 @@
      
 
      		this.token=window.localStorage.getItem('token');
-     		console.log(this.token);
+     		
 			},
 			uploadPhoto:function(){
 			this.$.dialog.toggle();
 
 			},
 		    loadbooks:function(){
-		          console.log(this.user);
+		       
+
 		        this.$.bu.loadbooks();
 		     
 		      },
