@@ -311,13 +311,14 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
 
      
     </template>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
         Polymer({
 
           
                ready:function(){
                     
-                  //  this.socket = io();
+                  this.socket = io();
                  
                 
                   var that=this;
@@ -407,13 +408,10 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                   var imagen=this.$.timg.src;
                 
                 var that=this;
-                  
-               
-                  //------------apiss/////
 
-                  var token=window.localStorage.getItem('token');
-                 $.post("/book",
-                    {
+                 var token=window.localStorage.getItem('token');
+
+                  var newbook={
                      genre : genre,
                     province : province,
                      isbn : isbn,
@@ -424,13 +422,18 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                     title : title,
                     description : description,
                     imagen:imagen,
-                    value: 0,
+                    value:0,
                     id_user:token
-                    },
+                    };
+               
+                  //------------apiss/////
+
+                 
+                 $.post("/book",newbook,
                     function(data,status){
                       if (status){
                       alert("Book Save¡¡¡¡¡" + status);
-                      //console.log(data);
+                       that.socket.emit('chat message', newbook);
                      
                       location.reload();
                     }else{

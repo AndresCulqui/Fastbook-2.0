@@ -1,6 +1,9 @@
 module.exports = function(app, passport) {
 
-	var jwt = require('jwt-simple');
+	var jwt = require('jwt-simple'),
+	   	formidable = require('formidable'),
+    	util = require('util')
+   		 fs   = require('fs-extra');
 
 // normal routes ===============================================================
 
@@ -28,8 +31,8 @@ module.exports = function(app, passport) {
 	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
-		//res.redirect('/');
-    res.sendfile("../../public/index.html#home");
+		res.redirect('/');
+    
 		
 	});
 
@@ -61,6 +64,84 @@ module.exports = function(app, passport) {
 					res.send(req.user);
 				}
 				);
+
+		//-UPLOAD PHOTO =================================
+		app.get('/upload',function(req,res){
+
+			var fs = require("fs"),
+			    path = require("path");
+
+			var p = "uploads/";
+			fs.readdir(p, function (err, files) {
+			    if (err) {
+			        throw err;
+			    }
+
+			    files.map(function (file) {
+			        return path.join(p, file);
+			    }).filter(function (file) {
+			        return fs.statSync(file).isFile();
+			    }).forEach(function (file) {
+			        console.log("%s (%s)", file, path.extname(file));
+			        res.send(file);
+			    });
+			});
+
+		});
+
+		// process the upload photo
+		app.post('/upload', function (req, res){
+			  var size = req.headers['content-length'];
+			  var maxsize=100000;
+
+			   if (size <= maxsize) {
+			  console.log(size+"------------>size");
+			  console.log(maxsize+"------------>maxsize");
+			  this.token="123456"
+			  var that=this;
+			  
+			  var form = new formidable.IncomingForm();
+			  form.parse(req, function(err, fields, files) {
+			  	that.token=fields.token;
+
+			    res.redirect('/');
+
+			  });
+			    form.on('error', function(message) {
+			        res.status = 413;
+			        res.status(413).send('Upload too large');
+			        res.end();
+			    });
+			  form.on('end', function(fields, files) {
+
+			    /* Temporary location of our uploaded file */
+				console.log(that.token);
+				var tokenSecret="ilovefastbook";
+				 var user = jwt.decode(that.token, tokenSecret);
+
+
+			    var temp_path = this.openedFiles[0].path;
+			    /* The file name of the uploaded file */
+			    var file_name = this.openedFiles[0].name;
+			    /* Location where we want to copy the uploaded file */
+			    var new_location = 'uploads/';
+			   var extension = file_name.substring(file_name.lastIndexOf('.'));
+
+			    fs.copy(temp_path, new_location + user._id+extension, function(err) {  
+			      if (err) {
+			        console.error(err);
+			      } else {
+			        console.log("success!")
+
+			      }
+			    });
+			  });
+			}else{
+			     res.status(413).send("File to large");
+			}
+			});
+
+
 
 	// facebook -------------------------------
 

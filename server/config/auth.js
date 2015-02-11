@@ -18,7 +18,7 @@ module.exports = {
 	'googleAuth' : {
 		'clientID' 		: '768969970497-j73ejp1juep7a0lm1s8tmn284mg9ogmg.apps.googleusercontent.com',
 		'clientSecret' 	: 'yPKHmbBI5zj-hHJ14Y60u5Gk',
-		'callbackURL' 	: 'http://localhost:8080/auth/google/callback'
+		'callbackURL' 	: 'http://fastbook.com:8080/auth/google/callback'
 	}
 
 };

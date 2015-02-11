@@ -93,8 +93,16 @@
 
 		@media (max-width: 600px){
 		    	section { padding: 0px; height: 425px; }
-		    	#slider-container { padding-left: 13px; }
-		}
+		    	.slider-element { width: 150px; }
+		    	#slider-container { padding-left: 0px; }
+		    	.element-green { width: 170px; background-color: transparent;}
+		    	article { }
+		    	mi-libro /deep/ #book { width: 130px; height: 170px;	border: 2px solid yellow; }
+		    	mi-libro /deep/ .book1 { height: auto; border: 0px; margin: 0px;  width: 80px;} 
+		    	mi-libro /deep/ .detail { visibility: hidden; }
+            
+          }
+
 
 		@-moz-keyframes autoSlider {
 		    0% {
@@ -181,6 +189,7 @@
 		    }
 		   
 		}
+
 		</style>
 		<section>
                 <div id="slider-container">

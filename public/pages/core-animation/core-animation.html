@@ -3,12 +3,10 @@
 		<style>
     section{
       width: 70%;
-     // height: 600px;
-     margin: 20px;
+      margin: 20px;
       border:2px white solid;
       border-radius: 7px;
       background: rgba(95,31,7, 0.2);
-      //background-color: beige;
       float: left;
     }
     .book1 {
@@ -18,14 +16,14 @@
       margin: 8px;
       padding: 8px;
       background-color: whitesmoke;
-     border-radius: 7px;
-     border:0.5px solid grey;
+      border-radius: 7px;
+      border:0.5px solid grey;
     }
     #book {
-    width: 100%;
-    height: 250px;
-    margin: 0 auto;
-    border-radius: 7px;
+      width: 100%;
+      height: 250px;
+      margin: 0 auto;
+      border-radius: 7px;
     }
   
     .detail {
@@ -75,17 +73,25 @@
       }
 
       @media (max-width: 600px){
-        section {margin: 0px;}
+        section {
+          margin: 0px;
+          width: 100%;
+        }
         
         .book1 {
-          width: 200px;
+          /*width: 200px;
           height: 360px;
           display: inline-block;
           margin-right: 1%;
           background: none;
-          border: 1px solid rgba(200,200,200,.8);
+          border: 1px solid rgba(200,200,200,.8);*/
         }
         h2 { font-size: 20px; }
+
+        fast-account { 
+          visibility: hidden;
+          display: none;
+        }
       }
 
 
@@ -107,7 +113,7 @@
         <slider-book books="{{response}}"></slider-book>
        </div>
 
-            <fast-account id="fa"></fast-account>
+      <fast-account id="fa"></fast-account>
 
     </div>  
     </section>
@@ -129,7 +135,7 @@ Polymer({
           this.$.ajax.go();
           
 
-
+          console.log(screen.width);
 
 
         },
@@ -143,7 +149,7 @@ Polymer({
         },
         logout:function(){
           this.$.fa.style.display="inline";
-          this.$.section.style.width="70%";
+          //this.$.section.style.width="70%";
         }
         
   

@@ -108,7 +108,7 @@
 
 			<section  hash="buy">
 					
-					<mi-biblioteca></mi-biblioteca>
+					<mi-biblioteca id="mibiblioteca"></mi-biblioteca>
 			</section>
 			<section  hash="sell">
 					
@@ -124,7 +124,7 @@
         	</section>
 
 			<section  hash="profile">	
-        		<core-perfil id="cp" user="{{user}}" hidden></core-perfil>
+        		<core-perfil id="cp" user="{{user}}" photo="{{photo}}"hidden></core-perfil>
         	</section>	
 			<section id="detailbook" hash="">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
@@ -134,15 +134,17 @@
 
 	</div>
     <paper-toast id="toast" class="capsule" text="Book Added¡¡¡" style="padding-right: 60px;">
-      <p id="t"></p>
-      <p id="a"></p>
+      <p id="t">titulo</p>
+      <p id="a">author</p>
     </paper-toast>
+
 
   </core-header-panel>
 
 </core-drawer-panel>
 </template>
-   <script src="/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
 	<script>
 
 
@@ -150,30 +152,32 @@
 //--------------------------escuchando eventos------------------------
 
 	Polymer({
+
 		ready:function() {
 			 var that=this;
        var then=this;
       
       
    //-------------------------socket io--------------------------------
-   
-  
-+                    this.socket.on('chat message', function(msg){
-+                    console.log(msg.title+"     okok");
-+                    
-+                    var toast=that.$.toast;
-+                    console.log(toast);
-+                    var tit=that.$.t;
-+                    var aut=that.$.a;
-+                    $(tit).text("Title: "+msg.title);
-+                    $(aut).text("Author: "+msg.author);
-+               
-+                    toast.show();
-+
-+                    that.$.bookAnimation.ready();
-+                    that.$.buy.ready();
-+                    
-+                  });
+          this.socket=io();
+                    this.socket.on('chat message', function(msg){
+                    console.log(msg+"     okok");
+                    
+                    var toast=that.$.toast;
+                    console.log(toast);
+                    var tit=that.$.t;
+                    var aut=that.$.a;
+                    $(tit).text("Title: "+msg.title);
+                    $(aut).text("Author: "+msg.author);
+               
+                    toast.show();
+                    that.$.mibiblioteca.ready();
+                    that.$.ca.ready();
+          
+                    
+                  });
+ 
+
 //-------------------------------escuchando usuarios locales conectados----------------
 
 	$.get('/profile', function(data,success,error){
@@ -201,16 +205,17 @@
 			}
 			if(data.user.google){
  
-				that.user=data.user.google;
-        var url='http://picasaweb.google.com/data/entry/api/user/'+that.user.id+'?alt=json'
-        $.get(url,function(data){
-          //console.log(data.entry.gphoto$thumbnail.$t);
-          then.photo=data.entry.gphoto$thumbnail.$t;
-          
-        })
+						that.user=data.user.google;
+		        var url='http://picasaweb.google.com/data/entry/api/user/'+that.user.id+'?alt=json'
+		        $.get(url,function(data){
+		          //console.log(data.entry.gphoto$thumbnail.$t);
+		          then.photo=data.entry.gphoto$thumbnail.$t;
+		          
+		        })
 			}
 			if(data.user.local){
 				that.user=data.user.local;
+				//that.photo="/uploads/"
 
 			}
 
