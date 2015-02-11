@@ -134,14 +134,16 @@
 
 	</div>
     <paper-toast id="toast" class="capsule" text="Book Added¡¡¡" style="padding-right: 60px;">
-      <p id="t"></p>
-      <p id="a"></p>
+      <p id="t">titulo</p>
+      <p id="a">author</p>
     </paper-toast>
+
 
   </core-header-panel>
 
 </core-drawer-panel>
 </template>
+  <script src="/socket.io/socket.io.js"></script>
 
 	<script>
 
@@ -150,14 +152,29 @@
 //--------------------------escuchando eventos------------------------
 
 	Polymer({
+
 		ready:function() {
 			 var that=this;
        var then=this;
       
       
    //-------------------------socket io--------------------------------
-   
-  
+          this.socket=io();
+                    this.socket.on('chat message', function(msg){
+                    console.log(msg+"     okok");
+                    
+                    var toast=that.$.toast;
+                    console.log(toast);
+                    var tit=that.$.t;
+                    var aut=that.$.a;
+                    $(tit).text("Title: "+msg.title);
+                    $(aut).text("Author: "+msg.author);
+               
+                    toast.show();
+          
+                    
+                  });
+ 
 
 //-------------------------------escuchando usuarios locales conectados----------------
 
