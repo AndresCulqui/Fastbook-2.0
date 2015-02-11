@@ -28,8 +28,8 @@ module.exports = function(app, passport) {
 	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
-		//res.redirect('/');
-    res.sendfile("../../public/index.html#home");
+		res.redirect('/');
+    
 		
 	});
 

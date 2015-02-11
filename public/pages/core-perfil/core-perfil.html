@@ -1,4 +1,4 @@
-<polymer-element name="core-perfil"  attributes=" pages user">
+<polymer-element name="core-perfil"  attributes=" pages user photo">
 	<template>
 		<style>
         :host {
@@ -114,7 +114,7 @@
 		<section vertical layout center flex>
 			<div horizontal layout center>
 				<div id="avatar" horizontal layout>
-					<img id="photo" src="{{user.photo || photodefault}}">
+					<img id="photo" src="{{photo || photodefault}}">
 					<core-icon class="icon-edit" icon="delete"></core-icon>
 					<core-icon class="icon-edit" icon="create"></core-icon>
 				</div>

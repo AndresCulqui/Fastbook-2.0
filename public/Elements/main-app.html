@@ -124,7 +124,7 @@
         	</section>
 
 			<section  hash="profile">	
-        		<core-perfil id="cp" user="{{user}}" hidden></core-perfil>
+        		<core-perfil id="cp" user="{{user}}" photo="{{photo}}"hidden></core-perfil>
         	</section>	
 			<section id="detailbook" hash="">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
@@ -142,7 +142,7 @@
 
 </core-drawer-panel>
 </template>
-   <script src="/socket.io/socket.io.js"></script>
+
 	<script>
 
 
@@ -158,22 +158,7 @@
    //-------------------------socket io--------------------------------
    
   
-+                    this.socket.on('chat message', function(msg){
-+                    console.log(msg.title+"     okok");
-+                    
-+                    var toast=that.$.toast;
-+                    console.log(toast);
-+                    var tit=that.$.t;
-+                    var aut=that.$.a;
-+                    $(tit).text("Title: "+msg.title);
-+                    $(aut).text("Author: "+msg.author);
-+               
-+                    toast.show();
-+
-+                    that.$.bookAnimation.ready();
-+                    that.$.buy.ready();
-+                    
-+                  });
+
 //-------------------------------escuchando usuarios locales conectados----------------
 
 	$.get('/profile', function(data,success,error){
