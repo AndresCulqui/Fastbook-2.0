@@ -108,7 +108,7 @@
 
 			<section  hash="buy">
 					
-					<mi-biblioteca></mi-biblioteca>
+					<mi-biblioteca id="mibiblioteca"></mi-biblioteca>
 			</section>
 			<section  hash="sell">
 					
@@ -171,6 +171,8 @@
                     $(aut).text("Author: "+msg.author);
                
                     toast.show();
+                    that.$.mibiblioteca.ready();
+                    that.$.ca.ready();
           
                     
                   });
@@ -203,16 +205,24 @@
 			}
 			if(data.user.google){
  
-				that.user=data.user.google;
-        var url='http://picasaweb.google.com/data/entry/api/user/'+that.user.id+'?alt=json'
-        $.get(url,function(data){
-          //console.log(data.entry.gphoto$thumbnail.$t);
-          then.photo=data.entry.gphoto$thumbnail.$t;
-          
-        })
+						that.user=data.user.google;
+		        var url='http://picasaweb.google.com/data/entry/api/user/'+that.user.id+'?alt=json'
+		        $.get(url,function(data){
+		          //console.log(data.entry.gphoto$thumbnail.$t);
+		          then.photo=data.entry.gphoto$thumbnail.$t;
+		          
+		        })
 			}
 			if(data.user.local){
 				that.user=data.user.local;
+				var url="/upload/"+data.user._id;
+				$.get(url, function(data,error){
+					if(data!=="not found"){
+					then.photo="uploads/"+data;
+				}
+					
+
+				});
 
 			}
 

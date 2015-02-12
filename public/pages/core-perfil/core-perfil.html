@@ -96,6 +96,9 @@
         	font-size: 14px;
         	margin: 0px;
         }
+        #upload{
+        	width: 50%;
+        }
         @media (max-width: 800px) {
         	#photo {
         		width: 50px;
@@ -115,8 +118,23 @@
 			<div horizontal layout center>
 				<div id="avatar" horizontal layout>
 					<img id="photo" src="{{photo || photodefault}}">
-					<core-icon class="icon-edit" icon="delete"></core-icon>
-					<core-icon class="icon-edit" icon="create"></core-icon>
+		
+					<core-icon class="icon-edit" icon="create"  on-tap="{{uploadPhoto}}"></core-icon>
+
+					<paper-action-dialog id="dialog"  layered="false">
+						<div style="margin-left:30%">
+					  		<span ><b>Choose a upload photo(max.10Mb)</b></span>
+				  		</div>
+
+				  			<form enctype="multipart/form-data" action="/upload" 
+							method="post" class="putImages">
+							<input name="token" type="hidden" value="{{user}}">
+							   <input name="file" type="file" multiple/>
+							   <input class="button" type="submit" alt="Upload" value="Upload" />
+							</form>
+				
+					</paper-action-dialog>
+
 				</div>
 				<div id="botones" vertical layout>
 					<paper-button label="MODIFY" on-tap="{{edit}}"></paper-button>
@@ -154,23 +172,24 @@
 		Polymer({
 			ready: function () {
 
-     /* $.get('/profile', function(data,success,error){
-        if(data.user){
-          alert("hay usuario")
-        }else{
-          alert("NOOOOOOOOO hay usuario")
-        }
-         });  */
   
       
-				this.photodefault="../../images/user.png";
+			this.photodefault="../../images/user.png";
      
+
+     		this.token=window.localStorage.getItem('token');
+     		
 			},
-      loadbooks:function(){
-          console.log(this.user);
-        this.$.bu.loadbooks();
-     
-      },
+			uploadPhoto:function(){
+			this.$.dialog.toggle();
+
+			},
+		    loadbooks:function(){
+		       
+
+		        this.$.bu.loadbooks();
+		     
+		      },
 			edit: function() {
 				this.$.actu.style.visibility="visible";
 				this.$.name.disabled=false;

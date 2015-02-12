@@ -1,0 +1,378 @@
+<polymer-element name="book-update" attributes="book">
+  <template>
+<!--    <flatiron-director route="{{route}}" autoHash></flatiron-director>-->
+    <style>
+      :host {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+      }
+      #dialog {
+        margin: 20px;
+      }
+      #book {
+        background: white;
+        border-radius: 6px;
+        margin: 20px auto;
+        padding: 20px;
+        width: 800px;
+      }
+      #title {
+        margin: 0px;
+        font-size: 2em;
+      }
+      em {
+        //color: cadetblue;
+        color: grey;
+      }
+      .fields {
+        width: 100%;
+        background: #F1F1F1;
+        padding: 5px;
+        margin-top: 10px;
+        border-radius: 6px;
+      }
+      #description {
+        margin-top: 10px;
+        overflow: auto;
+        text-align: justify;
+      }
+      .buttons {
+        margin: 10px;
+        background: #F1F1F1;
+        color: cadetblue;
+      }
+      #photo {
+        margin-bottom: 10px;
+        text-align: center;
+        width: 30%;
+        float: left;
+      }
+      #data {
+        margin-left: 1%;
+        float: right;
+        width: 69%;
+      }
+      #buttons {
+        text-align: center;
+      }
+      #star {
+        float: right;
+      }
+      @media (max-width: 850px) {
+        #title {
+          font-size: 1.5em;
+        }
+        #book {
+          width: 90%;
+        }
+        #photo {
+          width: 100%;
+          float: none;
+        }
+        #data {
+          margin-left: 0;
+          width: 100%;
+          float: none;
+        }
+        #star {
+          position: relative;
+          float: none;
+        }
+      }
+          select {
+              padding-top:3px;
+              margin: 10px;
+              -webkit-border-radius:4px;
+              -moz-border-radius:4px;
+              border-radius:4px;
+              -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+              -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+              box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+              background: #f8f8f8;
+              color:#888;
+              border:none;
+              outline:none;
+              display: inline-block;
+              -webkit-appearance:none;
+              -moz-appearance:none;
+              appearance:none;
+              cursor:pointer;
+          }
+          paper-input-decorator[focused] /deep/ .floated-label .label-text, paper-input-decorator[focused] /deep/ .error {
+            /* floating label, error message nad error icon color when the input is invalid and focused */
+            color: cadetblue;
+          }
+          label {
+            float: left;
+          }
+    </style>
+      <section id="dialog">
+        <div id="book">
+          
+            <paper-input-decorator label="{{book.title}}" floatinglabel="{{book.title}}">
+              <input id="title" is="core-input" disabled placeholder="{{book.title}}" aria-label="label">
+            </paper-input-decorator>
+         
+            <div>
+                <div id="photo">
+                  <div id="buttons" layout horizontal>
+                    <paper-button class="buttons" on-tap="{{buy}}">Buy</paper-button>
+                    <paper-button class="buttons" on-tap="{{favorite}}">Favorite</paper-button>
+                  </div>
+                  <a href="{{book.imagen}}">
+                    <img id="imagen" src="{{book.imagen}}" title="{{book.title}}">
+                  </a>
+                </div>
+
+                <div id="data" layout vertica>
+                  <paper-input-decorator label="Author: {{book.author}}" floatinglabel="{{book.author}}">
+                    <input id="author" disabled is="core-input" class="input" placeholder="{{book.author}}" aria-label="label">
+                  </paper-input-decorator>
+                  
+                  <paper-input-decorator label="Editorial: {{book.editorial}}" floatinglabel="{{book.editorial}}">
+                    <input id="editorial" disabled is="core-input" class="input" placeholder="{{book.editorial}}" aria-label="label">
+                  </paper-input-decorator>
+                  
+                  <paper-input-decorator label="ISBN: {{book.isbn}}" floatinglabel="{{book.isbn}}">
+                    <input id="isbn" disabled is="core-input" class="input" placeholder="{{book.isbn}}" aria-label="label">
+                  </paper-input-decorator>
+                  
+                  <paper-input-decorator label="Precio: {{book.precio}}" floatinglabel="{{book.precio}}">
+                    <input id="precio" disabled is="core-input" class="input" placeholder="{{book.precio}}" aria-label="label">
+                  </paper-input-decorator>
+
+                 <label>
+                 <em>Category:</em>
+                  <select id="category" disabled class="input">
+                    <option value="{{book.category}}">{{book.category}}</option>          
+                    <option value="primaria">primaria </option>
+                    <option value="secundaria"> secundaria</option>
+                    <option value="bachillerato"> bachillerato</option>
+                    <option value="universidad"> universidad</option>
+                    <option value="formacion profesional"> formacion profesional</option>
+                    <option value="oposiciones"> oposiciones</option>
+                    <option value="lectura">lectura</option>
+                  </select>
+                   </label>
+                  
+                  <label>
+                    <em>Province:</em>
+                  <select id="province" disabled class="input">
+                  <option value="{{book.province}}">{{book.province}}</option>       
+                  <option> A Coruña</option>
+                  <option> Alicante</option>
+                  <option>Albacete</option>
+                  <option>Almería</option>
+                  <option>Araba</option>
+                  <option >Asturias</option>
+                  <option>Ávila</option>
+                  <option >Badajoz</option>
+                  <option >Balears</option>
+                  <option>Barcelona</option>
+                  <option >Bizkaia</option>
+                  <option >Burgos</option>
+                  <option >Cáceres</option>
+                  <option >Cádiz</option>
+                  <option >Cantabria</option>
+                  <option >Castelló</option>
+                  <option >Ceuta</option>
+                  <option >Ciudad Real</option>
+                  <option >Córdoba</option>
+                  <option>Cuenca</option>
+                  <option >Girona</option>
+                  <option>Granada</option>
+                  <option >Guadalajara</option>
+                  <option >Guipuzkoa</option>
+                  <option >Huelva</option>
+                  <option>Huesca</option>
+                  <option >Jaén</option>
+                  <option>La Rioja</option>
+                  <option >Las Palmas</option>
+                  <option >León</option>
+                  <option >Lleida</option>
+                  <option >Lugo</option>
+                  <option>Madrid</option>
+                  <option >Málaga</option>
+                  <option >Melilla</option>
+                  <option>Murcia</option>
+                  <option >Navarra</option>
+                  <option >Ourense</option>
+                  <option >Palencia</option>
+                  <option >Pontevedra</option>
+                  <option >S.C. Tenerife</option>
+                  <option >Salamanca</option>
+                  <option>Segovia</option>
+                  <option >Sevilla</option>
+                  <option >Soria</option>
+                  <option >Tarragona</option>
+                  <option>Teruel</option>
+                  <option >Toledo</option>
+                  <option >Valencia</option>
+                  <option >Valladolid</option>
+                  <option >Zamora</option>
+                  <option >Zaragoza</option> 
+              </select>
+                    </label>
+                  
+                  <label>
+                    <em>Status:</em>
+                  <select id="status" disabled class="input"> 
+                     <option value="{{book.status}}">{{book.status}}</option>      
+                    <option >Muy malo</option>
+                    <option>Malo</option>
+                    <option>Normal</option>
+                    <option>Bueno</option>
+                    <option >Muy bueno</option>
+                </select>
+                    </label>
+                
+                  
+
+                </div>
+             </div>
+            <div id="des">
+              <textarea disabled rows="4" cols="30" class="input fields" id="description">{{book.description}}</textarea>
+            </div>  
+          <paper-button class="buttons" dismissive on-click="{{closeDialog}}">Close</paper-button>
+          
+          <paper-button id="modify" class="buttons" on-click="{{modify}}">Modify</paper-button>
+          <paper-button id="delete" class="buttons" on-click="{{delete}}">Delete</paper-button>
+          <paper-button disabled hidden id="save" class="buttons" on-click="{{save}}">Save</paper-button>
+          </div>retertret
+      </section>
+    <core-ajax id="ajax" handleAs="json"></core-ajax>
+	</template>
+	<script>
+		Polymer({
+      ready: function() {
+        this.book = {
+          title: "Manolito gafotas",
+          imagen: "http://books.google.com/books/content?id=lv5VtwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          author: "Mariano el chocolatero",
+          editorial: "Editex",
+          isbn: "983274829375",
+          category: "Infantil",
+          precio: "23",
+          description: "Lorem spkej efojfljkqwf qpwojf",
+          province: "Madrid",
+          status: "Bueno"
+          
+        };
+        
+      },
+      fieldsEnabled: function() {
+        var deco = this.shadowRoot.querySelectorAll('paper-input-decorator /deep/ #underline > div.unfocused-underline');
+        for(var i = 0; i < deco.length; i++) {
+          deco[i].style.background="cadetblue";
+          deco[i].style.height="3px";
+        }
+        
+        var deco_under = this.shadowRoot.querySelectorAll('paper-input-decorator /deep/ #focusedUnderline');
+        for(var k = 0; k < deco_under.length; k++) {
+          deco_under[k].style.background="cadetblue";
+        }
+        var inn=this.shadowRoot.querySelectorAll('input');
+        
+        for(var i=0;i< inn.length;i++){
+          inn[i].disabled=false;
+        }
+        this.$.save.disabled=false;
+        this.$.save.hidden=false;
+        
+              
+        var category = this.$.category;
+        category.disabled = false;
+        this.$.category.style.color="cadetblue";
+        
+        var description = this.$.description;
+        description.disabled = false;
+        description.style.color= "cadetblue";
+        
+        var province = this.$.province;
+        province.disabled = false;
+        province.style.color= "cadetblue";
+        
+        var status = this.$.status;
+        status.disabled = false;
+        status.style.color= "cadetblue";
+      },
+      fieldsDisabled: function() {
+        
+        var deco = this.shadowRoot.querySelectorAll('paper-input-decorator /deep/ #underline > div.unfocused-underline');
+        for(var i = 0; i < deco.length; i++) {
+          deco[i].style.background="grey";
+          deco[i].style.height="1px";
+        }
+        
+        var deco_under = this.shadowRoot.querySelectorAll('paper-input-decorator /deep/ #focusedUnderline');
+        for(var k = 0; k < deco_under.length; k++) {
+          deco_under[k].style.background="grey";
+        }
+            
+        var inn=this.shadowRoot.querySelectorAll('input');
+        
+        for(var i=0;i< inn.length;i++){
+          inn[i].disabled=true;
+        }
+        var category = this.$.category;
+        category.disabled = true;
+        this.$.category.style.color="grey";
+        
+        var description = this.$.description;
+        description.disabled = true;
+        description.style.color= "grey";
+        
+        var province = this.$.province;
+        province.disabled = true;
+        province.style.color= "grey";
+        
+        var status = this.$.status;
+        status.disabled = true;
+        status.style.color= "grey";
+      },
+      closeDialog: function() {
+        this.fire("closedialog");
+      },
+      modify: function() {
+        this.fieldsEnabled();
+        
+      },
+      save: function() {
+        var book={
+          title: this.$.title.value,
+          author: this.$.author.value,
+          isbn: this.$.isbn.value,
+          publisher: this.$.editorial.value,
+          price: this.$.precio.value,
+          description: this.$.description.value,
+          genre: this.$.category.value,
+          province: this.$.province.value,
+          status: this.$.status.value
+        };
+        
+        if(!this.$.title.value) {
+          book.title = this.book.title;
+        }
+        if(!this.$.author.value) {
+          book.author = this.book.author;
+        }
+        if(!this.$.isbn.value) {
+          book.isbn = this.book.isbn;
+        }
+        if(!this.$.editorial.value) {
+          book.publisher = this.book.editorial;
+        }
+        if(!this.$.precio.value) {
+          book.price = this.book.precio;
+        }
+        
+        this.fieldsDisabled();
+        
+        
+        console.log(book);
+      }
+		});
+	</script>
+</polymer-element>

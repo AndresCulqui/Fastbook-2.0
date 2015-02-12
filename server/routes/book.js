@@ -79,7 +79,7 @@ var requestify = require('requestify');
 
   //GET - find books by Id_user
    findByUser = function(req, res) {
-        console.log("GET - /book/:id_user");
+        console.log("GET - /user/:id_user");
        
          res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
@@ -104,9 +104,31 @@ var requestify = require('requestify');
           });
   };
 
+
+ //GET - find book by Id_user//////////////////////////////////////////////////
+findBookByIdUser = function(req, res) {
+        console.log("GET - /book/:id_book/:id_user");
+        var book = req.params.id_book;
+        var user = jwt.decode(req.params.id_user, tokenSecret);
+        
+      Book.find({_id:ObjectId(book), id_user:user._id}, function(err, book) {
+      if(!book) {
+        res.statusCode = 404;
+        return res.send({ error: 'Not found' });
+      }
+      if(!err) {
+        // Send { status:OK, tshirt { tshirt values }}
+        return res.send({ status: 'OK', book:book });
+        // Send {tshirt values}
+        // return res.send(tshirt);
+      } else {
+        res.statusCode = 500;
+        console.log('Internal error(%d): %s',res.statusCode,err.message);
+        return res.send({ error: 'Server error' });
+      }
+    });
+  };
   
-  
- 
   //POST - Insert a new Book in the DB
   addBook = function(req, res) {
         console.log('POST - /book');
@@ -266,6 +288,7 @@ var requestify = require('requestify');
   app.get('/books', findAllBooks);
   app.get('/book/:isbn', findByIsbn);
    app.get('/books/user/:user', findByUser);
+   app.get('/book/book/:id_book/:id_user', findBookByIdUser);
    app.get('/book/id/:id', findById);
   app.post('/book', addBook);
   app.put('/book/:isbn', updateBook);

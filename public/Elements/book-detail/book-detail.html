@@ -94,6 +94,7 @@
       <section id="dialog">
         <div id="book">
             <div id="title">{{book.title}}</div>
+            <paper-button id="bookUpdate" class="buttons" on-tap="{{bookUpdate}}">Modify</paper-button>
             <div id="star"><star-rate id="rate" value="{{book.value}}" on-tap="{{starrate}}"></star-rate></div>
             <div>
                 <div id="photo">
@@ -127,6 +128,20 @@
       ready: function() {
         var that=this;
         
+          $.get('/profile', function(data,success,error){
+                if(data.user){
+                    console.log("user en book detail      "+data.user);
+                    that.$.bookUpdate.hidden=false;
+                }	
+                else{
+                    console.log(" no hay user en book detail");
+                    that.$.bookUpdate.hidden=true;
+
+                }
+          })
+        
+        
+        
         if(/bookdetail/.test(this.miroute)) {
           var id = this.miroute.slice(10);
           var ajax = this.$.ajax;
@@ -141,6 +156,9 @@
         that.book.value=parseInt(that.book.value*100/10);
 
         });
+      },
+      bookUpdate: function() {
+        
       },
       closeDialog: function() {
         this.fire("closedialog");
