@@ -1,4 +1,4 @@
-<polymer-element name="mobile-menu" attributes=" pages user">
+<polymer-element name="mobile-menu" attributes=" pages user photo">
 <template>
 	<style>
 		#menu {
@@ -51,7 +51,7 @@
 	
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
-			<img id="photo" src="{{user.photo || photodefault}}">
+			<img id="photo" src="{{photo || photodefault}}">
 			<core-item class="name" id="name" label="{{user.displayName || user.name}}"></core-item>
       		<core-item class="name" id="name" label="{{user.email}}"></core-item>
 		</div>
@@ -76,8 +76,8 @@
 
     Polymer({
     	ready:function(){
-    		this.photodefault=    '../../images/user.png';
-
+    		//this.photodefault=    '../../images/user.png';
+    		//console.log('user---->'+this.user);
 
     },
     tapMenu: function(e,detail,sender){
