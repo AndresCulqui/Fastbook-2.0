@@ -147,7 +147,9 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
             
             
 
-         
+             <paper-input-decorator label="ISBN" floatingLabel error="ISBN is required!" id="decoisbn" >
+               <input is="core-input" id="isbn" on-blur="{{validateIsbn}}" required/>
+             </paper-input-decorator>
             
              <paper-input-decorator label="Title" floatingLabel error="Title is required!">
               <input is="core-input" id="titulo" on-blur="{{valid}}" required/>
@@ -156,12 +158,6 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
               <paper-input-decorator label="Author" floatingLabel error="Author is required!">
               <input is="core-input" id="autor" on-blur="{{valid}}" required/>
              </paper-input-decorator> 
-
-
-              
-             <paper-input-decorator label="ISBN" floatingLabel error="ISBN is required!" id="decoisbn" >
-               <input is="core-input" id="isbn" on-blur="{{validateIsbn}}" required/>
-             </paper-input-decorator>
               
           
              <!-- <paper-button id="butt" on-tap="{{validateIsbn}}">Comprobar ISBN</paper-button>-->
@@ -366,14 +362,17 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                        
                        var titulo=result.items[0].volumeInfo.title;
                        var autor=result.items[0].volumeInfo.authors;
+                       var editorial=result.items[0].volumeInfo.publisher;
                       var isbn=result.items[0].volumeInfo.industryIdentifiers[0].identifier;  
                       that.imagen=result.items[0].volumeInfo.imageLinks.thumbnail;
 
                        // Set the table td text
-                       that.$.tisbn.value="El ISBN   "+isbn+"  corresponde a:";
-                       that.$.ttitulo.value="Titulo:   "+titulo;
+                      console.log(titulo+"---"+autor)
                       
                        that.$.timg.src=that.imagen;
+                       that.$.titulo.value=titulo;
+                       that.$.autor.value=autor;
+                       that.$.editorial.value=editorial;
                      
                      });
                      }else{

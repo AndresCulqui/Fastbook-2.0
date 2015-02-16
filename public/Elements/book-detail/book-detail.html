@@ -95,6 +95,20 @@
         <div id="book">
             <div id="title">{{book.title}}</div>
             <paper-button id="bookUpdate" class="buttons" on-tap="{{bookUpdate}}">Modify</paper-button>
+             <paper-button id="qrbutton" class="buttons" on-tap="{{dialog}}">QR Code</paper-button>
+             <!-- //////////////// dialog qr code  -->
+              <paper-action-dialog id="dialog"  layered="false">         
+                <div>     
+                <img id="imgQr">
+                  <paper-button class="buttons" on-tap="{{closeDialog}}">Return</paper-button>
+                </div>
+              </paper-action-dialog>
+       
+
+
+
+
+             <!-- //////////////////////////////////// -->
             <div id="star"><star-rate id="rate" value="{{book.value}}" on-tap="{{starrate}}"></star-rate></div>
             <div>
                 <div id="photo">
@@ -160,8 +174,14 @@
       bookUpdate: function() {
         
       },
+      dialog:function(){  
+        var url=location.href;
+        console.log(url);
+        this.$.imgQr.src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl="+url+"&source=qrcode";
+      this.$.dialog.toggle();
+      },
       closeDialog: function() {
-        this.fire("closedialog");
+        this.$.dialog.toggle();
       },
       starrate:function(a,b,c){
      

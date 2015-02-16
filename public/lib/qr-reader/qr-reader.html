@@ -1,0 +1,42 @@
+      <script type="text/javascript" src="llqrcode.js"></script>
+      <script type="text/javascript" src="webqr.js"></script>
+      <polymer-element name="qr-reader">
+      <template>
+      <style type="text/css">
+        #qr_canvas{
+            display:none;
+        }
+        #outdiv
+        {
+            width:320px;
+            height:240px;
+         border: solid;
+          border-width: 3px 3px 3px 3px;
+        }
+        #result{
+            border: solid;
+          border-width: 1px 1px 1px 1px;
+          width:320px;
+        }
+      </style>
+
+      <div id="mainbody">
+        <div id="outdiv">
+        </div>
+      <div id="result"></div>
+
+      </div>
+
+      <canvas id="qr_canvas" width="800" height="600"></canvas>
+      <script type="text/javascript">load();</script>
+
+
+      </template>
+      <script>
+        Polymer({
+          ready: function() {
+            
+          }
+        });
+      </script>
+      </polymer-element>
