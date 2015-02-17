@@ -39,12 +39,13 @@
           margin-top: 20px;
       }
 
-      p{
+      #title{
         color: white;
         font-family: Courier;
         font-weight: bold;
         text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
         text-align: center;
+        margin: 5px;
       }
       .accept {
           margin-bottom: 10px;
@@ -79,8 +80,6 @@
       }
       paper-tab /deep/ #ink { color: #F76700; }
       paper-tabs /deep/ #selectionBar { background-color: #F76700; }
-
-      #sign { border-right: 1px solid white; }
 
       #core_pages1, #core_pages2 {
           background-image: url('../images/form.png');
@@ -193,7 +192,7 @@
               margin-right: 0px;
           }
           a { font-size: 10px;}
-          p { font-size: 15px;}
+          #title { font-size: 15px;}
           .button {
               width: 50px;
               height: 50px;
@@ -261,7 +260,7 @@
                    
                     <paper-item noink><a href="http://www.google.es" layout horizontal center>Lost your Password?</a> </paper-item>
 
-                    <p>Connect with Social Login </p>
+                    <p id="title">Connect with Social Login </p>
                                 
                     <div class="login-social" vertical layout center>
                        <a href="../../auth/twitter"><paper-button id="twitter" class="button" on-tap="{{social_login}}">
@@ -270,11 +269,6 @@
                        </paper-button> </a>
                       <a href="../../auth/google"><paper-button id="google" class="button" on-tap="{{social_login}}">
                        </paper-button> </a>
-                
-                      
-              
-                     
-         
                     </div>
 
                   </div>
