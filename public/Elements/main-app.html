@@ -294,6 +294,13 @@
 		  	this.$.momenu.addEventListener('profile', function() {
 		    	that.route="profile";
 		  	});
+
+		  	//-------------------- escuchando mobile menu to account ---------------------
+		  	this.$.momenu.addEventListener('account', function() {
+		    	that.route="account";
+		    	that.$.fa.loadlogin();
+		  	});
+
 		  	//-------------------escuchando evento menu principal-----------------------
 			this.$.mh.addEventListener('mainMenu', function(e) {
 		    	that.$.ca.ready();

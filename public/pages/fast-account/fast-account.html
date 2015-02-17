@@ -11,18 +11,12 @@
       core-animated-pages {
           height: 500px;
       }
-      #core_pages {
-          width: 100%;
-          height: 100%;
-          margin-top: -50px;
-          position: absolute;
-      }
+  
       #section{ margin: 20px; width: 40%;}
       #button_enter{
           background: rgba(95,31,7, 0.2);
           border: 2px solid white;
           border-radius: 10px;
-          
           padding: 3%;
           margin-top: -20px;
       }
@@ -39,10 +33,6 @@
           font-family: Courier;
           font-weight: bold;
           text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
-      }
-
-      label {
-          font-weight: bold;
           font-family: Verdana;   
           clear: both;
           text-align: left;
@@ -198,8 +188,8 @@
           #core_icon { margin-top: 8%; margin-bottom: 8%;}
           .accept {
               width: 100%;
-              height: 25px;
-              font-size: 10px;
+              height: 30px;
+              font-size: 12px;
               margin-right: 0px;
           }
           a { font-size: 10px;}
@@ -215,7 +205,7 @@
           }
           #facebook{ 
             width: 50px;
-            margin-right: 200px;
+            
             background-image: url('../../images/facebook.png'); 
             background-size: 580% 100%;
           }
@@ -224,10 +214,10 @@
             background-size: 580% 100%;
             margin-right: 200px;
           }
-          #signgoogle{ 
+          #google{ 
             background-image: url('../../images/google.png'); 
             background-size: 580% 100%;
-            margin-right: 200px;
+            margin-left: 200px;
           }
           h1 {
             margin-bottom: 15px;
@@ -353,6 +343,13 @@
           //--------->escuchando si se loggea con google----------->
           var that=this;
         
+        },
+
+        loadlogin: function(){
+          this.$.section.style.marginTop="10%";
+          this.$.section.style.width="167%";
+          this.$.cap.style.height="370px";
+
         },
         social_login:function(a,b,c){
          

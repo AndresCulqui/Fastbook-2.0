@@ -52,7 +52,7 @@
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
 			<img id="photo" src="{{photo || photodefault}}">
-			<core-item id="messagelog" label="create perfil or log in"></core-item>
+			<core-item id="messagelog" on-tap="{{login}}" label="Create Perfil or Log in"></core-item>
 			<core-item class="name" id="name" label="{{user.displayName || user.name}}"></core-item>
       		<core-item class="name" id="name" label="{{user.email}}"></core-item>
 		</div>
@@ -98,7 +98,9 @@
 	    			that.photodefault= '../../images/user.png';
 	    			that.$.menu.style.backgroundImage = "url('../../images/font-menu.png')";
 	    			that.$.menu.style.backgroundSize = "100% 100%";
-	    			
+	    			message.style.color="#F76700";
+	    			message.style.textShadow="none";
+					message.style.cursor= "pointer";    			
 				}
 			})
   
@@ -106,6 +108,10 @@
 
 	    profile: function(){
 	    	this.fire('profile');
+	    },
+
+	    login:function(){
+	    	this.fire('account');
 	    },
 	    
 	    tapMenu: function(e,detail,sender){
