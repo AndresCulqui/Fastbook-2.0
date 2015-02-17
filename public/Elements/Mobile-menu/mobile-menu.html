@@ -52,6 +52,7 @@
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
 			<img id="photo" src="{{photo || photodefault}}">
+			<core-item id="message" label="create perfil or log in"></core-item>
 			<core-item class="name" id="name" label="{{user.displayName || user.name}}"></core-item>
       		<core-item class="name" id="name" label="{{user.email}}"></core-item>
 		</div>
@@ -65,7 +66,9 @@
 
 	        </template>
 
+	        <core-item class="submenu" id="account" icon="account-circle" label="Account"></core-item>
           	<paper-progress></paper-progress>
+
           	<core-item class="submenu" label="Help and Feedback" icon=""></core-item>
           	<core-item class="submenu" label="About FastBook" icon=""></core-item>
 		</core-menu>
@@ -77,7 +80,18 @@
     Polymer({
     	ready:function(){
     		//this.photodefault=    '../../images/user.png';
-    		//console.log('user---->'+this.user);
+    		//console.log(this.$.account.hidden);
+    		if (!this.user){
+    			this.$.account.hidden=true;
+    			this.photodefault= '../../images/user.png';
+    			this.$.menu.style.backgroundImage = "url('../../images/banner.jpg')";
+    			this.$.menu.style.backgroundSize = "100% 100%";
+    		}
+    		else {
+    			this.$.message.hidden=true;
+    			this.$.account.hidden=false;
+    		}
+    		
 
     },
     tapMenu: function(e,detail,sender){
