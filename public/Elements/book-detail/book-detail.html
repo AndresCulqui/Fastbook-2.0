@@ -8,26 +8,39 @@
           height: 100%;
           box-sizing: border-box;
       }
+      #containt { 
+        background: rgba(8,46,64, 0.6);
+        border: 3px solid dimgray;
+        border-radius: 10px;
+        height: 700px;
+        padding-left: 15%;
+        padding-right: 15%;
+        border: 5px solid yellow;
+
+      }
       #dialog {
         margin: 20px;
-        border:2px solid green;
+        //border:2px solid green;
       }
       #email{
-        width:250px;
-        border:2px solid;
-        background: white;
-        border-radius: 6px;
-        padding: 20px;
-        margin-left:1.8%;
+        width: 20%;
+        height: 650px;
+        margin-left: 60%;
+        padding-left: 4%;
+        padding-right: 4%;
+        border:2px solid green;
+        background-color: white;
+      
       }
       #book {
-        background: white;
-        border-radius: 6px;
-       margin-left:20% ;
-        padding: 20px;
-        width: 500px;
+        width: 50%;
+        height: auto;
+        margin-right: 2%;
+        padding-left: 4%;
+        padding-right: 4%;
+        float: left;
         border:2px solid red;
-      
+        background-color: white;
  
       }
       #title {
@@ -106,7 +119,7 @@
 
     
       <section id="dialog">
-       <div id="containt" horizontal layout  > 
+       <div id="containt" > 
         <div id="book">
           
             <div id="title">{{book.title}}</div>

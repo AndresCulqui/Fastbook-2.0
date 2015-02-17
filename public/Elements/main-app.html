@@ -64,6 +64,9 @@
 
 				
 			}
+      #userLog{
+        visibility:hidden;
+      }
 
     }
 
@@ -85,7 +88,7 @@
 <core-header-panel  main  mode="waterfall">
 <core-toolbar>
   <my-head id="mh" lang="en" mtitle="Facebook"></my-head>
-  	<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button>
+  	<!--<core-icon-button id="cib"  src="http://tediselmedical.com/wp-content/uploads/2013/11/Spain.png"icon="menu" on-tap=" {{languaje}} " id="languaje" > </core-icon-button> -->
     <core-icon-button hidden on-tap="{{ tapxploit}}" src="http://lh3.googleusercontent.com/-OrI1DUdm480/T7y_kOxudFI/AAAAAAAAEgE/rp20hOY3H7c/s800/google-plus-share-button-screenshot.png"></core-icon-button>
     <user-log id="userLog" user="{{user}}" photo="{{photo}}"  flex></user-log>
  </core-toolbar> 
@@ -293,14 +296,20 @@
 		  	//-------------------- escuchando mobile menu profile ---------------------
 		  	this.$.momenu.addEventListener('profile', function() {
 		    	that.route="profile";
+          	that.$.cdp.closeDrawer();
 		  	});
 
 		  	//-------------------- escuchando mobile menu to account ---------------------
 		  	this.$.momenu.addEventListener('account', function() {
 		    	that.route="account";
 		    	that.$.fa.loadlogin();
+          	that.$.cdp.closeDrawer();
 		  	});
-
+        //--------------------------  escuchando mobile menu to logout-------------------------
+		  	this.$.momenu.addEventListener('logout', function() {
+		    	that.$.userLog.Logout();
+          
+		  	});
 		  	//-------------------escuchando evento menu principal-----------------------
 			this.$.mh.addEventListener('mainMenu', function(e) {
 		    	that.$.ca.ready();

@@ -66,7 +66,9 @@
 
           	<core-item class="submenu" label="Help and Feedback" icon=""></core-item>
           	<core-item class="submenu" label="About FastBook" icon=""></core-item>
-		</core-menu>
+            	<paper-progress></paper-progress>
+            <core-item class="submenu" on-tap="{{logOut}}" id="logout" icon="account-circle" label="Logout" ></core-item>
+          	
 	
 
 </template>
@@ -87,9 +89,11 @@
 	    			that.$.menu.style.backgroundImage = "url('../../images/banner.jpg')";
 	    			that.$.menu.style.backgroundSize = "100% 100%";
 	    			item.style.cursor= "pointer";
+            that.$.logout.hidden=false;
 				}
 				else {
 				    item.hidden=true;
+            that.$.logout.hidden=true;
 	    			that.photodefault= '../../images/user.png';
 	    			that.$.menu.style.backgroundImage = "url('../../images/font-menu.png')";
 	    			that.$.menu.style.backgroundSize = "100% 100%";
@@ -103,11 +107,16 @@
 
 	    profile: function(){
 	    	this.fire('profile');
+       
 	    },
 
 	    login:function(){
 	    	this.fire('account');
+  
 	    },
+      logOut:function(){
+      this.fire('logout');
+      },
 	    
 	    tapMenu: function(e,detail,sender){
 	        
