@@ -75,7 +75,7 @@
 	<core-drawer-panel id="cdp"responsiveWidth="2000px" >
 	
 	<div drawer id="drawer" >
-	<mobile-menu id="momenu"pages="{{pages}}" user="{{user}}"></mobile-menu>
+	<mobile-menu id="momenu"  pages="{{pages}}" user="{{user}}" photo="{{photo}}"></mobile-menu>
 
 	</div>
 	   
@@ -280,6 +280,11 @@
 		//-------------------escuchando evento boton menu left-----------------------
 			this.$.mh.addEventListener('actionMenu', function() {
 		    	that.$.cdp.togglePanel();
+		  	});
+
+		  	//-------------------- escuchando mobile menu profile ---------------------
+		  	this.$.momenu.addEventListener('profile', function() {
+		    	that.route="profile";
 		  	});
 		  	//-------------------escuchando evento menu principal-----------------------
 			this.$.mh.addEventListener('mainMenu', function(e) {
