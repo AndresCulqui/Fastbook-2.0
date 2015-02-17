@@ -132,7 +132,7 @@
             <div id="des">
             <p class="fields" id="description"><em>Description:</em> {{book.description}}</p>
             </div>  
-          <paper-button class="buttons" dismissive on-click="{{closeDialog}}">Close</paper-button>
+          <paper-button class="buttons" dismissive on-click="{{close}}">Close</paper-button>
           </div>
       </section>
     <core-ajax id="ajax" handleAs="json"></core-ajax>
@@ -173,6 +173,9 @@
       },
       bookUpdate: function() {
         
+      },
+      close:function(){
+        window.history.back();
       },
       dialog:function(){  
         var url=location.href;

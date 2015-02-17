@@ -131,22 +131,22 @@
                     <input id="author" disabled is="core-input" class="input" placeholder="{{book.author}}" aria-label="label">
                   </paper-input-decorator>
                   
-                  <paper-input-decorator label="Editorial: {{book.editorial}}" floatinglabel="{{book.editorial}}">
-                    <input id="editorial" disabled is="core-input" class="input" placeholder="{{book.editorial}}" aria-label="label">
+                  <paper-input-decorator label="Editorial: {{book.publisher}}" floatinglabel="{{book.publisher}}">
+                    <input id="editorial" disabled is="core-input" class="input" placeholder="{{book.publisher}}" aria-label="label">
                   </paper-input-decorator>
                   
                   <paper-input-decorator label="ISBN: {{book.isbn}}" floatinglabel="{{book.isbn}}">
                     <input id="isbn" disabled is="core-input" class="input" placeholder="{{book.isbn}}" aria-label="label">
                   </paper-input-decorator>
                   
-                  <paper-input-decorator label="Precio: {{book.precio}}" floatinglabel="{{book.precio}}">
-                    <input id="precio" disabled is="core-input" class="input" placeholder="{{book.precio}}" aria-label="label">
+                  <paper-input-decorator label="Precio: {{book.price}}" floatinglabel="{{book.price}}">
+                    <input id="precio" disabled is="core-input" class="input" placeholder="{{book.price}}" aria-label="label">
                   </paper-input-decorator>
 
                  <label>
                  <em>Category:</em>
                   <select id="category" disabled class="input">
-                    <option value="{{book.category}}">{{book.category}}</option>          
+                    <option value="{{book.genre}}">{{book.genre}}</option>          
                     <option value="primaria">primaria </option>
                     <option value="secundaria"> secundaria</option>
                     <option value="bachillerato"> bachillerato</option>
@@ -247,19 +247,6 @@
 	<script>
 		Polymer({
       ready: function() {
-        this.book = {
-          title: "Manolito gafotas",
-          imagen: "http://books.google.com/books/content?id=lv5VtwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-          author: "Mariano el chocolatero",
-          editorial: "Editex",
-          isbn: "983274829375",
-          category: "Infantil",
-          precio: "23",
-          description: "Lorem spkej efojfljkqwf qpwojf",
-          province: "Madrid",
-          status: "Bueno"
-          
-        };
         
       },
       fieldsEnabled: function() {
@@ -340,7 +327,9 @@
         
       },
       save: function() {
+        console.log(this.book);
         var book={
+          _id:this.book._id,
           title: this.$.title.value,
           author: this.$.author.value,
           isbn: this.$.isbn.value,
@@ -349,7 +338,12 @@
           description: this.$.description.value,
           genre: this.$.category.value,
           province: this.$.province.value,
-          status: this.$.status.value
+          status: this.$.status.value,
+          imagen:this.book.imagen,
+          value:this.book.value,
+          id_user:this.book.id_user,
+          token:window.localStorage.getItem('token')
+          
         };
         
         if(!this.$.title.value) {
@@ -367,11 +361,72 @@
         if(!this.$.precio.value) {
           book.price = this.book.precio;
         }
+        if(!this.$.description.value) {
+          book.description = this.book.description;
+        }
         
+        if(book){
         this.fieldsDisabled();
-        
+      }
         
         console.log(book);
+        this.update(book);
+      },
+      update:function(book){
+         var  jbook=JSON.stringify(book);
+         var token=window.localStorage.getItem('token');
+
+       var url="/book/"+this.book._id;
+      
+        var that=this;
+           $.ajax({
+                type: "PUT",
+                url: url,
+                data: jbook,
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                 
+                    alert("Book Update¡¡¡");
+                    window.history.back();
+                    
+  
+   
+            
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseText);
+                    
+                }
+            });
+        
+      
+      },
+      delete:function(){
+        var that=this;
+      var token=window.localStorage.getItem('token');
+      var answer = confirm("Are you sure?");
+        if (answer){
+
+          var book="/book/"+this.book._id+"/"+token;
+
+
+                      $.ajax({
+                      type: 'DELETE',
+                      url: book,
+                       success: function() {
+                           alert("Book Deleted! ");
+                           that.fire('reload');
+                           window.history.back();
+                           
+                      }
+                  });
+
+
+        }
+        else{
+
+        }
+        
       }
 		});
 	</script>

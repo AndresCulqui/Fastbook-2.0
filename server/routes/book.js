@@ -192,51 +192,55 @@ findBookByIdUser = function(req, res) {
  
   //PUT - Update a register already exists
   updateBook = function(req, res) {
-    console.log("PUT - /book/:isbn");
+    console.log("PUT - /book/:id");
     console.log(req.body);
         res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
-   Book.findOne({isbn: req.params.isbn}, function(err,book) {
-      if(!book) {
-        res.statusCode = 404;
-        res.send({ error: 'Not found' });
-      }
- 
-      book.author = req.body.author;
-      book.year = req.body.year;
-      book.publisher = req.body.publisher; 
-      book.isbn = req.body.isbn;
-      book.genre  = req.body.genre;
-      book.description = req.body.description;
-      book.title = req.body.title;
-      book.status=req.body.status;
-      book.province=req.body.province;
-      book.imagen=req.body.imagen;
-      book.price=req.body.price;
-      book.value = req.body.value;
-  
- 
-     book.save(function(err) {
-        if(!err) {
-          console.log('Updated');
-          res.send({ status: 'OK', book:book });
-        } else {
-          if(err.name === 'ValidationError') {
-            res.statusCode = 400;
-            res.send({ error: 'Validation error' });
-          } else {
-            res.statusCode = 500;
-            res.send({ error: 'Server error' });
-          }
-          console.log('Internal error(%d): %s',res.statusCode,err.message);
-        }
- 
-        res.send(book);
-      });
-   
-    });
+        
+        var id=req.params.id;
+        var token=req.body.token;
 
+        var user = jwt.decode(token, tokenSecret);
+      console.log(user._id+"-------------id user");
+      console.log(id+"-------------id book");
+      
+      console.log("----------------------------------");
+              
+      Book.findOne({_id:id, id_user:user._id}, function(err, book) {
+        console.log(book);
+        console.log("no hay error");
+        console.log(book);
+        console.log(req.body.title);
+        if(book){
+          book.author = req.body.author;
+          book.publisher = req.body.publisher; 
+          book.isbn = req.body.isbn;
+          book.genre  = req.body.genre; 
+          book.description = req.body.description;
+          book.title = req.body.title;
+          book.status=req.body.status;
+          book.province=req.body.province;
+          book.imagen=req.body.imagen;
+          book.price=req.body.price;
+          book.value = req.body.value;
+          book.id_user=req.body.id_user;
+          
+          book.save(function(error){
+            if(!error){
+              res.send({book:book});
+            }else{
+              res.send("error");
+            }
+            
+          });
+        }
+          else{
+            res.send("not found");
+          }
+
+    });
+      
   };
  
   //DELETE - Delete a Book with specified ID
@@ -245,7 +249,13 @@ findBookByIdUser = function(req, res) {
        res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
-     Book.findOne({isbn: req.params.isbn}, function(err,book) {
+        
+        
+      var token=req.params.token;
+
+      var user = jwt.decode(token, tokenSecret);
+  
+     Book.findOne({_id: req.params.id,id_user:user._id}, function(err,book) {
       if(!book) {
         res.statusCode = 404;
       res.send({ error: 'Not found' });
@@ -291,8 +301,8 @@ findBookByIdUser = function(req, res) {
    app.get('/book/book/:id_book/:id_user', findBookByIdUser);
    app.get('/book/id/:id', findById);
   app.post('/book', addBook);
-  app.put('/book/:isbn', updateBook);
-  app.delete('/book/:isbn', deleteBook);
+  app.put('/book/:id', updateBook);
+  app.delete('/book/:id/:token', deleteBook);
   app.get('/lastBooks', lastBooks);
  
 };
