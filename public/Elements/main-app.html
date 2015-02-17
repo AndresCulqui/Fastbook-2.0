@@ -129,6 +129,9 @@
 			<section id="detailbook" hash="">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
 			</section>
+			<section id="updatebook" hash="update">	
+       			 <book-update id="bupdate" book="{{book}}" ></book-update>
+			</section>      
 
 		</core-animated-pages>
 
@@ -248,7 +251,12 @@
 	
       this.$.detailbook.hash=this.route;
       
-      
+ //-------------------------------event reload when delete book-----------------------------
+  this.$.bupdate.addEventListener('reload',function(){
+    that.$.cp.reloadBooks();
+  });
+ 
+ 
     
 //-------------------escuchando evento closedialog de bookdetail-----------------------
 		this.$.bdetail.addEventListener('closedialog', function(e) {
@@ -266,9 +274,9 @@
 //---------------------------escuchando book detail en biblio-user----------------
 			this.$.cp.addEventListener('bookdetail', function(e) {
         that.book=e.detail;
-        that.$.detailbook.hash="bookdetail"+that.book._id;
-           that.route="bookdetail"+that.book._id;
-        
+        that.$.updatebook;
+     
+        that.route="update";
           
 		  	})
 //---------------------escuchando a userlog-*----------------------
@@ -283,7 +291,7 @@
 		  	});
 		  	//-------------------escuchando evento menu principal-----------------------
 			this.$.mh.addEventListener('mainMenu', function(e) {
-		    	
+		    	that.$.ca.ready();
 		    	that.route=e.detail;
 
 		    	

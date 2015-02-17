@@ -257,133 +257,6 @@
 		
       
       
-     
-     <div id="dialog" hidden>
-                 <div id="optionButtons">
-                  <paper-button on-tap="{{closeDialog}}">return</paper-button>
-              </div>
-      
-          <div id="izq">
-             <div id="dialog2" >
-            </div>
-            
-             <paper-input class="modify"  id="tisbn" disabled></paper-input>
-             <paper-input class="modify" id="ttitulo" disabled></paper-input>
-             <paper-input class="modify" id="tautor" disabled></paper-input>
-              <paper-input class="modify" id="teditorial" disabled></paper-input>
-               <paper-input class="modify"  id="tprecio" disabled></paper-input>
-        
-          </div>
-       <div id="der">
-          <textarea  rows="4" cols="30" class="modify"  id="tdescription" disabled></textarea>
-          <table border="0">
-            <tr>
-              <td>
-                <paper-input class="modify"  id="tcategoria" disabled></paper-input>
-              </td>
-              <td>
-                <select id="cat" disabled>
-                  <option value="0"> Select Category</option>          
-                  <option value="primaria">primaria </option>
-                  <option value="secundaria"> secundaria</option>
-                  <option value="bachillerato"> bachillerato</option>
-                  <option value="universidad"> universidad</option>
-                  <option value="formacion profesional"> formacion profesional</option>
-                  <option value="oposiciones"> oposiciones</option>
-                  <option value="lectura" >lectura</option>
-                </select> 
-               </td> 
-            </tr> 
-            <tr>
-              <td >
-                <paper-input class="modify"  id="tprovincia" disabled></paper-input>
-              </td>
-              <td>
-                <select id="province" disabled>
-                  <option value="0"> Select Province</option>      
-                  <option> A Coruña</option>
-                  <option> Alicante</option>
-                  <option>Albacete</option>
-                  <option>Almería</option>
-                  <option>Araba</option>
-                  <option >Asturias</option>
-                  <option>Ávila</option>
-                  <option >Badajoz</option>
-                  <option >Balears</option>
-                  <option>Barcelona</option>
-                  <option >Bizkaia</option>
-                  <option >Burgos</option>
-                  <option >Cáceres</option>
-                  <option >Cádiz</option>
-                  <option >Cantabria</option>
-                  <option >Castelló</option>
-                  <option >Ceuta</option>
-                  <option >Ciudad Real</option>
-                  <option >Córdoba</option>
-                  <option>Cuenca</option>
-                  <option >Girona</option>
-                  <option>Granada</option>
-                  <option >Guadalajara</option>
-                  <option >Guipuzkoa</option>
-                  <option >Huelva</option>
-                  <option>Huesca</option>
-                  <option >Jaén</option>
-                  <option>La Rioja</option>
-                  <option >Las Palmas</option>
-                  <option >León</option>
-                  <option >Lleida</option>
-                  <option >Lugo</option>
-                  <option>Madrid</option>
-                  <option >Málaga</option>
-                  <option >Melilla</option>
-                  <option>Murcia</option>
-                  <option >Navarra</option>
-                  <option >Ourense</option>
-                  <option >Palencia</option>
-                  <option >Pontevedra</option>
-                  <option >S.C. Tenerife</option>
-                  <option >Salamanca</option>
-                  <option>Segovia</option>
-                  <option >Sevilla</option>
-                  <option >Soria</option>
-                  <option >Tarragona</option>
-                  <option>Teruel</option>
-                  <option >Toledo</option>
-                  <option >Valencia</option>
-                  <option >Valladolid</option>
-                  <option >Zamora</option>
-                  <option >Zaragoza</option> 
-              </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                   <paper-input class="modify"  id="testado" disabled></paper-input>
-              </td>
-              <td>
-                <select id="selest" disabled> 
-                     <option value="0"> Select Status</option>    
-                    <option >Muy malo</option>
-                    <option>Malo</option>
-                    <option>Normal</option>
-                    <option>Bueno</option>
-                    <option >Muy bueno</option>
-                </select>
-              </td>
-            </tr>
-           </table> 
-          
-                     <paper-button id="modify" label="Modify" on-tap="{{modifyBooK}}"></paper-button>
-             
-                  
-                     <paper-button id="save" on-tap="{{updateBook}}">Save</paper-button>
-           
-                     <paper-button  on-tap="{{deleteBook}}">Delete</paper-button>
-        
-         
-       </div>
-    
-        </div>  
         
       
     </div>
@@ -413,112 +286,12 @@
 					that.libros=data.books;
 				});
       },
-			edit: function() {
-				var edit = this.$.name;
-				edit.disabled = false;
-			},
-      bookDetail:function(a,e,i){ 
-  
-       this.$.save.disabled=true;
-       this.$.tdescription.disabled=true;
-        var d=this.$.dialog;
-        var d2=this.$.dialog2;
-          d.hidden=false;      
-       $(d2).append('<mi-libro id="bbb" imagen='+i.imagen+' titulo='+i.titulo+'>  </mi-libro');
-this.imgg=i.imagen;
-        var book="/book/"+i.titulo;
 
-       
-
-        var that=this;
-        $.get(book,function(data){
-
-          
-         that.$.ttitulo.value=data.book.title;
-         that.$.tautor.value=data.book.author;
-          that.$.tisbn.value=data.book.isbn;
-          that.$.teditorial.value=data.book.publisher;
-          that.$.tprecio.value=data.book.price+"$";
-          that.$.tdescription.value=data.book.description;
-          that.$.tcategoria.value=data.book.genre;
-          that.$.tprovincia.value=data.book.province;
-          that.$.testado.value=data.book.status;
-
-        
-      });
-   
-        
-  
-
-        
-      },
+ 
      bookDetail: function(a,b,c) {
             this.fire("bookdetail", c.book);
       },
-
-      closeDialog:function(){
-             this.$.modify.label="Modify";
-         var d=this.$.dialog;
-          var d2=this.$.dialog2;
-        d.hidden=true;
-          $(d2).empty();
-       var inn=this.shadowRoot.querySelectorAll('paper-input');
-         var sel=this.shadowRoot.querySelectorAll('select');
-         
-    for(var i=0;i<6;i++){
-          inn[i].disabled=true;
-        }
-          
-         for(var i=0;i<sel.length;i++){
-          sel[i].disabled=true;
-        }
-  
-       
-      },
-     
-      modifyBooK:function(a,e,i){
-        //alert("soy modifyBook");
-        this.$.save.disabled=false;
-        this.$.tdescription.disabled=false;
-        
-        this.$.modify.label="Confirm";
-       var inn=this.shadowRoot.querySelectorAll('paper-input');
-       var sel=this.shadowRoot.querySelectorAll('select');
-       var tcategoria=this.shadowRoot.querySelector('#tcategoria');
-         var selecat=this.shadowRoot.querySelector('#cat');
-           var tprovincia=this.shadowRoot.querySelector('#tprovincia');
-         var selepro=this.shadowRoot.querySelector('#province');
-      var testado=this.shadowRoot.querySelector('#testado');
-         var selest=this.shadowRoot.querySelector('#selest');
-     
-         
- 
-        for(var i=0;i<6;i++){
-          inn[i].disabled=false;
-        }
- 
-         for(var i=0;i<sel.length;i++){
-          sel[i].disabled=false;
-        }
- 
-        if(selecat.value==0){
-            tcategoria.value=tcategoria.value;  
-        }else{
-          tcategoria.value=selecat.value;
-        }
-         if(selepro.value==0){
-            tprovincia.value=tprovincia.value;  
-        }else{
-          tprovincia.value=selepro.value;
-        }
-             if(selest.value==0){
-          testado.value=testado.value;  
-        }else{
-          testado.value=selest.value;
-        }
-       
-        
-      },
+      
       updateBook:function(){
         //alert("holaaa updateee");
         var price=this.$.tprecio.value.replace(/[^\d]/g, '');
@@ -567,24 +340,7 @@ this.imgg=i.imagen;
    
         
       },
-      disabledInputs:function(){
-         var inn=this.shadowRoot.querySelectorAll('paper-input');
-         var sel=this.shadowRoot.querySelectorAll('select');
-          this.$.tdescription.disabled=true;
-         for(var i=0;i<6;i++){
-          inn[i].disabled=true;
-         }
-          
-         for(var i=0;i<sel.length;i++){
-          sel[i].disabled=true;
-          }
-      },
-      perfil:function(){
-        var per=this.$;
-       
-        
-      },
-      
+           
        deleteBook:function(){
          var titulo=this.$.tisbn;
       
