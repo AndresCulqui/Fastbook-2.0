@@ -123,18 +123,23 @@
           				
 			</section>
 			<section  hash="about">	
-        		acreca de nosotros:
+        
+             <result-search id="result"></result-search>
         	</section>
 
 			<section  hash="profile">	
         		<core-perfil id="cp" user="{{user}}" photo="{{photo}}"hidden></core-perfil>
         	</section>	
-			<section id="detailbook" hash="">	
+			<section id="detailbook">	
        			 <book-detail id="bdetail" book="{{book}}" miroute="{{route}}"></book-detail>
 			</section>
 			<section id="updatebook" hash="update">	
        			 <book-update id="bupdate" book="{{book}}" ></book-update>
-			</section>      
+			</section>
+      <section id="result" hash="result">
+         
+        
+      </section>
 
 		</core-animated-pages>
 
@@ -274,6 +279,17 @@
         
           
 		  	})
+ //--------------escuchando book detail en result search---------------------------
+ 
+    		this.$.result.addEventListener('bookdetail', function(e) {
+        that.book=e.detail;
+        that.$.detailbook.hash="bookdetail"+that.book._id;
+           that.route="bookdetail"+that.book._id;
+        
+          
+		  	})
+    
+    
 //---------------------------escuchando book detail en biblio-user----------------
 			this.$.cp.addEventListener('bookdetail', function(e) {
         that.book=e.detail;

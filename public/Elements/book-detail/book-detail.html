@@ -9,13 +9,14 @@
           box-sizing: border-box;
       }
       #containt { 
-        background: rgba(8,46,64, 0.6);
+        //background: rgba(8,46,64, 0.6);
         border: 3px solid dimgray;
         border-radius: 10px;
         height: 700px;
         padding-left: 15%;
         padding-right: 15%;
-        border: 5px solid yellow;
+        padding-top:3%;
+      
 
       }
       #dialog {
@@ -28,19 +29,22 @@
         margin-left: 60%;
         padding-left: 4%;
         padding-right: 4%;
-        border:2px solid green;
+        border:2px solid transparent;
         background-color: white;
+        border-radius: 10px;
+         padding-top:3%;
       
       }
       #book {
+        padding-top:3%;
         width: 50%;
         height: auto;
         margin-right: 2%;
         padding-left: 4%;
         padding-right: 4%;
         float: left;
-        border:2px solid red;
         background-color: white;
+         border-radius: 10px;
  
       }
       #title {
@@ -124,7 +128,6 @@
           
             <div id="title">{{book.title}}</div>
             <paper-button id="bookUpdate" class="buttons" on-tap="{{bookUpdate}}">Modify</paper-button>
-             <paper-button id="qrbutton" class="buttons" on-tap="{{dialog}}">QR Code</paper-button>
              <!-- //////////////// dialog qr code  -->
               <paper-action-dialog id="dialog"  layered="false">         
                 <div>     
@@ -142,7 +145,6 @@
             <div>
                 <div id="photo">
                   <div id="buttons" layout horizontal>
-                    <paper-button class="buttons" on-tap="{{buy}}">Buy</paper-button>
                   </div>
                   <a href="{{book.imagen}}">
                     <img id="imagen" src="{{book.imagen}}" title="{{book.title}}">
@@ -181,7 +183,9 @@
                     <input id="phone" is="core-input" class="input" placeholder="your phone" aria-label="label">
                   </paper-input-decorator> 
               <textarea id="comments" placeholder="I'm interesting in your book"style="width:100%;height:200px "></textarea>  
+              <center>
               <paper-button class="buttons"  on-click="{{sendMail}}">Send mail</paper-button>
+              </center>
             </div>
          
          </div>
@@ -198,17 +202,7 @@
         
         var that=this;
         
-          $.get('/profile', function(data,success,error){
-                if(data.user){
-                    console.log("user en book detail      "+data.user);
-                    that.$.bookUpdate.hidden=false;
-                }	
-                else{
-                    console.log(" no hay user en book detail");
-                    that.$.bookUpdate.hidden=true;
-
-                }
-          })
+    
         
         
         

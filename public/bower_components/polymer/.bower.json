@@ -12,23 +12,21 @@
   "author": "Polymer Authors <polymer-dev@googlegroups.com>",
   "private": true,
   "dependencies": {
-    "core-component-page": "Polymer/core-component-page#master",
-    "polymer-expressions": "Polymer/polymer-expressions#master",
-    "polymer-gestures": "Polymer/polymer-gestures#master",
-    "URL": "Polymer/URL#master",
-    "webcomponentsjs": "Polymer/webcomponentsjs#master"
+    "core-component-page": "Polymer/core-component-page#^0.5",
+    "webcomponentsjs": "Polymer/webcomponentsjs#^0.5"
   },
   "devDependencies": {
     "tools": "Polymer/tools#master",
     "web-component-tester": "Polymer/web-component-tester#^1.4.2"
   },
-  "_release": "926b0ddc32",
+  "version": "0.5.5",
+  "_release": "0.5.5",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "926b0ddc323b01ce166fba1422a4aeef52a693b4"
+    "type": "version",
+    "tag": "0.5.5",
+    "commit": "b94b680c966fc9ea86bc8f14b3af6f13d77f217a"
   },
   "_source": "git://github.com/Polymer/polymer.git",
-  "_target": "master",
+  "_target": "~0.5.2",
   "_originalSource": "Polymer/polymer"
 }

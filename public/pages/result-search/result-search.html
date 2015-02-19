@@ -1,0 +1,173 @@
+
+
+<polymer-element name="result-search" attributes="books">
+	<template>
+		<style>
+
+      
+      #section{
+        margin: 20px;
+      }
+      #content{
+         padding-top:3%;
+        width: 50%;
+        height: auto;
+        margin-left: 20%;
+        padding-left: 4%;
+        padding-right: 4%;
+        float: left;
+        background-color: white;
+         border-radius: 10px;
+      }
+      #table{
+        width: 100%;
+      }
+    
+      tr:nth-child(2n){
+        background-color: white;
+      }
+      tr:nth-child(2n+1){
+        background-color: #eeeeee;
+      }
+      
+      
+      th{
+        background-color: orange;
+        height:40px;
+      }
+      img{
+        width:100%;
+      }
+      td{
+        text-align: center;
+      }
+      @media (max-width: 610px) {
+        #section, #content{
+          margin: 0px;
+          padding: 0px;
+          width: 100%;
+        }
+        .mobile{
+          visibility: hidden;
+          display: none;
+        }
+        #imagen { 
+          width: 100%;
+          max-width: 50px;
+        }
+       .title { max-width: 78px;}
+        //#pre { width: 50px;}
+        //#photo { width: 200px;} 
+				
+		
+
+    }
+      
+		</style>
+    <section id="section">
+      <div id="content">
+ 
+      
+   <page-er id="pager" perpage="5"></page-er>
+
+  	<table id="table">
+  		<thead>
+  			
+          <th id="photo">Cover</th>
+  				<th class="title">Title</th>
+  				<th class="mobile">Author</th>
+  				<th class="mobile">Genre</th>
+          <th class="mobile">Status</th>
+          <th id="pre">Price</th>
+          
+  			
+  		</thead>
+  		<tbody>
+  			<template id="items" repeat="{{book in items}}">
+  				<tr >
+            <td nowrap><img id="imagen" src="{{book.imagen}}" on-tap="{{bookDetai(book)l}}"></td>
+            <td class="title">{{book.title}}</td>
+       
+            <td class="mobile">{{book.author}}</td>
+            <td class="mobile">{{book.genre}}</td>
+            <td class="mobile">{{book.status}}</td>
+            <td>{{book.price}} €</td>
+         
+  				</tr>
+  			</template>
+  		</tbody>
+  	</table>
+
+
+    <select name="options" id="options">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+    </select>
+    <span>per page</span>
+   
+        
+      </div>     
+      
+    </section>
+
+
+	</template>
+	<script>
+
+
+	Polymer({
+		ready:function(){
+      var that=this;
+    // Select the grid/table where your main data will appear
+	var t = this.$.items;
+	// Select the paginator to use with this element
+	var m = this.$.pager;
+  // Select options
+  var s = this.$.options;
+  this.model={};
+
+
+  $.get('/books',function(data){
+ 
+    console.log(data);
+    that.model={items:data};
+    console.log(that.model);
+    	// As this is an example, populate some sample data inside
+ 		m.data = that.model.items;
+   
+   
+  });
+		// 1. Pass as `data` the set of data we want the
+		// paginator to paginate
+
+	
+	this.addEventListener('pager-data', function(e) {
+		// 2. Update the current template/view with our
+		// paginated set of data. `pager-data` is fired
+		// when this has completed
+		t.model = { items: e.detail.data };
+	});
+	// 3. Anytime our paged set changes, update the view
+	this.addEventListener('pager-change', function(e) {
+		t.model = { items: e.detail.data };
+	});
+ 
+     this.$.options.addEventListener('change', function(e){
+    m.perpage = parseInt(this.options[this.selectedIndex].value, 10);
+    m.currentpage = 0;
+  });   
+	     
+			
+		},
+    bookDetail:function(a,b,c){
+      this.fire("bookdetail", c);
+      console.log(c);
+     
+    }
+
+	});
+	</script>
+</polymer-element>

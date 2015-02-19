@@ -1,0 +1,259 @@
+
+[
+        
+        {
+	"title" : "1984",
+	"author" : "George Orwell",
+	"publisher" : "HarperCollins",
+	"isbn" : 9781443425254,
+	"genre" : "lectura",
+	"description" : "It is 1984. The world is in a state of perpetual war and Big Brother sees and controls all. Winston Smith, a member of the Outer Party and propaganda-writer at the Ministry of Truth, is keeping a journal he should not be keeping and falling in love with Julia, a woman he should not be seeing. Outwardly compliant, Winston dreams of rebellion against the oppressive Big Brother, risking everything to recover his lost sense of individuality and control of his own future.",
+	"status" : "Normal",
+	"province" : "Cuenca",
+	"imagen" : "http://books.google.com/books/content?id=9UnsGlnC7HAC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+	"price" : 20
+	 	  
+},
+{
+	"title" : "zxzxzxz",
+	"author" : "zxzxzx",
+	"publisher" : "zxzxzx",
+	"isbn" : 9781443425254,
+	"genre" : "secundaria",
+	"description" : "dfgvdfgfdgdfgdfg",
+	"status" : "Bueno",
+	"province" : "Badajoz",
+	"imagen" : "http://books.google.com/books/content?id=9UnsGlnC7HAC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+	"price" : 23
+},
+{
+	"title" : "eeeee",
+	"author" : "eeeeee",
+	"publisher" : "eeeee",
+	"isbn" : 9781443425254,
+	"genre" : "formacion profesional",
+	"description" : "fgdfgdfgdfgdfgdfg",
+	"status" : "Normal",
+	"province" : "Badajoz",
+	"imagen" : "http://books.google.com/books/content?id=9UnsGlnC7HAC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+	"price" : 23
+},
+{
+	"title" : "assasasa",
+	"author" : "asasasasa",
+	"publisher" : "sasasasa",
+	"isbn" : 9781443425254,
+	"genre" : "universidad",
+	"description" : "sdfcsdfsdfsdfsdf",
+	"status" : "Malo",
+	"province" : "Albacete",
+	"imagen" : "http://books.google.com/books/content?id=9UnsGlnC7HAC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+	"price" : 23
+},
+{
+	"title" : "qqqqqqqqqqqqqqqqqq",
+	"author" : "qqqqqqqqqqqqq",
+	"publisher" : "qqqqqqqqqqqqq",
+	"isbn" : 9788499183077,
+	"genre" : "secundaria",
+	"description" : "aasdasdasdasdasdasdasdasdasdasd",
+	"status" : "Malo",
+	"province" : "Albacete",
+	"imagen" : "http://books.google.com/books/content?id=mrg0btPfrFAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 12
+},
+{
+	"title" : "liliana",
+	"author" : "asdfasdf",
+	"publisher" : "asdfasd",
+	"isbn" : 9789871842339,
+	"genre" : "oposiciones",
+	"description" : "jajajajajajajajaj XD loooooooooooooooooooool",
+	"status" : "Bueno",
+	"province" : "Almería",
+	"imagen" : "http://books.google.com/books/content?id=xkkXkxskna0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 20
+},
+{
+	"title" : "ttttttttttttt",
+	"author" : "tttttttttttttttttt",
+	"publisher" : "ttttttttttttttttttttt",
+	"isbn" : 9788499183077,
+	"genre" : "secundaria",
+	"description" : "xdfvdfgdfgfg",
+	"status" : "Normal",
+	"province" : "Almería",
+	"imagen" : "http://books.google.com/books/content?id=mrg0btPfrFAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 34
+	  
+},
+{
+	"title" : "saara",
+	"author" : "asdasdf",
+	"publisher" : "asdfadsf",
+	"isbn" : 9789505530809,
+	"genre" : "secundaria",
+	"description" : "asdfasdfasdfadsfasdfasdf",
+	"status" : "Bueno",
+	"province" : "Asturias",
+	"imagen" : "http://books.google.com/books/content?id=QtOe6lB9KB4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 25
+	  
+},
+{
+	"title" : "bea",
+	"author" : "asdasdf",
+	"publisher" : "asdfasdf",
+	"isbn" : 9789505530809,
+	"genre" : "universidad",
+	"description" : "asdfasdfasdfadsf",
+	"status" : "Malo",
+	"province" : "Asturias",
+	"imagen" : "http://books.google.com/books/content?id=QtOe6lB9KB4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 25
+	  
+},
+{
+	"title" : "ccccc",
+	"author" : "ccccc",
+	"publisher" : "ccccc",
+	"isbn" : 9788499183077,
+	"genre" : "formacion profesional",
+	"description" : "fdgdfdsdsdsd",
+	"status" : "Muy bueno",
+	"province" : "Almería",
+	"imagen" : "http://books.google.com/books/content?id=mrg0btPfrFAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 3
+	  
+},
+{
+	"title" : "12121",
+	"author" : "12121",
+	"publisher" : "212121",
+	"isbn" : 9788499183077,
+	"genre" : "formacion profesional",
+	"description" : "1212121212",
+	"status" : "Bueno",
+	"province" : "Araba",
+	"imagen" : "",
+	"price" : 12
+	  
+},
+{
+	"title" : "el rubius omaigosh",
+	"author" : "asdfasdf",
+	"publisher" : "asdfasd",
+	"isbn" : 9788499983196,
+	"genre" : "formacion profesional",
+	"description" : "sadfasdfasdfasdfasdf",
+	"status" : "Bueno",
+	"province" : "Asturias",
+	"imagen" : "http://books.google.com/books/content?id=Shm2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 25
+	  
+},
+{
+	"title" : "Anabé De Esmeralda",
+	"author" : "Pipi",
+	"publisher" : "asdfasdf",
+	"isbn" : 9780395915431,
+	"genre" : "primaria",
+	"description" : "asdfasdfasdfasdfasdfasdfasdf",
+	"status" : "Malo",
+	"province" : "Ceuta",
+	"imagen" : "http://books.google.com/books/content?id=UUYnxodg6mIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 50
+	  
+},
+{
+	"title" : "Alvarito en la cocina!!! con Coco",
+	"author" : "Coco Charlie",
+	"publisher" : "asdifhasduf",
+	"isbn" : 9788408134176,
+	"genre" : "formacion profesional",
+	"description" : "asdfajsdfgalsufglaisdf\nasdfhañsdfhñasdf\nasdfasd",
+	"status" : "Malo",
+	"province" : "Albacete",
+	"imagen" : "http://books.google.com/books/content?id=DFTDBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 25
+	  
+},
+{
+	"title" : "La Santa Muerte",
+	"author" : "Guillo Pacheco",
+	"publisher" : "SDA RS",
+	"isbn" : 9786073109321,
+	"genre" : "universidad",
+	"description" : "asdfasdfasdf am iuejruuasf",
+	"status" : "Normal",
+	"province" : "Barcelona",
+	"imagen" : "http://books.google.com/books/content?id=hF5vVoqgqbwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 50
+	  
+},
+{
+	"title" : "El Chaaacho",
+	"author" : "By Adry ",
+	"publisher" : "Mota music",
+	"isbn" : 9788416002078,
+	"genre" : "universidad",
+	"description" : "Pop Amable... Free",
+	"status" : "Muy bueno",
+	"province" : "Araba",
+	"imagen" : "http://books.google.com/books/content?id=oIjIBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 20
+	  
+},
+{
+	"title" : "Yo, Gigolo",
+	"author" : "Ricardo Suntaxi",
+	"publisher" : "ECCO M",
+	"isbn" : 9781463324889,
+	"genre" : "universidad",
+	"description" : "adsfasdfasdf",
+	"status" : "Malo",
+	"province" : "Albacete",
+	"imagen" : "http://books.google.com/books/content?id=LOYISIbjdxIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 50
+},
+{
+	"title" : "El Futbol del Futuro",
+	"author" : "asdfasdfasdf",
+	"publisher" : "asdfasdf",
+	"isbn" : 9781597544559,
+	"genre" : "universidad",
+	"description" : "asdfasdfasdfasdf",
+	"status" : "Normal",
+	"province" : "Balears",
+	"imagen" : "http://books.google.com/books/content?id=xllkq3XUcqMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 258
+	  
+},
+{
+	"title" : "Young adult",
+	"author" : "asdfasdf",
+	"publisher" : "asdfasdf",
+	"isbn" : 9780838910450,
+	"genre" : "oposiciones",
+	"description" : "asdfasfasdfasdf",
+	"status" : "Normal",
+	"province" : "Cáceres",
+	"imagen" : "http://books.google.com/books/content?id=un4RJ8rOTTgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 25
+	  
+},
+{
+	"title" : "coco",
+	"author" : "coco",
+	"publisher" : "coco",
+	"isbn" : 9788495114914,
+	"genre" : "secundaria",
+	"description" : "cocococoocococococ",
+	"status" : "Normal",
+	"province" : "Ceuta",
+	"imagen" : "http://books.google.com/books/content?id=ScvTT9bTtbwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+	"price" : 666
+	  
+}
+ ]
+      
