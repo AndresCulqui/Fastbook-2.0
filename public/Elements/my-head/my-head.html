@@ -1,4 +1,4 @@
-<polymer-element name="my-head" attributes="mtitle lang">
+<polymer-element name="my-head" attributes="mtitle">
 	<template>
 		<style>
       
@@ -72,7 +72,7 @@
     Polymer({
       ready:function(){
 
-      	if(this.lang=="en"){
+   
 	        this.pages = [
 	          {name: 'Home', hash: 'home', icon: 'home'},
 	          {name: 'Search', hash: 'search', icon: 'search'},
@@ -80,36 +80,6 @@
 	          {name: 'Sell', hash: 'sell', icon: 'loyalty'},
 	          {name: 'About ', hash: 'about', icon: 'info'}
 	        ];
-	    }
-      	if(this.lang=="es"){
-	        this.pages = [
-	          {name: 'Inicio', hash: 'home', icon: 'home'},
-	          {name: 'Buscar', hash: 'search', icon: 'search'},
-	          {name: 'Vender', hash: 'buy', icon: 'shopping-cart'},
-	          {name: 'Comprar', hash: 'sell', icon: 'loyalty'},
-	          {name: 'Nosotros', hash: 'about', icon: 'info'}
-	        ];
-	    }
-	 
-          
-      /* 
-          this.$.gs.addEventListener('google-signin-success', function(e) {
-        console.log(e.detail);
-          var y=e.detail.result;
-          console.log(y);
-      
-          console.log("token   "+y.access_token);
-        });
-        
-        
-          this.$.gs.addEventListener('core-signal', function(a,e,i) {
-        console.log(e);
-        console.log(a);
-        console.log(i);
-    
-        });
-    
-*/
 
       },
       actionMenu:function(event,detail,sender){
@@ -117,13 +87,8 @@
         this.fire('actionMenu');
 
 
-      },
-      languaje:function(a,b,c){
-
       }
-
-
-      
+     
 
   
     });

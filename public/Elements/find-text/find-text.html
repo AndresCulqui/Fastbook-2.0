@@ -1,7 +1,7 @@
 
 	
 	
-	<polymer-element name="find-text" attributes="lang">
+	<polymer-element name="find-text" >
 	<template>
 		<style>
       
@@ -153,19 +153,8 @@ padding-top: 16px;
         this.search={ title:"Search", description:"60 book buyback vendors"};
         this.compare={ title:"Compare", description:"prices and seller feedback"};
         this.ship={ title:"Buy", description:"for FREE and get paid"};
-      },
-      languaje:function(a){
-        console.log("laguaje en  ft  "+a);
-       if(a=="en"){
-        this.search={ title:"Search", description:"60 book buyback vendors"};
-        this.compare={ title:"Compare", description:"prices and seller feedback"};
-        this.ship={ title:"Buy", description:"for FREE and get paid"}
-      }else if(a=="es"){
-        this.search={ title:"Buscar", description:"Busca libros en venta"};
-        this.compare={ title:"Comparar", description:"Mira y compara precios"};
-        this.ship={ title:"Comprar", description:"Compra un libro"}
-    }
       }
+      
   
     });
   </script>
