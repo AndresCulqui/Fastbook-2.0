@@ -1,17 +1,11 @@
-<polymer-element name="mobile-menu" attributes=" pages user photo">
+<polymer-element name="mobile-menu" attributes="pages user photo">
 <template>
 	<style>
+
 		#menu {
 			font-family: Arial;
 			font-weight: bold;
 			text-shadow: grey 0.1em 0.1em 0.2em;
-			background: rgb(255,123,13); /* Old browsers */
-	        background: -moz-linear-gradient(top,  rgba(255,123,13,1) 0%, rgba(255,168,76,1) 60%); /* FF3.6+ */
-	        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,123,13,1)), color-stop(60%,rgba(255,168,76,1))); /* Chrome,Safari4+ */
-	        background: -webkit-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Chrome10+,Safari5.1+ */
-	        background: -o-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* Opera 11.10+ */
-	        background: -ms-linear-gradient(top,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* IE10+ */
-	        background: linear-gradient(to bottom,  rgba(255,123,13,1) 0%,rgba(255,168,76,1) 60%); /* W3C */
         	color: #fff;
         	height: 120px;
 		}
@@ -21,8 +15,10 @@
 			background: slategray;
 		}
 		.submenu:hover {
-			opacity: 0.6;
-			background-color: darkorange;
+			color: white;
+			background-color: #F76700;
+          	background-image: linear-gradient(#F76700,#FA3219);
+          	border: 1px solid #C53421;
 		}
 		core-menu {
 			background-color: whitesmoke;
@@ -52,7 +48,7 @@
 		<core-toolbar id="menu">
 		<div id="fdata" vertical layout>
 			<img id="photo" src="{{photo || photodefault}}">
-			<core-item id="message" label="create perfil or log in"></core-item>
+			<core-item id="messagelog" on-tap="{{login}}" label="Create Perfil or Log in"></core-item>
 			<core-item class="name" id="name" label="{{user.displayName || user.name}}"></core-item>
       		<core-item class="name" id="name" label="{{user.email}}"></core-item>
 		</div>
@@ -66,12 +62,14 @@
 
 	        </template>
 
-	        <core-item class="submenu" id="account" icon="account-circle" label="Account"></core-item>
+	        <core-item class="submenu" on-tap="{{profile}}" id="account" icon="account-circle" label="Account" ></core-item>
           	<paper-progress></paper-progress>
 
           	<core-item class="submenu" label="Help and Feedback" icon=""></core-item>
           	<core-item class="submenu" label="About FastBook" icon=""></core-item>
-		</core-menu>
+            	<paper-progress></paper-progress>
+            <core-item class="submenu" on-tap="{{logOut}}" id="logout" icon="account-circle" label="Logout" ></core-item>
+          	
 	
 
 </template>
@@ -79,29 +77,55 @@
 
     Polymer({
     	ready:function(){
-    		//this.photodefault=    '../../images/user.png';
-    		//console.log(this.$.account.hidden);
-    		if (!this.user){
-    			this.$.account.hidden=true;
-    			this.photodefault= '../../images/user.png';
-    			this.$.menu.style.backgroundImage = "url('../../images/banner.jpg')";
-    			this.$.menu.style.backgroundSize = "100% 100%";
-    		}
-    		else {
-    			this.$.message.hidden=true;
-    			this.$.account.hidden=false;
-    		}
+
+    		var that=this;
+    		var message = this.$.messagelog;
+    		var item = this.$.account;
     		
 
-    },
-    tapMenu: function(e,detail,sender){
-        
-        var x=$(sender).attr('hash');
-       
-        this.fire('leftMenu',x);
-
-      }
+    		$.get('/profile', function(data,success,error){
+				if(data.user){
+					message.hidden=true;
+	    			item.hidden=false;
+	    			that.$.menu.style.backgroundImage = "url('../../images/banner.jpg')";
+	    			that.$.menu.style.backgroundSize = "100% 100%";
+	    			item.style.cursor= "pointer";
+            that.$.logout.hidden=false;
+				}
+				else {
+				    item.hidden=true;
+            that.$.logout.hidden=true;
+	    			that.photodefault= '../../images/user.png';
+	    			that.$.menu.style.backgroundImage = "url('../../images/font-menu.png')";
+	    			that.$.menu.style.backgroundSize = "100% 100%";
+	    			message.style.color="#F76700";
+	    			message.style.textShadow="none";
+					message.style.cursor= "pointer";    			
+				}
+			})
   
+	    },
+
+	    profile: function(){
+	    	this.fire('profile');
+       
+	    },
+
+	    login:function(){
+	    	this.fire('account');
+  
+	    },
+      logOut:function(){
+      this.fire('logout');
+      },
+	    
+	    tapMenu: function(e,detail,sender){
+	        
+	        var x=$(sender).attr('hash');
+	       
+	        this.fire('leftMenu',x);
+
+	    }
     });
   </script>
 

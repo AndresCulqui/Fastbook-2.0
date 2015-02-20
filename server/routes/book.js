@@ -5,7 +5,14 @@
 module.exports = function(app) {
 
   var jwt = require('jwt-simple');
-
+  var nodemailer = require("nodemailer");
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "fastbookdaw@gmail.com",
+        pass: "fastbook12345"
+    }
+});
 
 
  var http = require('http').Server(app);
@@ -320,6 +327,48 @@ findBookByIdUser = function(req, res) {
           }
       });
   };
+  
+  sendMail=function(req,res){
+    console.log(req.body);
+    res.send(req.body);
+     Book.findById(req.body.book, function(err, book) {
+       console.log(book.id_user);
+       User.findById(book.id_user,function(error,user){
+       
+         var email=user.local.email || user.google.email || user.facebook.email || user.twitter.email;
+         
+         console.log(user);
+         	var mailOptions={
+              to : email,
+              subject : "Alguin esta interesado en un libro tuyo¡¡",
+              text :"This person is interese. in your book \n",
+              html:'<h3>Name: </h3>'+req.body.name+' \n\
+                    <h3>Email:  </h3>'+req.body.email+'  \n\
+                    <h3>Phone:</h3>'+req.body.phone+ '  \n\
+                    <h3>Comments:</h3>'+req.body.comments+'  \n\
+                    <h3>Book:</h3><a href="http://fastbook.com:8080/#bookdetail'+book._id+'"><img src="'+book.imagen+'"></a>'
+            };
+            console.log(mailOptions);
+           smtpTransport.sendMail(mailOptions, function(error, response){
+               if(error){
+                    console.log(error);
+              res.end("error");
+             }else{
+                    console.log("Message sent: " + response.message);
+              res.end("sent");
+                 }
+          });
+         
+         
+         
+         
+         
+       });
+       
+     });
+     
+
+  };
  
   //Link routes and functions
   app.get('/books', findAllBooks);
@@ -332,6 +381,7 @@ findBookByIdUser = function(req, res) {
   app.put('/book/:id', updateBook);
   app.delete('/book/:id/:token', deleteBook);
   app.get('/lastBooks', lastBooks);
+  app.post('/sendMail',sendMail);
  
 };
 
