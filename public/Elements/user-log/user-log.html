@@ -4,84 +4,93 @@
 		<style>
 			:host{
 				font-size: 80%;
-
 			}
 			#logOut{
 				text-decoration: underline;
 				 cursor: pointer;
 				 color:red;
-			
 			}
-		#photo {
-			margin-top: 10px;
-			width: 50px;
-			height: 50px;
-			border-radius: 100px;
-			border: 1px solid white;
-			margin-bottom: 5px;
-			float: right;
-		}
-		#photo1{
-		
-			width: 80px;
-			height: 80px;
-			float: left;
-	
-		
-		}
-		#dialog {
-		border: 1px solid skyblue;
-		  position: fixed;
+			#photo {
+				margin-top: 1px;
+				width: 50px;
+				height: 50px;
+				border-radius: 25px;
+				margin-bottom: 5px;
+				float: right;
+				cursor: pointer;
+			}
+			#photo1{
+				width: 80px;
+				height: 80px;
+				float: left;
+			}
+			#dialog {
+				border: 1px solid skyblue;
+			  	position: fixed;
+		      	top: 20px;
+		      	right: 16px;
+		      	width: 350px;
+			 }
+			#butt{
+			 	width: 100px;
+			 	height: 30px;
+			 	color: white;
+			 	padding-top: 1%;
+			 	font-family: sans-serif;
+			 	font-size: 12px;
+			 	background: #4d90fe;
+				border-color: #3079ed;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 5px; 
+				margin-right: 4%; 
+			 }
+			 #butt:hover { opacity: 0.6; }
+			 #dialog /deep/ #actions { padding: 0px} 
 
-	      top: 16px;
-	      right: 16px;
-		 }
-		 #butt{
-		 	width: 100px;
-		 	height: 20px;
-		 	background-image: url('../../pages/images/log.jpg');
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
-			font-size:65%;
-			text-align: center;
-			vertical-align: middle;
-			line-height: 5px;  
-		 }
+			#buttons{
+			 	padding-top: 4%;
+			 	clear: both;
+			 	margin: 0px -24px 0px -24px;
+			 	border-top: 1px solid #ccc;
+			 	background: lightgray;
+			 	height: 40px;
+			}
+			.content { margin-top: -10px; height: 80px; margin-bottom: 10px; font-family: Courier;}
+			.photo {
+				
+				float: left;
+				margin-right: 5%;
+			}
+			.email{
+				font-size: 12px;
+				color: gray;
+			}
 
-		 #buttons{
-		 	margin-top: 5%;
-		 	text-align: center;
-		 }
 
 
 		</style>
 
-
-	
-
-		  	<div >
-
-		  	 	
+		  	<div>
 		  		<img id="photo" src="{{photo || photodefault}}" on-tap="{{dialog}}"> 
 		  		
 		  	</div>
+
 		  	<paper-action-dialog id="dialog"  layered="false">
-		
-		  	<div>
-		  		<div>
+		  	<div class="content">
+		  		<div class="photo">
 		  			<img id="photo1" src="{{photo || photodefault}}">
 		  		</div>
-		  			<div style="margin-left:30%">
-				  		<span ><b> {{user.displayName || user.name}}</b></span>
-				  		<span style="font-size:85%; color:grey"> {{user.email || user.username}}</span>
-			  		</div>
-			  		<div id="buttons">
+		  		<div class="data">
+				  		<span><b> {{user.displayName || user.name}}</b></span>
+				  		<span class="email"> {{user.email || user.username}}</span>
+			  	</div>
+		  	</div>
+		  	<div id="buttons" horizontal center-justified layout>
 					  	<paper-button on-tap="{{profile}}"id="butt">Profile</paper-button>
 					  	<paper-button id="butt" on-tap="{{Logout}}">Log out</paper-button>	
 					
-					</div>
-			  	
-		  	</div>
+			</div>
 
 
 		  	<core-ajax id="ajax"></core-ajax>

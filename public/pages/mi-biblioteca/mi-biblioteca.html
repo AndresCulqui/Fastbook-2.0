@@ -32,11 +32,11 @@
       }
 
       #reco {
-        padding-left: 20px;
         background-image: url('../images/bookshe_top.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        height: 40px;
+        font-size: 40px;
+        font-weight: bold;
       }
       .content { /*se hara por cada fila de recomendados (solo haremos 3 filas o 4 como mucho)*/
         //padding-top: 1%;
@@ -63,11 +63,6 @@
         height: 130px;
         padding: 0px;
       }
-        
-      /*mi-libro /deep/ img:hover {
-      	width: 110px;
-      	height: 140px;
-      }*/
 
       img:hover {
         opacity: 0.7;
@@ -103,42 +98,13 @@
             height: 120px;
           }
         }
-      /*@media (min-width: 1400px) {
-          section, .page {
-            margin: 0px;
-            padding: 0px;
-          }
-          .page {
-            height: 0px;
-          }
-          section {
-            border: 0px;
-          }
-
-         .libros{
-          //padding-right: 10%;
-          width:10%; 
-          height: 150px;
-          float:left;
-          margin-left: 5.5%;
-          margin-top: 1.55%;
-          margin-bottom: 0.2%;
-
+        
+      @media (min-width: 1400px){
+        .libros {
+          margin-top: 1.65%;
+          margin-left: 4%;
         }
-        .content {
-          //padding-top: 1%;
-          height: 550px;
-          background-image: url('../images/bookshe.png');
-          background-size: 100% 32.59%;          
-        }
-
-        mi-libro /deep/ img {
-          width: 110px;
-          height: 130px;
-          border: 2px solid whitesmoke;
-
-        }
-      }*/
+      }
 
       
 
@@ -149,7 +115,7 @@
 
       <div class="page" center-justified layout flex>
         <div class="body">
-          <div id="reco">LIBRARY<br></div>
+          <div id="reco" horizontal center-justified layout>LIBRARY</div>
             <div class="content" center-justified layout flex>
                 <template repeat="{{libro in libros}}">
     	            <div class="libros">

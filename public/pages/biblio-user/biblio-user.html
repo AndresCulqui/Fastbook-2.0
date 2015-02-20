@@ -8,39 +8,6 @@
             box-sizing: border-box;
 		}
 
-
-
-
-
-      mi-libro /deep/ .detail {
-        visibility: hidden;
-      }
-     mi-libro /deep/ .book1, #book {
-    width: 100px;
-    height: 130px;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
-    padding: 1px;
-    }
-    mi-libro /deep/ #book{
-      height: 130px;
-      padding: 0px;
-    }
-        
-    mi-libro /deep/ img {
-          width: 70px;
-          height: 120px;
-          border: 2px solid whitesmoke;
-        }
-         mi-libro /deep/ img:hover {
-          width: 70px;
-          height: 120px;
-      
-        }
-
-
 		section {
 			margin: 20px 40px 20px 0px;
 			background: rgba(8,46,64, 0.6);
@@ -48,229 +15,115 @@
 			border: 3px solid dimgray;
 			border-radius: 10px;
         }
-		paper-button {
-	        padding-top: 15px;
-	        background-image: url('../images/log.jpg');
-	        background-size: 100% 100%;
-	        background-repeat: no-repeat;
-	        color: white;
-	        font-weight: bold;
-	        margin-top: 20px;
-		}
-		#mi_perfil {
-            margin: 20px;
-            border-radius: 6px;
-            background: #fff;
-            width: 100%;
-		}
-		article {
-			width: 128px;
-			height: auto;
-			float: right;
-		}
-		figure {
-		}
-		.campos {
-			padding: 10px;
-		}
-		.icon {
-			height: 61px;
-			width: 61px;
-			border-radius: 0px 5px 5px 0px;
-			background: #F1F1F1;
-			margin-top: 10px;
-			margin-left: 0px;
-			margin-right: 10px;
-			margin-bottom: 10px;
-			color: rgba(8,46,64, 0.6);
-		}
-		.icon:hover {
-			background: rgba(8,46,64, 0.6);
-		}
-		paper-input {
-			border-radius: 5px 0px 0px 5px;
-			color: black;
-			width: 100%;
-			background: #F1F1F1;
-			padding: 15px 15px 15px 15px;
-			margin-top: 10px;
-			margin-left: 10px;
-			margin-right: 0px;
-			margin-bottom: 10px;
-		}
-		#butt {
-			width: 200px;
-			padding: 15px;
-			background-image: url('../../../images/log.jpg');
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
-			color: white;
-			font-weight: bold;
-			margin: 20px;
-		}
-		#actualizar {
-			margin: 0 auto;
-			width: 200px;
-		}
-		h3 {
-      color: #fff;
-      margin: 0px 0px 10px 0px;
-      padding: 0px;
-			font-size: 20px;
-			text-align: center;
-		}
-		#avatar {
-			width: 230px;
-			margin: 0 auto;
-		}
-		#photo {
-			width: 150px;
-			height: 150px;
-			border-radius: 75px;
-		}
-		#icon-edit {
-			padding: 10px;
-			border-radius: 25px;
-			float: right;
-			height: 20px;
-			width: 20px;
-			color: rgba(8,46,64, 0.6);
-			background: #F1F1F1;
-		}
-		#photo:hover {
-			opacity: 0.8;
-		}
-		#icon-edit:hover {
-			background: rgba(8,46,64, 0.6);
-		}
-         .libros{
-        padding-right: 8%;
-        width:10%; 
-        height: 150px;
-        float:left;
-        margin-left: 5%;
-        margin-top: 6.8%;
-        margin-bottom: 1.5%;
-        
-      }
-           .content { /*se hara por cada fila de recomendados (solo haremos 3 filas o 4 como mucho)*/
-          padding-top: 1%;
-          height: 550px;
-          background-image: url('../images/bookshe.png');
-          background-size: 100% 32.59%;
-        }
-        #dialog{
-            position: absolute;
-            width: 80%;
-            height: 500px;
-            border: 1px solid black;
-          	background: rgba(8,46,64, 0.98);
-            border-radius: 7px;
+
+      	mi-libro /deep/ .detail {
+        	visibility: hidden;
+      	}
+
+      	.libros{
+      	  width:10%; 
+      	  float:left;
+      	  margin-left: 5.5%;
+      	  margin-top: 2.55%;
+      	}
+
+      	#reco {
+      	  background-image: url('../images/bookshe_top.png');
+       	  background-repeat: no-repeat;
+          background-size: 100% 100%;
+          font-size: 40px;
+          font-weight: bold;
+      	}
+      	.content { /*se hara por cada fila de recomendados (solo haremos 3 filas o 4 como mucho)*/
+      	  //padding-top: 1%;
+      	  height: 550px;
+      	  background-image: url('../images/bookshe.png');
+      	  background-size: 100% 32.59%;
+      	}
+      	.footer {
+      	  background-image: url('../images/bookshe_bottom.png');
+      	  background-repeat: no-repeat;
+      	  background-size: 100% 100%;
+      	  height: 40px;
+      	}
+      	mi-libro /deep/ .book1, #book {
+      		width: 100px;
+      		height: 130px;
+      		-webkit-transition: all 1s ease;
+      		-moz-transition: all 1s ease;
+      		-ms-transition: all 1s ease;
+      		transition: all 1s ease;
+      	  padding: 1px;
+      	}
+      	mi-libro /deep/ #book{
+      	  height: 130px;
+      	  padding: 0px;
+      	}
+      	  
+      	img:hover {
+      	  opacity: 0.7;
+      	}
+
+      	@media (max-width: 600px) {
           
-            margin-left: 10%;
-            
-        }
-        paper-input.modify{
-            background-color: transparent;
-            color:white;
-            margin:0px;
-            padding: 0px;
-        }
-        #izq{
-       position:relative;
-       width:40%;
-     
-       float:left;
-       margin-left: 2%;
-            
-        }
-        #der{
-            position:relative;
-            float:left;
-            width:50%;
-            margin-left: 5%;
-         
-         
-        }
-        #optionButtons{
-            position:relative;
-        }
-          select{
-          height: 50px;
-          width: 100%;
-          margin-bottom: 3px;
-        }
-
-      @media (max-width: 600px) {
-       
-         .libros{
-          padding-right: 5%;
-          width:20%; 
-          height: 150px;
-          float:left;
-          margin-top: 11%;
-          margin-bottom: -4.5%;
-        }
-        .content {
-          height: 730px;
-          width: 100%;
-          background-size: 100% 20%;            
-        }
-
-        mi-libro /deep/ img {
-          width: 50px;
-          height: 100px;
-          border: 2px solid whitesmoke;
-          margin-right: 5%;
-        }
-         @media (max-width: 800px) {
-   
- 
-        	paper-button {
-        		width: 100px;
-        	}
-    
-          section{
-              margin:0px;
-              padding: 0px;
+          section {
+            border: 0px;
+            margin: 0px;
           }
-        
+
+         .libros{
+            width:24%; 
+            float:left;
+            margin-left: 5%;
+            margin-top: 6%;
+          }
+          .content {
+            height: 750px;
+            background-size: 100% 20%; 
+            padding-left: 4%; 
+            padding-top: 1%;            
+          }
+
+          mi-libro /deep/ .book1{
+            border: 0px;
+            margin: 0px;
+            width: 80px;
+          }
+
+          mi-libro /deep/ #book{
+            height: 120px;
+          }
+        }
+
+        @media (min-width: 1400px){
+        .libros {
+          margin-top: 1.65%;
+          margin-left: 4%;
+        }
       }
-    }
+
 
 		</style>
 
 
  <section>
-    <h3>My Books</h3>
+    <div id="reco" horizontal center-justified layout> MY LIBRARY</div>
     <div class="content" center-justified layout flex>
-			<!--<template repeat="{{libro in libros}}">
-    	            <div class="libros">
-    	              <mi-libro  class="lib" titulo="{{libro.isbn}}" imagen="{{libro.imagen}}" on-tap="{{bookDetail}}"></mi-libro>
-    	          	</div> 
-      </template>-->
-     <template repeat="{{libro in libros}}">
-        <div class="libros">
-           <mi-libro book="{{libro}}" on-tap="{{bookDetail}}"></mi-libro>
-       </div> 
-      </template>
 		
-      
-      
-        
-      
+     	<template repeat="{{libro in libros}}">
+	        <div class="libros">
+	           <mi-libro book="{{libro}}" on-tap="{{bookDetail}}"></mi-libro>
+	       	</div> 
+      	</template>
     </div>
+    <div class="footer"> </div>
  
-      
-  
 </section>
 	</template>
 	<script>
 	(function() {
 		
  
-         
-
 
 		Polymer({
 			ready: function () {
