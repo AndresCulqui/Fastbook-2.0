@@ -1,0 +1,19 @@
+<polymer-element name="result-books" attributes="books">
+    <template>
+        <style>
+        :host {
+            position: absolute;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+        }
+        </style>
+        <template repeat="{{book in books}}">
+          <mi-libro book="{{book}}"></mi-libro>
+        </template>
+    </template>
+    <script>
+        Polymer({
+        });
+    </script>
+</polymer-element>

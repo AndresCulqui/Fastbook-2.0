@@ -54,13 +54,7 @@ io.on('connection', function(socket){
   });
 });
 // log file ===============================================
-var logfile = fs.createWriteStream('./logfile.log', {flags: 'a'});
 
-app.use(morgan({stream: logfile}));
-
-app.get('/*', function(req, res){
-  fs.createReadStream('./logfile.log').pipe(res);
-});
 // launch ======================================================================
 /*app.listen(port);
 console.log('The magic happens on port ' + port);*/
