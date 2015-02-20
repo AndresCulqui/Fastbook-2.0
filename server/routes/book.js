@@ -115,7 +115,7 @@ var requestify = require('requestify');
 
  //GET - findBooks book by core-search//////////////////////////////////////////////////
 findBooks = function(req, res) {
-  console.log(req.body);
+  console.log(typeof req.body, req.body.title);
         console.log("POST - /books/find/:book");
         
         

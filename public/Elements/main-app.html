@@ -120,10 +120,7 @@
 			<section id="updatebook" hash="update">	
        			 <book-update id="bupdate" book="{{book}}" ></book-update>
 			</section>
-      <section id="result" hash="result">
-         
-        
-      </section>
+
 
 		</core-animated-pages>
 
@@ -265,8 +262,9 @@
 		  	})
  //--------------escuchando book detail en result search---------------------------
  
-    		this.$.result.addEventListener('bookdetail', function(e) {
+    		this.$.result.addEventListener('bookdetailSearch', function(e) {
         that.book=e.detail;
+        console.log(e.detail);
         that.$.detailbook.hash="bookdetail"+that.book._id;
            that.route="bookdetail"+that.book._id;
         
