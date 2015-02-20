@@ -134,13 +134,9 @@
                   <paper-input-decorator label="Editorial: {{book.publisher}}" floatinglabel="{{book.publisher}}">
                     <input id="editorial" disabled is="core-input" class="input" placeholder="{{book.publisher}}" aria-label="label">
                   </paper-input-decorator>
-                  
-                  <paper-input-decorator label="ISBN: {{book.isbn}}" floatinglabel="{{book.isbn}}">
-                    <input id="isbn" disabled is="core-input" class="input" placeholder="{{book.isbn}}" aria-label="label">
-                  </paper-input-decorator>
-                  
-                  <paper-input-decorator label="Precio: {{book.price}}" floatinglabel="{{book.price}}">
-                    <input id="precio" disabled is="core-input" class="input" placeholder="{{book.price}}" aria-label="label">
+                
+                  <paper-input-decorator id="deco_precio" label="Precio: {{book.price}}" floatinglabel="{{book.price}}">
+                    <input id="precio" disabled is="core-input" class="input" placeholder="{{book.price}}" value="{{book.price}}" aria-label="label">
                   </paper-input-decorator>
 
                  <label>
@@ -235,10 +231,10 @@
             <div id="des">
               <textarea disabled rows="4" cols="30" class="input fields" id="description">{{book.description}}</textarea>
             </div>  
-          <paper-button class="buttons" dismissive on-click="{{closeDialog}}">Close</paper-button>
+          <paper-button class="buttons" dismissive on-click="{{close}}">Close</paper-button>
           
           <paper-button id="modify" class="buttons" on-click="{{modify}}">Modify</paper-button>
-          <paper-button id="delete" class="buttons" on-click="{{delete}}">Delete</paper-button>
+          <paper-button disabled hidden id="delete" class="buttons" on-click="{{delete}}">Delete</paper-button>
           <paper-button disabled hidden id="save" class="buttons" on-click="{{save}}">Save</paper-button>
           </div>retertret
       </section>
@@ -268,6 +264,9 @@
         this.$.save.disabled=false;
         this.$.save.hidden=false;
         
+        this.$.delete.disabled=false;
+        this.$.delete.hidden=false;
+        
               
         var category = this.$.category;
         category.disabled = false;
@@ -286,6 +285,12 @@
         status.style.color= "cadetblue";
       },
       fieldsDisabled: function() {
+        
+        this.$.save.disabled=true;
+        this.$.save.hidden=true;
+        
+        this.$.delete.disabled=true;
+        this.$.delete.hidden=true;
         
         var deco = this.shadowRoot.querySelectorAll('paper-input-decorator /deep/ #underline > div.unfocused-underline');
         for(var i = 0; i < deco.length; i++) {
@@ -319,20 +324,21 @@
         status.disabled = true;
         status.style.color= "grey";
       },
-      closeDialog: function() {
-        this.fire("closedialog");
+      close: function() {
+        window.history.back();
       },
       modify: function() {
         this.fieldsEnabled();
         
       },
       save: function() {
+        var flag=true;
         console.log(this.book);
         var book={
           _id:this.book._id,
           title: this.$.title.value,
           author: this.$.author.value,
-          isbn: this.$.isbn.value,
+          isbn: this.book.isbn,
           publisher: this.$.editorial.value,
           price: this.$.precio.value,
           description: this.$.description.value,
@@ -352,11 +358,8 @@
         if(!this.$.author.value) {
           book.author = this.book.author;
         }
-        if(!this.$.isbn.value) {
-          book.isbn = this.book.isbn;
-        }
         if(!this.$.editorial.value) {
-          book.publisher = this.book.editorial;
+          book.publisher = this.book.publisher;
         }
         if(!this.$.precio.value) {
           book.price = this.book.precio;
@@ -365,12 +368,20 @@
           book.description = this.book.description;
         }
         
-        if(book){
-        this.fieldsDisabled();
-      }
+        if(validator.isNumeric(this.$.precio.value)){
+            this.$.deco_precio.isInvalid=false;
+        }else{
+          console.log("Price KO");
+         this.$.deco_precio.isInvalid=true;
+             this.$.deco_precio.error="Price Invalid!";
+             flag=false;
+        }
         
+        if(book && flag){
+        this.fieldsDisabled();
         console.log(book);
         this.update(book);
+        }
       },
       update:function(book){
          var  jbook=JSON.stringify(book);

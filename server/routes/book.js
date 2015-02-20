@@ -105,6 +105,33 @@ var requestify = require('requestify');
   };
 
 
+
+ //GET - findBooks book by core-search//////////////////////////////////////////////////
+findBooks = function(req, res) {
+  console.log(req.body);
+        console.log("POST - /books/find/:book");
+        
+        
+     Book.find(req.body, function(err, book) {
+      if(!book) {
+        res.statusCode = 404;
+        return res.send({ error: 'Not found' });
+      }
+      if(!err) {
+        console.log(book);
+        // Send { status:OK, tshirt { tshirt values }}
+       res.send({ status: 'OK', book:book });
+        // Send {tshirt values}
+        // return res.send(tshirt);
+      } else {
+        res.statusCode = 500;
+        console.log('Internal error(%d): %s',res.statusCode,err.message);
+        res.send({ error: 'Server error' });
+      }
+    });
+  };
+
+
  //GET - find book by Id_user//////////////////////////////////////////////////
 findBookByIdUser = function(req, res) {
         console.log("GET - /book/:id_book/:id_user");
@@ -298,6 +325,7 @@ findBookByIdUser = function(req, res) {
   app.get('/books', findAllBooks);
   app.get('/book/:isbn', findByIsbn);
    app.get('/books/user/:user', findByUser);
+   app.post('/books/find', findBooks);
    app.get('/book/book/:id_book/:id_user', findBookByIdUser);
    app.get('/book/id/:id', findById);
   app.post('/book', addBook);

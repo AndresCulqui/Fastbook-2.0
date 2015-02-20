@@ -3,219 +3,196 @@
         <style>
         :host {
             position: absolute;
-            margin: 20px;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
         }
-        section {
+        paper-slider::shadow #sliderBar::shadow #activeProgress {
+          background-color: #ee4f30;
+        }
+        paper-slider::shadow #sliderKnobInner {
+          background-color: #ee4f30;
+        }
+        #box {
+          background: white;
+          border-radius: 6px;
+          margin: 20px auto;
           padding: 20px;
-          border: 2px white solid;
-          border-radius: 7px;
-          background: rgba(95,31,7, 0.2);
+          width: 500px;
         }
-        #options {
-          width: 324px;
-          padding: 0px;
-          margin: 0px;
+        #result {
+          width: 90%;
+          margin: 20px auto;
         }
-        paper-input-decorator {
-            width: 300px;
-            background-color: white;
-            border: 2px solid dimgray;
-            border-radius: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            box-shadow: blue 20px;
+        @media (max-width: 850px) {
+          #box {
+            width: 90%;
+          }
         }
-        #butt {
-            padding-top: 15px;
-            background-image: url('../images/log.jpg');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            color: white;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        paper-dropdown-menu {
-            width: 300px;
-            background-color: white;
-            border: 2px solid dimgray;
-            border-radius: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            box-shadow: blue 20px;
-            margin: 10px;
-        }
-        paper-dropdown {
-          width: 300px;
-        }
-        paper-item {
-            width: 300px;
-        }
-        #advanced {
-            background-image: url('../images/log.jpg');
-            background-size: 100% 100%;
-            margin: 10px;
-            color: white;
-            font-weight: bold;
-        }
-        #check {
-            width: 100%;
-            border-radius: 6px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.6);
-        }
-        paper-radio-button::shadow #onRadio {
-            background-color: #4285f4;
-        }
-        paper-radio-button::shadow #offRadio {
-            border-color: white;
-        }
-        paper-radio-group {
-            width: 300px;
-        }
-        paper-radio-button {
-            float: left;
-        }
-        @media (max-width: 400px) {
-            paper-input-decorator{
-                width: 90%;
-            }
-            paper-dropdown-menu {
-              width: 90%;
-            }
-            #option {
-              width: 100%;
-            }
+        #slider {
+          width: 100%;
         }
         </style>
-        <section vertical layout center flex>
+        
+        <section id="box">
           
-            <paper-input-decorator label="Find a book...">
-              <input is="core-input" id="title">
+            <paper-input-decorator id="deco_title" label="Title">
+              <input id="title" is="input">
             </paper-input-decorator>
-          
-            
 
-              
-              <paper-input-decorator label="Author">
-                <input is="core-input" id="author">
+              <paper-input-decorator label="Author" id="deco_author">
+                <input is="input" id="author">
               </paper-input-decorator>
                 
-              <paper-input-decorator label="ISBN">
-                <input is="core-input" id="isbn">
+              <paper-input-decorator label="ISBN" id="deco_isbn">
+                <input type="number" is="input" id="isbn" on-blur="{{validateIsbn}}">
               </paper-input-decorator>
           
           
-
-            <paper-dropdown-menu label="Categories" id="categories">
-              <paper-dropdown class="dropdown">
-                <core-menu class="menu">
-            <paper-item>Croissant</paper-item>
-            <paper-item>Donut</paper-item>
-            <paper-item>Financier</paper-item>
-            <paper-item>Madeleine</paper-item>
-        </core-menu><!--
-                <div>
-                  <paper-item label="Primaria"></paper-item>
-                  <paper-item label="Segundaria"></paper-item>
-                  <paper-item label="Bachillerato"></paper-item>
-                  <paper-item label="Universidad"></paper-item>
-                  <paper-item label="Oposiciones"></paper-item>
-                  <paper-item label="Idiomas"></paper-item>
-                  <paper-item label="Formación profesional"></paper-item>
-                  <paper-item label="Libros de lectura"></paper-item>
-                </div>-->
-                </paper-dropdown>
-            </paper-dropdown-menu>
+          <paper-input-decorator label="Category" floatingLabel="Category" id="deco_category">
+              <select id="categories">
+                <option value="0">Select category</option> 
+                <option>primaria</option>
+                <option>secundaria</option>
+                <option>bachillerato</option>
+                <option>universidad</option>
+                <option>formacion profesional</option>
+                <option> oposiciones</option>
+                <option>lectura</option>
+              </select>
+          </paper-input-decorator>
           
+          <paper-input-decorator label="Province" floatingLabel="Province" id="deco_provi">
+            <select id="province">
+               <option value="0">Select province</option>      
+              <option> A Coruña</option>
+              <option> Alicante</option>
+                <option>Albacete</option>
+                <option>Almería</option>
+                <option>Araba</option>
+                <option >Asturias</option>
+                <option>Ávila</option>
+                <option >Badajoz</option>
+                <option >Balears</option>
+                <option>Barcelona</option>
+                <option >Bizkaia</option>
+                <option >Burgos</option>
+                <option >Cáceres</option>
+                <option >Cádiz</option>
+                <option >Cantabria</option>
+                <option >Castelló</option>
+                <option >Ceuta</option>
+                <option >Ciudad Real</option>
+                <option >Córdoba</option>
+                <option>Cuenca</option>
+                <option >Girona</option>
+                <option>Granada</option>
+                <option >Guadalajara</option>
+                <option >Guipuzkoa</option>
+                <option >Huelva</option>
+                <option>Huesca</option>
+                <option >Jaén</option>
+                <option>La Rioja</option>
+                <option >Las Palmas</option>
+                <option >León</option>
+                <option >Lleida</option>
+                <option >Lugo</option>
+                <option>Madrid</option>
+                <option >Málaga</option>
+                <option >Melilla</option>
+                <option>Murcia</option>
+                <option >Navarra</option>
+                <option >Ourense</option>
+                <option >Palencia</option>
+                <option >Pontevedra</option>
+                <option >S.C. Tenerife</option>
+                <option >Salamanca</option>
+                <option>Segovia</option>
+                <option >Sevilla</option>
+                <option >Soria</option>
+                <option >Tarragona</option>
+                <option>Teruel</option>
+                <option >Toledo</option>
+                <option >Valencia</option>
+                <option >Valladolid</option>
+                <option >Zamora</option>
+                <option >Zaragoza</option> 
+            </select>
+            </paper-input-decorator>
           
-            
-            <paper-dropdown-menu label="Conditions" id="conditions">
-                <paper-item label="Muy bueno"></paper-item>
-                <paper-item label="Bueno"></paper-item>
-                <paper-item label="Normal"></paper-item>
-                <paper-item label="Malo"></paper-item>
-                <paper-item label="Muy malo"></paper-item>
-            </paper-dropdown-menu>
-              <!--
-             <paper-dropdown-menu label="Price" id="price">
-                <paper-item label="Free"></paper-item>
-                <paper-item label="5$ - 10$"></paper-item>
-                <paper-item label="10$ - 20$"></paper-item>
-                <paper-item label="20$ - 30$"></paper-item>
-                <paper-item label=">30$"></paper-item>
-            </paper-dropdown-menu>-->
-              
-            <paper-button id="butt" on-tap="{{restful}}">Search</paper-button>
-            <div layout horizontal center id="result_books">
-              <template repeat="{{res in r}}">
-                <mi-libro titulo="{{titulo}}" imagen="{{imagen}}"></mi-libro>             
-              </template>  
-            </div>
+          <paper-input-decorator label="Conditions" floatingLabel="Conditions" id="deco_consitions">
+              <select id="conditions">
+                <option value="0">Select conditions</option> 
+                <option >Muy malo</option>
+                <option>Malo</option>
+                <option>Normal</option>
+                <option>Bueno</option>
+                <option >Muy bueno</option>
+              </select>
+          </paper-input-decorator>
+          
+          <label>Maximum Price</label>
+          <paper-slider id="slider" value="0" max="200" editable="" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0"></paper-slider>
+                        
+          <paper-button on-tap="{{search}}">Search</paper-button>
         </section>
+        
+        <div layout horizontal center id="result">
+          <result-books id="result_books" books="{{books}}"></result-books>
+        </div>
     </template>
     <script>
-      
         Polymer({
-            show: function() {
-                this.$.options.toggle();
-            },
-            restful: function(){
-              var that=this;
-              
-              var bookSearch = {
-                title: this.$.title.value,
-                author: this.$.author.value,
-                isbn: this.$.isbn.value,
-                categories: this.$.categories.selected,
-                conditions: this.$.conditions.selected,
-                price: this.$.price.selected                
-              };
-              
-              console.log(bookSearch);
-              
-              var books="http://localhost:8080/book/title/"+title;
-              alert(books);
-              var result_books = this.$.result_books;
-              this.res=[];
-              $.getJSON(books,function(result){
-               
-              console.log(result.book);
-              for(var i = 0; i < result.book.length; i++) {
-                console.log(result.book[i]);
-                $(result_books).append('<mi-libro  imagen='+result.book[i].imagen+' titulo='+result.book[i].title+'>  </mi-libro>');
+            validateIsbn: function() {
+              flag=true;
+              var isbn = this.$.isbn;
+              if(validator.isNumeric(this.$.isbn.value)){
+                this.$.deco_isbn.isInvalid=false;
+              }else{
+                console.log("ISBN KO!");
+                this.$.deco_isbn.isInvalid=true;
+                this.$.deco_isbn.error="ISBN Invalid!";
+                flag=false;
               }
+            },
+            search: function() {
+              var that = this;
               
-    
-    /*
-              console.log(isbn);
-              console.log(title);
-              console.log(author);
-              console.log(year);
-              console.log(publisher);
-              console.log(description);
-               console.log(id);
-                console.log(genre);*/
-       
-               
-                     // Set the table td text
-                $('#titulo1').text("Titulo  :"+title);
-                $('#autor').text("Autor  :"+author);
-                 $('#editorial').text("Editorial  :"+publisher);
-                $('#anio').text("Anio :"+year);
-                $('#descripcion').text("Descripcion  :"+description);
-                //$("#imagen").attr("src",imagen);
-                $('#otro').text("ISBN  :"+isbn);
- 
-             });
-             
-   
-             
-            
+              var book = {};
+              
+              if(!this.$.title.value == "") {
+                book.title = this.$.title.value;
+              }
+              if(!this.$.author.value == "") {
+                book.author = this.$.author.value;
+              }
+              if(!this.$.isbn.value == "") {
+                book.isbn = this.$.isbn.value;
+              }
+              if(this.$.categories.value !== "0") {
+                book.genre = this.$.categories.value;
+              }
+              if(this.$.province.value !== "0") {
+                book.province = this.$.province.value;
+              }
+              if(this.$.conditions.value !== "0") {
+                book.status = this.$.conditions.value;
+              }
+              if(this.$.slider.immediateValue !== "0") {
+                book.price = this.$.slider.immediateValue;
+              }
+          
+              console.log(book);
+              
+              var slider = this.$.slider;
+              console.log(slider.immediateValue);
+              $.post("/books/find",book,
+              function(data,status){
+                console.log(data.book);
+                that.$.result_books.books=data.book;
+
+              });
             }
-            
         });
     </script>
 </polymer-element>
