@@ -21,11 +21,12 @@
       }
       #dialog {
         margin: 20px;
-        //border:2px solid green;
+        //background: rgba(95,31,7, 0.4);
+        background: rgba(8,46,64, 0.4);
       }
       #email{
         width: 20%;
-        height: 650px;
+        height: 610px;
         margin-left: 60%;
         padding-left: 4%;
         padding-right: 4%;
@@ -70,8 +71,12 @@
       .buttons {
         margin: 10px;
         background: #F1F1F1;
-        color: cadetblue;
+        //color: cadetblue;
+        background-color: #F76700;
+        background-image: linear-gradient(#F76700,#FA3219);
+        border: 1px solid #C53421;
       }
+      #back { height: 20px; font-size: 9px; padding: 0px; border: 0px; margin: 0px;}
       #photo {
         margin-bottom: 10px;
         text-align: center;
@@ -90,14 +95,15 @@
         float: right;
       }
       @media (max-width: 850px) {
+        #containt { padding: 0px;}
         #title {
           font-size: 1.5em;
         }
         #book {
-          
-          padding: 0px;
+          padding: 5px;
           margin:0px;
           width: 100%;
+          float: none;
           
         }
         #dialog{
@@ -110,13 +116,23 @@
         }
         #data {
           margin-left: 0px;
-          width: 100%;
           float: none;
         }
+        #data, #description {  width: 95%; }
         #star {
           position: relative;
           float: none;
         }
+        #email {
+          width: 92%;
+          margin: 0px;
+        }
+        paper-input-decorator {
+          width: 100%;
+          padding: 0px 0px 0px 0px;
+          margin-bottom: 0px;
+        }
+        #back { color: white; font-weight: bold;}
       }
       
     </style>
@@ -125,7 +141,7 @@
       <section id="dialog">
        <div id="containt" > 
         <div id="book">
-          
+             <paper-button class="buttons" id="back" dismissive on-click="{{close}}"> Back</paper-button>
             <div id="title">{{book.title}}</div>
             <paper-button id="bookUpdate" class="buttons" on-tap="{{bookUpdate}}">Modify</paper-button>
              <!-- //////////////// dialog qr code  -->
@@ -162,13 +178,12 @@
             <div id="des">
             <p class="fields" id="description"><em>Description:</em> {{book.description}}</p>
             </div>  
-          <paper-button class="buttons" dismissive on-click="{{close}}">Close</paper-button>
           
                      
           </div>
             <div id="email">
              
-              <h1>Contacta ahora</h1>
+              <h1>Now Contact </h1>
             
               
                   <paper-input-decorator label="your nombre" floatinglabel="your nombre">
@@ -181,7 +196,7 @@
                   
                   <paper-input-decorator label="your phone" floatinglabel="your phone">
                     <input id="phone" is="core-input" class="input" placeholder="your phone" aria-label="label">
-                  </paper-input-decorator> 
+                  </paper-input-decorator> <br><br>
               <textarea id="comments" placeholder="I'm interesting in your book"style="width:100%;height:200px "></textarea>  
               <center>
               <paper-button class="buttons"  on-click="{{sendMail}}">Send mail</paper-button>

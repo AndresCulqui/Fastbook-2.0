@@ -7,29 +7,29 @@
         :host {
  
         }
-        
-   paper-input-decorator /deep/ .label-text {
-    /* inline label,  floating label, error message and error icon color when the input is unfocused */
-    color: blue;
-}
+        paper-input-decorator /deep/ .label-text {
+            /* inline label,  floating label, error message and error icon color when the input is unfocused */
+            color: blue;
+        }
 
-paper-input-decorator /deep/ .error{
-  color:red;
-}
-paper-input-decorator /deep/ ::-webkit-input-placeholder {
-    /* platform specific rules for placeholder text */
-    color: black;
-}
+        paper-input-decorator /deep/ .error{
+          color:red;
+        }
+        paper-input-decorator /deep/ ::-webkit-input-placeholder {
+            /* platform specific rules for placeholder text */
+            color: black;
+            text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+        }
 
  
         section{
           
-      margin: 20px;
-      border:2px white solid;
-      border-radius: 7px;
-      background: rgba(95,31,7, 0.2);
+          margin: 20px;
+          border:2px white solid;
+          border-radius: 7px;
+          background: rgba(8,46,64, 0.4);
 
-      //background-color: beige;
+          //background-color: beige;
         }
         h2{
       margin-left: 10%;
@@ -61,17 +61,17 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
         width: 40%;
       }
       #left, #right {
-             
           background-image: url('../images/form.png');
           background-size: 100% 100%;
-          border: 5px solid;
+          border: 5px solid dimgray;
           border-radius: 10px;
-      
-   
       }
       #tit{
-       font-size:300%;
-       
+        font-size: 35px;
+        color: white;
+        font-family: Courier;
+        font-weight: bold;
+        text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
       }
 
       #left {
@@ -90,8 +90,13 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
    
       }
       #butt{
-        margin-left: 40%;
+        
         margin-top: 2%;
+        background-color: #F76700;
+        background-image: linear-gradient(#F76700,#FA3219);
+        border: 1px solid #C53421;
+        color: white;
+        cursor: pointer;
       }
       core-input{
         color:black;
@@ -142,10 +147,6 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
           <div id="mobile">
           <div  id="left">
             
-            
-
-            
-            
 
              <paper-input-decorator label="ISBN" floatingLabel error="ISBN is required!" id="decoisbn" >
                <input is="core-input" id="isbn" on-blur="{{validateIsbn}}" required/>
@@ -168,6 +169,7 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                <core-input id="ttitulo" disabled></core-input>
                <core-input id="tautor" disabled></core-input><br>
                 <img id="timg"></img>
+                <br><br>
                
              </div>
               
@@ -293,9 +295,9 @@ paper-input-decorator /deep/ ::-webkit-input-placeholder {
                                  
   
             
-          <div id="foo">
+          <div id="foo" horizontal center-justified layout>
             <paper-button id="butt" on-tap="{{validates}}">Continue y publish</paper-button>
-          </div>
+          </div><br><br>
         
               
         </div>

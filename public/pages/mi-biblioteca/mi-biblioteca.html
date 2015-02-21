@@ -36,7 +36,10 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         font-size: 40px;
+        color: white;
+        font-family: Courier;
         font-weight: bold;
+        text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
       }
       .content { /*se hara por cada fila de recomendados (solo haremos 3 filas o 4 como mucho)*/
         //padding-top: 1%;
@@ -64,8 +67,9 @@
         padding: 0px;
       }
 
-      img:hover {
+      mi-libro /deep/ #book:hover{
         opacity: 0.7;
+        cursor: pointer;
       }
 
       @media (max-width: 600px) {
@@ -97,6 +101,7 @@
           mi-libro /deep/ #book{
             height: 120px;
           }
+
         }
         
       @media (min-width: 1400px){

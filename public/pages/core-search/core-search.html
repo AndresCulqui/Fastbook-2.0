@@ -13,20 +13,72 @@
         paper-slider::shadow #sliderKnobInner {
           background-color: #ee4f30;
         }
+        #text{
+          padding-top: 2%;
+          font-size: 30px;
+          color: white;
+          font-family: Courier;
+          font-weight: bold;
+          text-shadow: #fff 0 0 4px, #fcffbb 0 0 20px;
+          background-image: url('../images/form.png');
+          background-size: 100% 100%;
+          height: 50px;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+          border-left: 1px solid dimgray;
+          border-right: 1px solid dimgray;
+          border-top: 1px solid dimgray;
+        }
+        .content {
+          background-color: white; 
+          padding: 2%;
+        }
+        .border {
+          background-image: url('../images/form.png');
+          background-size: 100% 100%;
+          border-left: 1px solid dimgray;
+          border-right: 1px solid dimgray;
+          border-bottom: 1px solid dimgray;
+          padding: 1%;
+        }
+        #button_search{
+            background-color: #F76700;
+            background-image: linear-gradient(#F76700,#FA3219);
+            border: 1px solid #C53421;
+            width: 150px;
+        }
+        #deco_title, #deco_author, #deco_category, #deco_provi { margin-right: 2%; }
+      
         #box {
-          background: white;
+          
           border-radius: 6px;
-          margin: 20px auto;
-          padding: 20px;
+          //padding: 12px;
           
         }
         #result {
           width: 90%;
           margin: 20px auto;
+
         }
+
+        .hidden { 
+          position: absolute;
+          margin-top: 3%;
+          right: 25%;
+          width: 50%;
+          height: 110px;
+          //border: 2px solid yellow;
+          background-color: white;
+        }
+
         @media (max-width: 850px) {
           #box {
-            width: 90%;
+            //width: 90%;
+          }
+          .hidden { 
+            height: 200px;
+            width: 100%;
+            right: 0px;
           }
         }
         #slider {
@@ -34,21 +86,24 @@
         }
         </style>
         
-        <section id="box" h>
+        <section id="box">
+        <div id="text" horizontal center-justified layout><b>Search Book! by...<b> </div>
+        <div class="border">
+        <div class="content">
           <div horizontal layout>
             <paper-input-decorator id="deco_title" label="Title">
               <input id="title" is="input">
-            </paper-input-decorator>
+            </paper-input-decorator><br>
 
               <paper-input-decorator label="Author" id="deco_author">
                 <input is="input" id="author">
-              </paper-input-decorator>
+              </paper-input-decorator><br>
                 
               <paper-input-decorator label="ISBN" id="deco_isbn">
                 <input type="number" is="input" id="isbn" on-blur="{{validateIsbn}}">
               </paper-input-decorator>
           </div>
-          <div  horizontal layout>
+          <div  horizontal center-justified layout>
           
           <paper-input-decorator label="Category" floatingLabel="Category" id="deco_category">
               <select id="categories">
@@ -136,7 +191,12 @@
           </div>
           <label>Maximum Price</label>
           <paper-slider id="slider" value="0" max="200" editable="" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0"></paper-slider>
-            <paper-button on-tap="{{search}}">Search</paper-button>
+          <div  horizontal center-justified layout>
+            <paper-button id="button_search" on-tap="{{search}}">Search</paper-button>
+          </div>
+          <div id="ocult" class="hidden"></div>
+        </div>
+        </div>
         </section>
         
  
@@ -186,6 +246,8 @@
               }
           
               console.log(book);
+
+              this.$.ocult.style.visibility="hidden";
               
               var slider = this.$.slider;
               console.log(slider.immediateValue);
